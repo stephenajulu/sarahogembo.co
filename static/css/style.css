@@ -1852,7 +1852,110 @@ button, input, textarea, select {
 }
 
 /* --------------------------------------------------------------------------
-   16. Accessibility & Reduced Motion
+   16. Scroll Animations & Micro-Interactions
+   -------------------------------------------------------------------------- */
+/* Scroll Reveal base states */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+[data-reveal="fade-in"] {
+  transform: none;
+}
+
+[data-reveal="scale-up"] {
+  transform: scale(0.94);
+}
+
+[data-reveal="left"] {
+  transform: translateX(-35px);
+}
+
+[data-reveal="right"] {
+  transform: translateX(35px);
+}
+
+/* Revealed active state */
+[data-reveal].is-revealed {
+  opacity: 1;
+  transform: translateY(0) scale(1) translateX(0);
+}
+
+/* Stagger delay classes */
+.delay-1 { transition-delay: 0.1s; }
+.delay-2 { transition-delay: 0.2s; }
+.delay-3 { transition-delay: 0.3s; }
+.delay-4 { transition-delay: 0.4s; }
+.delay-5 { transition-delay: 0.5s; }
+.delay-6 { transition-delay: 0.6s; }
+.delay-7 { transition-delay: 0.7s; }
+.delay-8 { transition-delay: 0.8s; }
+
+/* Luxury Button Shimmer Effect */
+.btn-primary {
+  position: relative;
+  overflow: hidden;
+}
+.btn-primary::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+  transform: skewX(-25deg);
+  transition: left 0.75s ease;
+  pointer-events: none;
+}
+.btn-primary:hover::before {
+  left: 150%;
+}
+
+/* Pulsing Play Button for Showreel */
+.play-trigger-btn {
+  animation: pulseGoldRing 2.8s infinite ease-out;
+}
+@keyframes pulseGoldRing {
+  0% {
+    box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.6), 0 0 30px rgba(212, 175, 55, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 18px rgba(212, 175, 55, 0), 0 0 45px rgba(212, 175, 55, 0.7);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(212, 175, 55, 0), 0 0 30px rgba(212, 175, 55, 0.4);
+  }
+}
+
+/* Subtle Floating Script Annotation */
+.hero-script-callout {
+  animation: floatScript 6s ease-in-out infinite alternate;
+}
+@keyframes floatScript {
+  0% { transform: rotate(-6deg) translateY(0); }
+  100% { transform: rotate(-6deg) translateY(-8px); }
+}
+
+/* Stat numbers count-up glow */
+.stat-number.is-counting {
+  color: var(--color-gold-light);
+  text-shadow: 0 0 25px rgba(212, 175, 55, 0.45);
+}
+
+/* Active navigation link indicator */
+.nav-link.active {
+  color: var(--color-gold-primary);
+}
+.nav-link.active::after {
+  width: 100%;
+}
+
+/* --------------------------------------------------------------------------
+   17. Accessibility & Reduced Motion
    -------------------------------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
@@ -1860,5 +1963,10 @@ button, input, textarea, select {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
   }
 }

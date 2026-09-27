@@ -1,10 +1,12 @@
 /**
  * SARAH OGEMBO - LUXURY PERSONAL BRAND
- * Interactive Client-Side Engine
+ * Interactive Client-Side Engine with Scroll Reveal & Micro-Interactions
  * Accessible, High Performance, Zero Dependencies
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
   // 1. Service Worker Registration (PWA)
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
@@ -14,19 +16,135 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 2. Sticky Header Scroll Effect
+  // 2. Sticky Header Scroll & Glass Blur Transition
   const header = document.querySelector('.site-header');
   const handleScroll = () => {
     if (window.scrollY > 50) {
-      header.classList.add('scrolled');
+      header?.classList.add('scrolled');
     } else {
-      header.classList.remove('scrolled');
+      header?.classList.remove('scrolled');
     }
   };
   window.addEventListener('scroll', handleScroll, { passive: true });
   handleScroll();
 
-  // 3. Mobile Navigation Drawer Toggle
+  // 3. Scrollspy: Active Navigation Link Highlighting
+  const navLinks = document.querySelectorAll('.nav-link[href^="#"]');
+  const trackedSections = document.querySelectorAll('section[id]');
+
+  const updateScrollSpy = () => {
+    const scrollPos = window.scrollY + 140;
+    trackedSections.forEach((section) => {
+      const top = section.offsetTop;
+      const height = section.offsetHeight;
+      const id = section.getAttribute('id');
+      if (scrollPos >= top && scrollPos < top + height) {
+        navLinks.forEach((link) => {
+          if (link.getAttribute('href') === `#${id}`) {
+            link.classList.add('active');
+          } else {
+            link.classList.remove('active');
+          }
+        });
+      }
+    });
+  };
+  window.addEventListener('scroll', updateScrollSpy, { passive: true });
+
+  // 4. Scroll Reveal Animations (IntersectionObserver)
+  if (!prefersReducedMotion && 'IntersectionObserver' in window) {
+    // Select elements to reveal
+    const revealElements = document.querySelectorAll(
+      '[data-reveal], .service-card, .gallery-item, .stat-item, .difference-card, .showreel-card, .testimonials-card, .booking-form-card, .about-portrait-wrap, .about-bio, .personal-image-frame, .personal-content'
+    );
+
+    // Auto-assign stagger delays to card grids
+    document.querySelectorAll('.services-grid, .gallery-grid').forEach((grid) => {
+      Array.from(grid.children).forEach((child, idx) => {
+        child.setAttribute('data-reveal', 'fade-up');
+        child.style.transitionDelay = `${(idx % 4) * 0.12}s`;
+      });
+    });
+
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-revealed');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      rootMargin: '0px 0px -60px 0px',
+      threshold: 0.12
+    });
+
+    revealElements.forEach((el) => {
+      if (!el.hasAttribute('data-reveal')) {
+        el.setAttribute('data-reveal', 'fade-up');
+      }
+      revealObserver.observe(el);
+    });
+  } else {
+    // Fallback or reduced motion: reveal immediately
+    document.querySelectorAll('[data-reveal]').forEach((el) => el.classList.add('is-revealed'));
+  }
+
+  // 5. Stat Plaque Animated Counter Ticker
+  const statNumbers = document.querySelectorAll('.stat-number');
+  if (statNumbers.length > 0 && !prefersReducedMotion && 'IntersectionObserver' in window) {
+    let statsAnimated = false;
+
+    const animateNumber = (el) => {
+      const rawText = el.textContent.trim();
+      const match = rawText.match(/^([\d,\.]+)(.*)$/);
+      if (!match) return;
+
+      const numStr = match[1].replace(/,/g, '');
+      const targetVal = parseFloat(numStr);
+      const suffix = match[2] || '';
+      const hasComma = match[1].includes(',');
+      const duration = 1800; // ms
+      const startTime = performance.now();
+
+      el.classList.add('is-counting');
+
+      const step = (now) => {
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        // easeOutQuad curve: 1 - (1 - p) * (1 - p)
+        const easeProgress = 1 - Math.pow(1 - progress, 2);
+        const currentVal = Math.floor(easeProgress * targetVal);
+
+        const formatted = hasComma ? currentVal.toLocaleString() : currentVal;
+        el.textContent = `${formatted}${suffix}`;
+
+        if (progress < 1) {
+          requestAnimationFrame(step);
+        } else {
+          const finalFormatted = hasComma ? targetVal.toLocaleString() : targetVal;
+          el.textContent = `${finalFormatted}${suffix}`;
+          el.classList.remove('is-counting');
+        }
+      };
+
+      requestAnimationFrame(step);
+    };
+
+    const statsObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && !statsAnimated) {
+          statsAnimated = true;
+          statNumbers.forEach(animateNumber);
+          observer.disconnect();
+        }
+      });
+    }, { threshold: 0.25 });
+
+    const statsPlaque = document.querySelector('.stats-plaque');
+    if (statsPlaque) statsObserver.observe(statsPlaque);
+  }
+
+  // 6. Mobile Navigation Drawer Toggle
   const mobileToggle = document.querySelector('.mobile-toggle');
   const navMenu = document.querySelector('.nav-menu');
   if (mobileToggle && navMenu) {
@@ -36,7 +154,6 @@ document.addEventListener('DOMContentLoaded', () => {
       navMenu.classList.toggle('open');
     });
 
-    // Close mobile nav when clicking a link
     navMenu.querySelectorAll('a').forEach((link) => {
       link.addEventListener('click', () => {
         navMenu.classList.remove('open');
@@ -45,7 +162,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 4. Testimonials Slider
+  // 7. Testimonials Slider
   const slides = document.querySelectorAll('.test-slide');
   const dots = document.querySelectorAll('.test-dot');
   const prevBtn = document.querySelector('.test-prev');
@@ -94,14 +211,11 @@ document.addEventListener('DOMContentLoaded', () => {
     startAutoplay();
   }
 
-  // 5. Showreel Video Lightbox Modal
+  // 8. Showreel Video Lightbox Modal
   const videoModal = document.getElementById('video-modal');
   const videoTriggers = document.querySelectorAll('.trigger-video-modal');
   const videoCloseBtn = document.querySelector('.video-modal-close');
   const videoIframe = document.getElementById('showreel-iframe');
-
-  // Sarah Ogembo Video Highlight Reel URL (or showcase placeholder)
-  const defaultVideoSrc = "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1"; // fallback embed
 
   function openVideoModal() {
     if (!videoModal) return;
@@ -114,7 +228,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!videoModal) return;
     videoModal.classList.remove('active');
     document.body.style.overflow = '';
-    // Pause video
     if (videoIframe) {
       const src = videoIframe.src;
       videoIframe.src = '';
@@ -131,7 +244,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   videoCloseBtn?.addEventListener('click', closeVideoModal);
 
-  // 6. Gallery Lightbox Modal
+  // 9. Gallery Lightbox Modal
   const galleryModal = document.getElementById('gallery-modal');
   const galleryItems = document.querySelectorAll('.gallery-item');
   const lightboxImg = document.getElementById('lightbox-image');
@@ -155,6 +268,13 @@ document.addEventListener('DOMContentLoaded', () => {
         galleryModal.classList.add('active');
         document.body.style.overflow = 'hidden';
         galleryCloseBtn?.focus();
+      }
+    });
+
+    item.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        item.click();
       }
     });
   });
@@ -182,7 +302,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // 7. Booking Concierge Form & Direct WhatsApp Integration
+  // 10. Booking Concierge Form & Direct WhatsApp Integration
   const bookingForm = document.getElementById('booking-form');
   const formStatus = document.getElementById('form-status');
 
@@ -200,7 +320,6 @@ document.addEventListener('DOMContentLoaded', () => {
       const guests = document.getElementById('expected_guests')?.value || '';
       const message = document.getElementById('message')?.value || '';
 
-      // Construct WhatsApp message text
       const waText = encodeURIComponent(
         `*New Event Booking Inquiry*\n\n` +
         `*Name:* ${name}\n` +
@@ -218,7 +337,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (formStatus) {
         formStatus.innerHTML = `
-          <div style="background: rgba(212,175,55,0.1); border: 1px solid var(--color-gold-primary); color: #F7E7A9; padding: 16px; border-radius: 4px; margin-top: 16px;">
+          <div style="background: rgba(212,175,55,0.1); border: 1px solid var(--color-gold-primary); color: #F7E7A9; padding: 16px; border-radius: 4px; margin-top: 16px; animation: fadeIn 0.4s ease;">
             <p><strong>Thank you, ${name}.</strong> Your event details have been captured.</p>
             <p style="margin-top: 8px; font-size: 0.9rem;">To connect directly via WhatsApp with these details pre-filled, <a href="${waUrl}" target="_blank" rel="noopener noreferrer" style="color: #25D366; text-decoration: underline; font-weight: bold;">Click Here to Open WhatsApp</a>, or Sarah's executive management team will reach out to <em>${email}</em> promptly.</p>
           </div>
@@ -229,7 +348,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 8. Back to Top Button
+  // 11. Back to Top Button
   const backToTopBtn = document.querySelector('.back-to-top-btn');
   if (backToTopBtn) {
     backToTopBtn.addEventListener('click', () => {
