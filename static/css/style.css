@@ -1232,8 +1232,8 @@ button, input, textarea, select {
 
 .gallery-grid {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 12px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
 }
 
 .gallery-item {

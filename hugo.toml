@@ -18,7 +18,7 @@ enableRobotsTXT = true
   linkedin = "https://www.linkedin.com/in/sarah-ogembo"
   instagram = "https://www.instagram.com/ogembo.s"
   whatsapp = "https://wa.me/254719411433?text=Hello%20Sarah,%20I%20would%20like%20to%20inquire%20about%20booking%20you%20for%20an%20event."
-  og_image = "/images/portrait-executive.jpg"
+  og_image = "/images/about-sarah.jpg"
 
   # Core Brand Colors
   [params.colors]
@@ -177,48 +177,62 @@ enableRobotsTXT = true
     organization = "Enterprise Banking Summit"
     stars = 5
 
-  # Gallery Moments
+  # Gallery Moments (Authentic Live Event Photography)
   [[params.gallery]]
     image = "/images/gallery/moment-1.webp"
     image_fallback = "/images/gallery/moment-1.jpg"
-    title = "Keynote Address Introduction"
+    title = "Keynote Session Facilitation"
     category = "Conference"
-    caption = "Setting an inspiring tone for over 1,200 delegates at the Pan-African Leadership Forum."
+    caption = "Sarah commanding the podium with golden mic at the Empower, Inspire and Connect summit."
 
   [[params.gallery]]
     image = "/images/gallery/moment-2.webp"
     image_fallback = "/images/gallery/moment-2.jpg"
-    title = "Executive Panel Moderation"
-    category = "Panel"
-    caption = "Guiding a dynamic discussion between fintech leaders and central bank regulators."
+    title = "Stage Presentation & Moderation"
+    category = "Summit"
+    caption = "Steering dynamic multi-track presentations with wireless mic and live stage engagement."
 
   [[params.gallery]]
     image = "/images/gallery/moment-3.webp"
     image_fallback = "/images/gallery/moment-3.jpg"
-    title = "Global Innovation Summit"
-    category = "Summit"
-    caption = "Keeping momentum high and orchestrating rapid-fire presentation tracks."
+    title = "Plenary Forum Address"
+    category = "Plenary"
+    caption = "Facilitating high-level stakeholder assemblies and introducing distinguished guests."
 
   [[params.gallery]]
     image = "/images/gallery/moment-4.webp"
     image_fallback = "/images/gallery/moment-4.jpg"
-    title = "Annual Corporate Awards Dinner"
-    category = "Awards Gala"
-    caption = "Hosting a black-tie gala recognizing transformative corporate excellence."
+    title = "Executive Forum Moderation"
+    category = "Moderation"
+    caption = "Leading executive deliberations with vibrant presence, clarity, and precision."
 
   [[params.gallery]]
     image = "/images/gallery/moment-5.webp"
     image_fallback = "/images/gallery/moment-5.jpg"
-    title = "Broadcast Stage Moderation"
-    category = "Broadcast"
-    caption = "Live-streamed executive fireside conversation with international dignitaries."
+    title = "Interactive Leadership Workshop"
+    category = "Workshop"
+    caption = "Creating an open, welcoming environment that encourages active participant contribution."
 
   [[params.gallery]]
     image = "/images/gallery/moment-6.webp"
     image_fallback = "/images/gallery/moment-6.jpg"
-    title = "Ideas, People, Progress Summit"
-    category = "Keynote"
-    caption = "Bringing stage authority and warmth to national tech transformation summit."
+    title = "International Delegation (PLA USA)"
+    category = "Global Summit"
+    caption = "Representing East African leadership at the international Public Library Association summit in Nashville, USA."
+
+  [[params.gallery]]
+    image = "/images/gallery/moment-7.webp"
+    image_fallback = "/images/gallery/moment-7.jpg"
+    title = "Executive Brand Portrait"
+    category = "Editorial"
+    caption = "Poised, thoughtful, and prepared for high-stakes corporate hosting."
+
+  [[params.gallery]]
+    image = "/images/gallery/moment-8.webp"
+    image_fallback = "/images/gallery/moment-8.jpg"
+    title = "Fine-Art Monochrome Study"
+    category = "Portrait"
+    caption = "Grace, focus, and quiet confidence behind every executive moment."
 
 [menu]
   [[menu.main]]
