@@ -1,0 +1,13 @@
+# Hugo Build Outputs
+public/
+resources/_gen/
+.hugo_build.lock
+
+# OS Files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Temporary files
+*.tmp
+*.log

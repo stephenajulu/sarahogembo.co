@@ -1,0 +1,264 @@
+baseURL = 'https://sarahogembo.com/'
+languageCode = 'en-US'
+title = 'Sarah Ogembo | Corporate Master of Ceremonies & Executive Moderator'
+enableRobotsTXT = true
+
+[params]
+  author = "Sarah Ogembo"
+  title = "Sarah Ogembo | Corporate Master of Ceremonies & Executive Moderator"
+  tagline = "People • Conversations • Impact"
+  role = "Corporate Master of Ceremonies • Conference Moderator • Event Host"
+  description = "Sarah Ogembo is a prestigious corporate Master of Ceremonies, conference moderator, and executive event host. Elevating experiences, connecting audiences, and delivering memorable events across East Africa and globally."
+  keywords = "Sarah Ogembo, Corporate MC Kenya, Master of Ceremonies Nairobi, Conference Moderator East Africa, Executive Summit Host, Corporate Event Host Kenya, Awards Gala MC, Panel Moderator Nairobi"
+  phone = "+254 719 411 433"
+  phone_display = "+254 719 411 433"
+  email = "hello@sarahogembo.com"
+  email_alt = "nyabokeogembo@gmail.com"
+  location = "Nairobi, Kenya"
+  linkedin = "https://www.linkedin.com/in/sarah-ogembo"
+  instagram = "https://www.instagram.com/ogembo.s"
+  whatsapp = "https://wa.me/254719411433?text=Hello%20Sarah,%20I%20would%20like%20to%20inquire%20about%20booking%20you%20for%20an%20event."
+  og_image = "/images/portrait-executive.jpg"
+
+  # Core Brand Colors
+  [params.colors]
+    primary_gold = "#D4AF37"
+    deep_gold = "#A67C00"
+    champagne = "#F7E7A9"
+    bg_black = "#0A0A0A"
+    soft_black = "#111111"
+    warm_ivory = "#F8F4EC"
+    rose_gold = "#B76E79"
+
+  # Metrics / Stat Plaque
+  [[params.stats]]
+    value = "250+"
+    label = "Events Hosted"
+    desc = "High-stakes corporate forums, summits & galas"
+
+  [[params.stats]]
+    value = "50,000+"
+    label = "Audience Members Engaged"
+    desc = "Across executive boardrooms to arena summits"
+
+  [[params.stats]]
+    value = "8+"
+    label = "Industries Served"
+    desc = "Telecom, Banking, Tech, Diplomacy, Energy & more"
+
+  [[params.stats]]
+    value = "100%"
+    label = "Commitment to Excellence"
+    desc = "Precision preparation, punctuality & poise"
+
+  # Client Logos Strip
+  [[params.clients]]
+    name = "Safaricom"
+    category = "Telecommunications"
+
+  [[params.clients]]
+    name = "KCB Bank Group"
+    category = "Banking & Finance"
+
+  [[params.clients]]
+    name = "Absa Bank"
+    category = "Banking & Investment"
+
+  [[params.clients]]
+    name = "Microsoft"
+    category = "Technology"
+
+  [[params.clients]]
+    name = "UNDP"
+    category = "Diplomacy & Development"
+
+  [[params.clients]]
+    name = "Kenya Airways"
+    category = "Aviation & Tourism"
+
+  [[params.clients]]
+    name = "Mastercard"
+    category = "Global Payments"
+
+  [[params.clients]]
+    name = "Nairobi Securities Exchange"
+    category = "Capital Markets"
+
+  # Services
+  [[params.services]]
+    id = "corporate-conferences"
+    title = "Corporate Conferences"
+    icon = "conference"
+    summary = "Professional event flow and engaging audience experiences."
+    description = "Delivering smooth transitions, high audience engagement, and executive stage authority throughout multi-day conferences and global assemblies."
+    outcomes = ["Seamless schedule & time management", "Engaged delegates across all sessions", "Flawless transitions between keynote speakers"]
+
+  [[params.services]]
+    id = "executive-summits"
+    title = "Executive Summits"
+    icon = "summit"
+    summary = "High-level moderation and executive presence."
+    description = "Facilitating high-level discussions while maintaining credibility and rapport with C-suite executives, government leaders, and international delegates."
+    outcomes = ["Commanding presence that commands boardroom respect", "Diplomatic tact with dignitaries & ministers", "Structured focus on strategic outcomes"]
+
+  [[params.services]]
+    id = "panel-moderation"
+    title = "Panel Moderation"
+    icon = "microphone"
+    summary = "Meaningful conversations that inspire action."
+    description = "Guiding thought-provoking dialogues, managing diverse viewpoints, asking incisive questions, and drawing actionable insights from industry luminaries."
+    outcomes = ["Balanced participation among all panelists", "Deep intellectual rigor and lively exchange", "Actionable takeaways for the audience"]
+
+  [[params.services]]
+    id = "awards-ceremonies"
+    title = "Awards Ceremonies"
+    icon = "award"
+    summary = "Elegant and memorable celebrations."
+    description = "Infusing prestige, anticipation, warmth, and glamour into milestone corporate recognition evenings and industry galas."
+    outcomes = ["Celebratory yet dignified pacing", "Polished teleprompter & cue card delivery", "Unforgettable moments of recognition"]
+
+  [[params.services]]
+    id = "product-launches"
+    title = "Product Launches"
+    icon = "launch"
+    summary = "Creating energy around your brand."
+    description = "Amplifying excitement, telling compelling brand narratives, and creating unforgettable audience immersion for new innovations and market rollouts."
+    outcomes = ["High-energy brand storytelling", "Spotlight focus on product value & vision", "Media and VIP audience captivation"]
+
+  [[params.services]]
+    id = "corporate-celebrations"
+    title = "Corporate Celebrations"
+    icon = "celebration"
+    summary = "Bringing teams together through impactful experiences."
+    description = "Setting a sophisticated, joyful atmosphere that honors organizational culture, unifies teams, and inspires shared commitment."
+    outcomes = ["Inclusive, uplifting atmosphere", "Strengthened company culture & pride", "Lasting camaraderie and celebration"]
+
+  # The Difference / Signature Qualities
+  [params.difference]
+    title = "It's Not Just What I Say, It's How I Make People Feel."
+    tagline = "CONFIDENCE BEHIND EVERY MOMENT"
+    qualities = [
+      "Genuine connection",
+      "Calm professionalism",
+      "Thoughtful preparation",
+      "Strong stage presence",
+      "Attention to detail",
+      "Audience engagement",
+      "Warm energy",
+      "Authentic communication"
+    ]
+
+  # Testimonials
+  [[params.testimonials]]
+    quote = "Sarah brought a calm confidence to our event that immediately put both our guests and speakers at ease. She handled every moment with professionalism and grace."
+    author = "Dr. Brenda Mutua"
+    role = "Corporate Communications Director"
+    organization = "Regional Financial Summit"
+    stars = 5
+
+  [[params.testimonials]]
+    quote = "From the opening remarks to the final vote of thanks, Sarah kept the audience engaged and the programme perfectly on track. Her ability to read the room and adapt effortlessly is world-class."
+    author = "David Ochieng"
+    role = "Lead Conference Organiser"
+    organization = "East Africa Innovation Forum"
+    stars = 5
+
+  [[params.testimonials]]
+    quote = "She quickly became more than an MC. She felt like an extension of our team. When a sudden keynote schedule change occurred backstage, Sarah navigated the live stage without missing a single beat."
+    author = "Wanjiku Karanja"
+    role = "Senior Event Producer"
+    organization = "Global Leadership Gala"
+    stars = 5
+
+  [[params.testimonials]]
+    quote = "Sarah transformed our annual conference from a formal gathering into an engaging, vibrant experience that participants genuinely raved about for weeks afterwards."
+    author = "Michael Mwangi"
+    role = "Head of Corporate Affairs"
+    organization = "Enterprise Banking Summit"
+    stars = 5
+
+  # Gallery Moments
+  [[params.gallery]]
+    image = "/images/gallery/moment-1.webp"
+    image_fallback = "/images/gallery/moment-1.jpg"
+    title = "Keynote Address Introduction"
+    category = "Conference"
+    caption = "Setting an inspiring tone for over 1,200 delegates at the Pan-African Leadership Forum."
+
+  [[params.gallery]]
+    image = "/images/gallery/moment-2.webp"
+    image_fallback = "/images/gallery/moment-2.jpg"
+    title = "Executive Panel Moderation"
+    category = "Panel"
+    caption = "Guiding a dynamic discussion between fintech leaders and central bank regulators."
+
+  [[params.gallery]]
+    image = "/images/gallery/moment-3.webp"
+    image_fallback = "/images/gallery/moment-3.jpg"
+    title = "Global Innovation Summit"
+    category = "Summit"
+    caption = "Keeping momentum high and orchestrating rapid-fire presentation tracks."
+
+  [[params.gallery]]
+    image = "/images/gallery/moment-4.webp"
+    image_fallback = "/images/gallery/moment-4.jpg"
+    title = "Annual Corporate Awards Dinner"
+    category = "Awards Gala"
+    caption = "Hosting a black-tie gala recognizing transformative corporate excellence."
+
+  [[params.gallery]]
+    image = "/images/gallery/moment-5.webp"
+    image_fallback = "/images/gallery/moment-5.jpg"
+    title = "Broadcast Stage Moderation"
+    category = "Broadcast"
+    caption = "Live-streamed executive fireside conversation with international dignitaries."
+
+  [[params.gallery]]
+    image = "/images/gallery/moment-6.webp"
+    image_fallback = "/images/gallery/moment-6.jpg"
+    title = "Ideas, People, Progress Summit"
+    category = "Keynote"
+    caption = "Bringing stage authority and warmth to national tech transformation summit."
+
+[menu]
+  [[menu.main]]
+    identifier = "home"
+    name = "Home"
+    url = "/#home"
+    weight = 10
+
+  [[menu.main]]
+    identifier = "about"
+    name = "About"
+    url = "/#about"
+    weight = 20
+
+  [[menu.main]]
+    identifier = "services"
+    name = "Services"
+    url = "/#services"
+    weight = 30
+
+  [[menu.main]]
+    identifier = "gallery"
+    name = "Gallery"
+    url = "/#gallery"
+    weight = 40
+
+  [[menu.main]]
+    identifier = "testimonials"
+    name = "Testimonials"
+    url = "/#testimonials"
+    weight = 50
+
+  [[menu.main]]
+    identifier = "blog"
+    name = "Blog"
+    url = "/blog/"
+    weight = 60
+
+  [[menu.main]]
+    identifier = "contact"
+    name = "Contact"
+    url = "/#contact"
+    weight = 70

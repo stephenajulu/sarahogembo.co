@@ -1,0 +1,15 @@
+{{ define "main" }}
+<div class="container" style="min-height: 80vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding-top: calc(var(--header-height) + 40px); padding-bottom: 60px;">
+  <div class="eyebrow">404 • PAGE NOT FOUND</div>
+  <h1 class="font-heading" style="font-size: clamp(3rem, 6vw, 5rem); color: var(--color-gold-light); margin-bottom: 16px;">
+    Every Stage Has Its Flow
+  </h1>
+  <p style="color: var(--color-text-subtle); max-width: 520px; font-size: 1.1rem; line-height: 1.7; margin-bottom: 30px;">
+    The page you are looking for has moved or does not exist. Let us guide you back to the main stage.
+  </p>
+  <div style="display: flex; gap: 16px; flex-wrap: wrap; justify-content: center;">
+    <a href="/" class="btn btn-primary">Return to Homepage</a>
+    <a href="/#contact" class="btn btn-secondary">Inquire for an Event</a>
+  </div>
+</div>
+{{ end }}

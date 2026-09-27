@@ -1,0 +1,24 @@
+{{ define "main" }}
+<article class="container" style="padding-top: calc(var(--header-height) + 60px); padding-bottom: 80px; max-width: 900px;">
+  <header style="margin-bottom: 40px; border-bottom: 1px solid var(--color-gold-border); padding-bottom: 24px;">
+    <div class="eyebrow">{{ .Type | default "Insight" }}</div>
+    <h1 class="font-heading" style="font-size: clamp(2.4rem, 4vw, 3.5rem); color: var(--color-text-light); line-height: 1.15; margin-bottom: 12px;">
+      {{ .Title }}
+    </h1>
+    {{ with .Date }}
+      <time datetime="{{ .Format "2006-01-02" }}" style="font-size: 0.85rem; color: var(--color-gold-primary);">
+        {{ .Format "January 2, 2006" }}
+      </time>
+    {{ end }}
+  </header>
+
+  <div class="article-body" style="font-size: 1.1rem; line-height: 1.85; color: var(--color-text-subtle);">
+    {{ .Content }}
+  </div>
+
+  <div style="margin-top: 60px; padding-top: 30px; border-top: 1px solid var(--color-gold-border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
+    <a href="/#contact" class="btn btn-primary">Book Sarah for Your Event</a>
+    <a href="/blog/" style="color: var(--color-gold-light); font-size: 0.9rem; text-decoration: underline;">← Back to All Articles</a>
+  </div>
+</article>
+{{ end }}

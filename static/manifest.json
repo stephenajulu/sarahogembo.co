@@ -1,0 +1,24 @@
+{
+  "name": "Sarah Ogembo | Corporate Master of Ceremonies & Executive Moderator",
+  "short_name": "Sarah Ogembo",
+  "description": "Prestigious corporate Master of Ceremonies, conference moderator, and executive event host.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0A0A0A",
+  "theme_color": "#0A0A0A",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
