@@ -1,0 +1,309 @@
+# ==============================================================================
+# CLOUDCANNON CMS MASTER CONFIGURATION
+# Tailored for non-technical site owners to visually edit all content
+# ==============================================================================
+
+# Global SSG & asset paths
+paths:
+  uploads: "static/images"
+  static: "static"
+
+# Collections configuration
+collections_config:
+  pages:
+    path: "content"
+    glob: "**/*.md"
+    icon: "wysiwyg"
+    output: true
+    url: "/[slug]/"
+    filter: "strict_list"
+    description: "Main website pages including the Homepage."
+
+  blog:
+    path: "content/blog"
+    glob: "**/*.md"
+    icon: "menu_book"
+    output: true
+    url: "/blog/[slug]/"
+    description: "Perspectives, thought leadership articles, and event moderation insights."
+    add_options:
+      - name: "New Article"
+        schema: "article"
+
+  data:
+    path: "data"
+    icon: "tune"
+    description: "Global site settings, contact phone numbers, emails, and footer."
+
+# Editor settings
+editor:
+  default_path: "content/_index.md"
+
+# ==============================================================================
+# STRUCTURES (Friendly Add / Edit / Reorder Cards for Repeatable Sections)
+# ==============================================================================
+_structures:
+  stats:
+    style: "card"
+    values:
+      - value:
+          value: "100+"
+          label: "Events Hosted"
+          desc: "Corporate summits, galas & executive conferences"
+        _inputs:
+          value:
+            type: "text"
+            label: "Statistic Number / Value (e.g. 250+, 50,000+)"
+          label:
+            type: "text"
+            label: "Label (e.g. Events Hosted)"
+          desc:
+            type: "text"
+            label: "Short Description"
+
+  services:
+    style: "card"
+    values:
+      - value:
+          id: "new-service"
+          title: "Service Title"
+          icon: "conference"
+          description: "Clear outcome-driven description of this event service."
+          outcomes:
+            - "Key deliverable outcome 1"
+            - "Key deliverable outcome 2"
+            - "Key deliverable outcome 3"
+        _inputs:
+          title:
+            type: "text"
+            label: "Service Name"
+          icon:
+            type: "select"
+            label: "Display Icon"
+            options:
+              values:
+                - value: "conference"
+                  name: "Conference / Delegates"
+                - value: "summit"
+                  name: "Executive Summit / Growth"
+                - value: "microphone"
+                  name: "Microphone / Moderation"
+                - value: "award"
+                  name: "Trophy / Awards Gala"
+                - value: "launch"
+                  name: "Star / Product Launch"
+                - value: "celebration"
+                  name: "Calendar / Corporate Celebration"
+          description:
+            type: "textarea"
+            label: "Service Description (Focused on outcomes, not jargon)"
+          outcomes:
+            type: "list"
+            label: "Bullet Highlights / Deliverables"
+
+  testimonials:
+    style: "card"
+    values:
+      - value:
+          quote: "Sarah brought calm confidence and flawless execution to our conference."
+          author: "Client Full Name"
+          role: "Corporate Communications Director"
+          organization: "Organization / Company Name"
+          stars: 5
+        _inputs:
+          quote:
+            type: "textarea"
+            label: "Client Quote"
+          author:
+            type: "text"
+            label: "Client Name"
+          role:
+            type: "text"
+            label: "Executive Title / Role"
+          organization:
+            type: "text"
+            label: "Organization / Company Name"
+          stars:
+            type: "number"
+            label: "Star Rating (1 to 5)"
+
+  gallery_items:
+    style: "card"
+    values:
+      - value:
+          image: "/images/gallery/moment-1.webp"
+          image_fallback: "/images/gallery/moment-1.jpg"
+          title: "Moment Title"
+          category: "Conference"
+          caption: "Description of the event, venue, and audience."
+        _inputs:
+          image:
+            type: "image"
+            label: "Event Photo"
+            comment: "Upload or pick a photo of Sarah on stage."
+          title:
+            type: "text"
+            label: "Event Title"
+          category:
+            type: "text"
+            label: "Category (e.g. Conference, Summit, Gala)"
+          caption:
+            type: "textarea"
+            label: "Caption / Description"
+
+  clients:
+    style: "card"
+    values:
+      - value:
+          name: "Client Name"
+          category: "Industry Category"
+        _inputs:
+          name:
+            type: "text"
+            label: "Client Organization Name"
+          category:
+            type: "text"
+            label: "Industry Category (e.g. Banking, Telecom, Diplomacy)"
+
+  pillars:
+    style: "card"
+    values:
+      - value:
+          title: "Pillar Name"
+          desc: "Brief description of this leadership strength."
+        _inputs:
+          title:
+            type: "text"
+            label: "Strength / Pillar Title"
+          desc:
+            type: "text"
+            label: "Short Description"
+
+# ==============================================================================
+# INPUTS CONFIGURATION (Human-Friendly Form Controls)
+# ==============================================================================
+_inputs:
+  # Images
+  image:
+    type: "image"
+    comment: "Select or upload an image file."
+  hero.image:
+    type: "image"
+    label: "Hero Section Stage Photo"
+    comment: "Upload or choose Sarah's photo for the main opening screen."
+  about.image:
+    type: "image"
+    label: "About Section Portrait Photo"
+    comment: "Upload or choose the portrait for the About Sarah section."
+  showreel.thumbnail_image:
+    type: "image"
+    label: "Showreel Video Thumbnail Image"
+    comment: "Cover image preview displayed before the video plays."
+  personal_section.image:
+    type: "image"
+    label: "Beyond The Stage Photo"
+    comment: "Intimate, warm photo for the personal brand section."
+  trust.client_strip_image:
+    type: "image"
+    label: "Client Logos Strip Image"
+
+  # Videos & URLs
+  showreel.video_embed_url:
+    type: "url"
+    label: "Showreel Video Embed Link (YouTube or Vimeo)"
+    comment: "Enter YouTube embed URL (e.g. https://www.youtube-nocookie.com/embed/VIDEO_ID)"
+  hero.primary_cta_link:
+    type: "url"
+    label: "Primary Button Link (e.g. #contact)"
+  about.cta_link:
+    type: "url"
+    label: "About Button Link (e.g. #difference)"
+
+  # Text Areas
+  hero.intro_body:
+    type: "textarea"
+    label: "Hero Sub-headline / Narrative"
+  about.paragraphs:
+    type: "list"
+    label: "About Narrative Paragraphs"
+  personal_section.paragraphs:
+    type: "list"
+    label: "Personal Story Paragraphs"
+  difference.qualities:
+    type: "list"
+    label: "Checklist of Sarah's Signature Attributes"
+  footer.quote:
+    type: "textarea"
+    label: "Inspirational Footer Quote"
+  booking_section.lead:
+    type: "textarea"
+    label: "Booking Section Narrative"
+
+  # Single Line Texts with Clear Labels
+  hero.eyebrow:
+    type: "text"
+    label: "Hero Eyebrow Tag"
+  hero.headline_start:
+    type: "text"
+    label: "Main Headline (First Part)"
+  hero.headline_italic:
+    type: "text"
+    label: "Main Headline (Italic Gold Accent)"
+  hero.script_flourish:
+    type: "textarea"
+    label: "Hero Gold Handwritten Script Text"
+  about.script_flourish:
+    type: "textarea"
+    label: "About Gold Handwritten Script Text"
+  booking_section.script_flourish:
+    type: "text"
+    label: "Booking Gold Handwritten Script Text"
+
+  # Contact Information
+  contacts.email:
+    type: "email"
+    label: "Primary Inquiries Email Address"
+  contacts.phone:
+    type: "text"
+    label: "Direct Phone Number (International format)"
+  contacts.whatsapp_number:
+    type: "text"
+    label: "WhatsApp Number (Digits only with country code, e.g. 254719411433)"
+  social_links.linkedin:
+    type: "url"
+    label: "LinkedIn Profile URL"
+  social_links.instagram:
+    type: "url"
+    label: "Instagram Profile URL"
+
+  # Repeatable section bindings
+  stats:
+    type: "array"
+    label: "Prestige Metrics (Stat Plaque)"
+    options:
+      structures: "_structures.stats"
+  services_section.services:
+    type: "array"
+    label: "Service Cards"
+    options:
+      structures: "_structures.services"
+  testimonials_section.testimonials:
+    type: "array"
+    label: "Client Testimonials"
+    options:
+      structures: "_structures.testimonials"
+  gallery_section.items:
+    type: "array"
+    label: "Gallery Event Photos"
+    options:
+      structures: "_structures.gallery_items"
+  trust.clients:
+    type: "array"
+    label: "Trusted Corporate Clients List"
+    options:
+      structures: "_structures.clients"
+  personal_section.pillars:
+    type: "array"
+    label: "Core Leadership Pillars"
+    options:
+      structures: "_structures.pillars"

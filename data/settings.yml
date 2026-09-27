@@ -1,0 +1,28 @@
+# Global Site Settings & Contact Details
+# Easily editable via CloudCannon CMS Data Editor
+
+brand:
+  name: "SARAH OGEMBO"
+  tagline: "PEOPLE • CONVERSATIONS • IMPACT"
+  role: "Corporate Master of Ceremonies • Conference Moderator • Event Host"
+  short_bio: "Sarah Ogembo is a prestigious corporate Master of Ceremonies, conference moderator, and executive event host in Nairobi, Kenya."
+
+contacts:
+  email: "hello@sarahogembo.com"
+  email_alt: "nyabokeogembo@gmail.com"
+  phone: "+254 719 411 433"
+  phone_display: "+254 719 411 433"
+  location: "Nairobi, Kenya"
+  whatsapp_number: "254719411433"
+  whatsapp_default_message: "Hello Sarah, I would like to inquire about booking you for an upcoming corporate event."
+
+social_links:
+  linkedin: "https://www.linkedin.com/in/sarah-ogembo"
+  instagram: "https://www.instagram.com/ogembo.s"
+  whatsapp: "https://wa.me/254719411433"
+
+footer:
+  quote: "People may forget the agenda. They may forget the venue. But they will always remember how your event made them feel."
+  copyright_year: "2026"
+  rights_statement: "All rights reserved."
+  bottom_tagline: "Designed for a more connected world."
