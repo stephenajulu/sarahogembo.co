@@ -132,24 +132,24 @@ _structures:
     values:
       - value:
           image: "/images/gallery/moment-1.webp"
-          image_fallback: "/images/gallery/moment-1.jpg"
           title: "Moment Title"
           category: "Conference"
-          caption: "Description of the event, venue, and audience."
+          caption: "East Africa Energy Forum — Keynote Introduction, Nairobi."
         _inputs:
           image:
             type: "image"
-            label: "Event Photo"
-            comment: "Upload or pick a photo of Sarah on stage."
+            label: "Event Photograph"
+            comment: "Upload high-resolution landscape photo (at least 1200px wide). JPG, PNG, or WebP."
           title:
             type: "text"
-            label: "Event Title"
+            label: "Event / Session Title"
           category:
             type: "text"
-            label: "Category (e.g. Conference, Summit, Gala)"
+            label: "Category (e.g. Conference, Summit, Gala, Panel)"
           caption:
             type: "textarea"
-            label: "Caption / Description"
+            label: "Concise Caption"
+            comment: "Example: East Africa Energy Forum — Keynote Introduction, Nairobi."
 
   clients:
     style: "card"

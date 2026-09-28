@@ -135,23 +135,6 @@ services_section:
         - "Strengthened company culture & pride"
         - "Lasting camaraderie and celebration"
 
-# ==============================================================================
-# 5B. VIRTUAL DISCOVERY CALL (CAL.COM SCHEDULING SUITE)
-# ==============================================================================
-cal_section:
-  enable: true
-  eyebrow: "VIRTUAL DISCOVERY CALL"
-  title: "Schedule a 20-Minute"
-  title_highlight: "Virtual Consultation"
-  lead: "Planning an upcoming corporate summit, conference, or awards gala? Reserve a direct discovery session on Sarah's calendar to align on objectives, format, and availability."
-  cal_embed_url: "https://cal.com/sarahogembo/discovery"
-  external_link_text: "Open Calendar in New Tab ↗"
-  badge: "Direct Calendar Access"
-  notice: "Virtual consultations are conducted via Google Meet or Zoom. Instant calendar invite sent upon booking."
-  benefits:
-    - "Direct schedule coordination with Sarah's executive management"
-    - "Automatic timezone alignment (EAT, GMT, EST, CET)"
-    - "Preliminary scope review & date availability check"
 
 # ==============================================================================
 # 6. THE DIFFERENCE (SIGNATURE ATTRIBUTES CHECKLIST)

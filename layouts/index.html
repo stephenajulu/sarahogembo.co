@@ -211,70 +211,7 @@
   </div>
 </section>
 
-<!-- ========================================================================
-     4B. VIRTUAL DISCOVERY CALL (CAL.COM SCHEDULING SUITE)
-     ======================================================================== -->
-{{ with .Params.cal_section }}
-{{ if .enable }}
-<section id="virtual-consultation" class="cal-booking-section" aria-labelledby="cal-heading">
-  <div class="container">
-    <div class="cal-section-card">
-      <div class="cal-card-grid">
-        <!-- Left: Editorial Value & Context -->
-        <div class="cal-context-content">
-          <div class="eyebrow" data-cms-bind="cal_section.eyebrow">{{ .eyebrow }}</div>
-          <h2 id="cal-heading" class="cal-section-title">
-            <span data-cms-bind="cal_section.title">{{ .title }}</span>
-            <span class="hero-title-italic text-gold" data-cms-bind="cal_section.title_highlight">{{ .title_highlight }}</span>
-          </h2>
-          <p class="cal-section-lead" data-cms-bind="cal_section.lead">{{ .lead }}</p>
 
-          <ul class="cal-benefits-list" data-cms-bind="cal_section.benefits">
-            {{ range .benefits }}
-              <li class="cal-benefit-item">
-                <svg class="cal-check-icon" viewBox="0 0 20 20" fill="currentColor">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                </svg>
-                <span>{{ . }}</span>
-              </li>
-            {{ end }}
-          </ul>
-
-          <div class="cal-action-actions">
-            <a href="{{ .cal_embed_url | default "https://cal.com/sarahogembo/discovery" }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary" data-cms-bind="cal_section.external_link_text">
-              {{ .external_link_text | default "Open Calendar in New Tab ↗" }}
-            </a>
-            <p class="cal-notice-text" data-cms-bind="cal_section.notice">💡 {{ .notice }}</p>
-          </div>
-        </div>
-
-        <!-- Right: Tailored Cal.com Embed Container -->
-        <div class="cal-interactive-panel">
-          <div class="cal-embed-browser-mockup">
-            <div class="cal-browser-topbar">
-              <div class="cal-browser-dots">
-                <span></span><span></span><span></span>
-              </div>
-              <span class="cal-browser-url">cal.com/sarahogembo/discovery</span>
-              <span class="cal-live-badge">Live Scheduling</span>
-            </div>
-            <div class="cal-frame-container" data-cms-bind="cal_section.cal_embed_url">
-              <iframe 
-                src="{{ .cal_embed_url | default "https://cal.com/sarahogembo/discovery" }}?embed=true" 
-                title="Schedule a Discovery Call with Sarah Ogembo" 
-                class="cal-embedded-iframe" 
-                loading="lazy" 
-                allow="camera; microphone; autoplay; fullscreen">
-              </iframe>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-{{ end }}
-{{ end }}
 
 <!-- ========================================================================
      5. SIGNATURE TRIO: Difference Checklist + Showreel + Testimonials
@@ -397,8 +334,12 @@
           <!-- 8th Tile: Paginated Plus Tile triggering Full Scrollable Gallery Modal -->
           <div class="gallery-item gallery-more-tile" tabindex="0" role="button" aria-label="View all {{ $totalItems }} event photographs" data-trigger="open-all-gallery">
             <picture>
-              <source srcset="{{ $item.image }}" type="image/webp">
-              <img src="{{ $item.image_fallback }}" alt="{{ $item.title }}" width="280" height="210" loading="lazy">
+              {{ if (hasSuffix $item.image ".webp") }}
+                <source srcset="{{ $item.image }}" type="image/webp">
+                <img src="{{ $item.image_fallback | default (replace $item.image ".webp" ".jpg") }}" alt="{{ $item.title }}" width="280" height="210" loading="lazy">
+              {{ else }}
+                <img src="{{ $item.image }}" alt="{{ $item.title }}" width="280" height="210" loading="lazy">
+              {{ end }}
             </picture>
             <div class="gallery-more-overlay">
               <span class="gallery-more-plus">+{{ sub $totalItems 7 }}</span>
@@ -409,13 +350,17 @@
         {{ else if or (le $totalItems 8) (lt $index 7) }}
           <div class="gallery-item" tabindex="0" role="button" aria-label="Enlarge {{ .title }}" 
                data-image="{{ .image }}" 
-               data-fallback="{{ .image_fallback }}" 
+               data-fallback="{{ .image_fallback | default (replace .image ".webp" ".jpg") }}" 
                data-title="{{ .title }}" 
                data-caption="{{ .caption }}" 
                data-category="{{ .category | default "Live Event" }}">
             <picture>
-              <source srcset="{{ .image }}" type="image/webp">
-              <img src="{{ .image_fallback }}" alt="{{ .title }} - {{ .caption }}" width="280" height="210" loading="lazy">
+              {{ if (hasSuffix .image ".webp") }}
+                <source srcset="{{ .image }}" type="image/webp">
+                <img src="{{ .image_fallback | default (replace .image ".webp" ".jpg") }}" alt="{{ .title }} - {{ .caption }}" width="280" height="210" loading="lazy">
+              {{ else }}
+                <img src="{{ .image }}" alt="{{ .title }} - {{ .caption }}" width="280" height="210" loading="lazy">
+              {{ end }}
             </picture>
             <div class="gallery-hover-overlay">
               <svg class="gallery-zoom-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">

@@ -39,8 +39,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Pinyon+Script&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- Main Stylesheet -->
-  <link rel="stylesheet" href="/css/style.css">
+  <!-- Main Stylesheet (with cache-busting timestamp) -->
+  <link rel="stylesheet" href="/css/style.css?v={{ now.Unix }}">
 
   {{ $settings := hugo.Data.settings }}
   <!-- Schema.org JSON-LD Structured Data for High-Profile MC & Speaker -->
@@ -236,13 +236,17 @@
           {{ range $idx, $item := .items }}
             <div class="gallery-item all-gallery-tile" tabindex="0" role="button" aria-label="Enlarge {{ .title }}" 
                  data-image="{{ .image }}" 
-                 data-fallback="{{ .image_fallback }}" 
+                 data-fallback="{{ .image_fallback | default (replace .image ".webp" ".jpg") }}" 
                  data-title="{{ .title }}" 
                  data-caption="{{ .caption }}" 
                  data-category="{{ .category | default "Live Event" }}">
               <picture>
-                <source srcset="{{ .image }}" type="image/webp">
-                <img src="{{ .image_fallback }}" alt="{{ .title }} - {{ .caption }}" width="280" height="210" loading="lazy">
+                {{ if (hasSuffix .image ".webp") }}
+                  <source srcset="{{ .image }}" type="image/webp">
+                  <img src="{{ .image_fallback | default (replace .image ".webp" ".jpg") }}" alt="{{ .title }} - {{ .caption }}" width="280" height="210" loading="lazy">
+                {{ else }}
+                  <img src="{{ .image }}" alt="{{ .title }} - {{ .caption }}" width="280" height="210" loading="lazy">
+                {{ end }}
               </picture>
               <div class="gallery-hover-overlay">
                 <svg class="gallery-zoom-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -261,7 +265,7 @@
   </div>
   {{ end }}
 
-  <!-- Deferred Scripts -->
-  <script src="/js/main.js" defer></script>
+  <!-- Deferred Scripts (with cache-busting timestamp) -->
+  <script src="/js/main.js?v={{ now.Unix }}" defer></script>
 </body>
 </html>
