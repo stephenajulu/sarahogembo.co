@@ -45,30 +45,33 @@ It rejects generic event-vendor tropes, decorative clutter, and stock imagery in
 
 The homepage is organized as an unbroken, conversion-focused executive journey:
 
-1. **Global Glass Header**: Monogram crest (`SO` interlocking crest with microphone), navigation anchors, and prominent `BOOK SARAH` CTA.
-2. **Cinematic Hero**: Full-bleed stage atmosphere, large editorial headline (*“Creating Meaningful Moments, One Stage at a Time”*), dual CTAs, real stage photography of Sarah at the podium with golden mic, and handwritten gold script badge (*“Events People Remember”*).
+1. **Global Glass Header**: Monogram crest (`SO` interlocking crest with microphone from official poster), navigation anchors, and prominent `BOOK SARAH` CTA.
+2. **Cinematic Hero**: Full-bleed stage atmosphere with transparent portrait cutout of Sarah, radial gold spotlight glow, pedestal floor lighting, large editorial headline (*“Your Event. Powerfully Delivered.”*), dual CTAs, and handwritten frosted gold script badge (*“Events People Remember”*) engineered to stay 100% readable over any background.
 3. **Client Trust Bar**: Displaying real credentials from leading organizations (**Safaricom, KCB, Absa, Microsoft, UNDP, Kenya Airways, Mastercard, NSE**).
-4. **About Sarah (Warm Ivory Transition)**: Magazine-quality editorial portrait in terracotta blazer, narrative focusing on purpose and connection (*“Same People. Better Conversations.”*), and an engraved 4-metric stat plaque:
-   - **250+** Events Hosted
-   - **50,000+** Audience Members Engaged
-   - **8+** Industries Served
-   - **100%** Commitment to Excellence
-5. **Services Section**: 6 outcome-driven luxury cards with custom SVG iconography:
-   - *Corporate Conferences*
-   - *Executive Summits*
+4. **Four Core Pillars of Stage Delivery**: Directly derived from Sarah's event posters:
+   - **01 | POISED**: Under Pressure — Calm, commanding authority and unflappable stage composure.
+   - **02 | PREPARED**: For Excellence — Deep briefing diligence, speaker alignment, and flawless protocol.
+   - **03 | PASSIONATE**: About Impact — Infectious warmth and connection turning passive crowds into active participants.
+   - **04 | FOCUSED**: On Your Success — Purpose-driven stage delivery advancing strategic brand goals.
+5. **About Sarah (Warm Ivory Transition)**: Magazine-quality editorial portrait in terracotta blazer, narrative focusing on purpose and connection (*“Same People. Better Conversations.”*), and an engraved 4-metric stat plaque (250+ Events, 50,000+ Engaged, 8+ Industries, 100% Excellence).
+6. **Services Section**: 6 outcome-driven luxury cards with custom SVG iconography and poster sub-taglines:
+   - *Corporate Conferences & Seminars* (Engaging. Polished. Impactful.)
+   - *Executive Summits & Moderation* (Focused. Engaging. Insightful.)
    - *Panel Moderation*
-   - *Awards Ceremonies*
-   - *Product Launches*
-   - *Corporate Celebrations*
-6. **Signature Trio**:
+   - *Awards Ceremonies & Galas* (Celebrating Excellence. Creating Memories.)
+   - *Product & Brand Launches* (Dynamic. Memorable. Results-Driven.)
+   - *Corporate Celebrations & End-of-Year Milestones* (Fun. Elegant. Meaningful.)
+7. **Signature Trio**:
    - **Card A (The Difference)**: Gold parchment card with headline *“It’s Not Just What I Say, It’s How I Make People Feel”* and an 8-point verified checklist.
    - **Card B (Showreel Area)**: Video preview of Sarah on stage with a pulsing play button opening an accessible video modal.
    - **Card C (Testimonials)**: Interactive editorial quote carousel with 5-star ratings and corporate titles.
-7. **Recent Moments (Photo Gallery)**: Responsive 4-column grid of 8 authentic live stage photographs with zoom hover and accessible lightbox viewer.
-8. **Beyond The Stage (Personal Brand)**: Reflection on human connection, mentorship, and communication, anchored by Sarah's 4 core leadership pillars.
-9. **Booking Concierge**: High-end inquiry form with real-time validation, automatic field packaging, direct WhatsApp prefill link, direct telephone line, and official email.
-10. **Refined Footer**: Final inspirational quote (*“People may forget the agenda... but they will always remember how your event made them feel”*), navigation links, social channels, and copyright.
-11. **Thought Leadership (/blog/)**: Pre-populated with articles on executive panel moderation and event psychology.
+8. **Recent Moments (Photo Gallery)**: Responsive 4-column grid of 8 authentic live stage photographs with zoom hover and accessible lightbox viewer.
+9. **Beyond The Stage (Personal Brand)**: Reflection on human connection, mentorship, and communication, anchored by Sarah's core leadership pillars.
+10. **Dual Booking Concierge**: 
+   - **Tab 1 (Direct Event Brief Form)**: Complete form with real-time validation, automatic field packaging, and a dedicated **"Pipe Details to WhatsApp"** button that compiles all fields into a structured WhatsApp message.
+   - **Tab 2 (Virtual Discovery Call)**: Interactive responsive embed placeholder for **Cal.com** to schedule 20-minute video consultations directly.
+11. **Refined Footer & Autograph Signature**: Inspirational quote (*“People may forget the agenda... but they will always remember how your event made them feel”*) underscored by a slick and stylish calligraphic signature (*“Sarah Ogembo”*) inspired by Britany cursive typography.
+12. **Thought Leadership (/blog/)**: Pre-populated with articles on executive panel moderation and event psychology.
 
 ---
 

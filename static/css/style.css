@@ -498,45 +498,138 @@ button, input, textarea, select {
   align-items: center;
 }
 
-.hero-image-frame {
+.hero-media-wrapper {
   position: relative;
-  border-radius: 4px;
-  overflow: hidden;
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9), 0 0 40px rgba(212, 175, 55, 0.15);
-  border: 1px solid rgba(212, 175, 55, 0.25);
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  min-height: 560px;
+}
+
+/* Cinematic Gold Spotlight behind transparent Sarah */
+.hero-spotlight {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 480px;
+  height: 580px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 45%, rgba(212, 175, 55, 0.28) 0%, rgba(183, 110, 121, 0.1) 40%, rgba(10, 10, 10, 0) 70%);
+  filter: blur(45px);
+  pointer-events: none;
+  z-index: 1;
+  animation: heroSpotlightBreathe 7s ease-in-out infinite alternate;
+}
+
+@keyframes heroSpotlightBreathe {
+  0% {
+    transform: translate(-50%, -50%) scale(0.95);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.08);
+    opacity: 1;
+  }
+}
+
+/* Pedestal stage base glow */
+.hero-pedestal-glow {
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 82%;
+  height: 28px;
+  background: radial-gradient(ellipse at center, rgba(212, 175, 55, 0.5) 0%, rgba(212, 175, 55, 0.1) 50%, transparent 80%);
+  filter: blur(14px);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.hero-transparent-frame {
+  position: relative;
+  z-index: 3;
   width: 100%;
   max-width: 520px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  background: transparent;
+  box-shadow: none;
+  border: none;
+  overflow: visible;
 }
 
-.hero-image-frame img {
-  width: 100%;
+.hero-cutout-img {
+  width: auto;
+  max-width: 100%;
+  max-height: 660px;
   height: auto;
-  aspect-ratio: 4 / 5;
-  object-fit: cover;
-  object-position: center top;
-  transition: transform var(--transition-luxury);
-}
-.hero-image-frame:hover img {
-  transform: scale(1.02);
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 20px 35px rgba(0, 0, 0, 0.85)) drop-shadow(0 0 35px rgba(212, 175, 55, 0.18));
+  transition: transform var(--transition-luxury), filter var(--transition-luxury);
 }
 
-/* Handwritten Script Callout in Hero */
-.hero-script-callout {
-  position: absolute;
-  bottom: 30px;
-  right: -20px;
-  transform: rotate(-6deg);
-  text-align: right;
-  z-index: 5;
-  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.8));
+.hero-cutout-img:hover {
+  transform: scale(1.02);
+  filter: drop-shadow(0 25px 45px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 45px rgba(212, 175, 55, 0.3));
 }
-.hero-script-callout .line {
-  display: block;
-  width: 48px;
-  height: 2px;
+
+/* Frosted Luxury Badge Capsule - 100% Readable on Any Background */
+.hero-script-callout.frosted-luxury-badge {
+  position: absolute;
+  bottom: 35px;
+  right: -25px;
+  transform: rotate(-3deg);
+  z-index: 10;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 22px;
+  border-radius: 9999px;
+  background: rgba(14, 14, 14, 0.82);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(212, 175, 55, 0.45);
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.75), 0 0 20px rgba(212, 175, 55, 0.18);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  animation: floatScriptPill 6s ease-in-out infinite alternate;
+}
+
+.hero-script-callout.frosted-luxury-badge:hover {
+  transform: rotate(0deg) scale(1.05);
+  background: rgba(18, 18, 18, 0.92);
+  border-color: var(--color-gold-light);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.85), 0 0 30px rgba(212, 175, 55, 0.35);
+}
+
+.hero-script-callout .badge-sparkle {
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.hero-script-callout .badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
   background: var(--color-gold-primary);
-  margin-top: 4px;
-  margin-left: auto;
+  box-shadow: 0 0 8px var(--color-gold-light);
+}
+
+.hero-script-callout .script-accent {
+  font-family: var(--font-script);
+  font-size: clamp(1.3rem, 2.2vw, 1.85rem);
+  color: #F7E7A9; /* Champagne gold */
+  line-height: 1;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
+  white-space: nowrap;
+}
+
+@keyframes floatScriptPill {
+  0% { transform: rotate(-3deg) translateY(0); }
+  100% { transform: rotate(-3deg) translateY(-8px); }
 }
 
 /* Scroll indicator */
@@ -1952,6 +2045,356 @@ button, input, textarea, select {
 }
 .nav-link.active::after {
   width: 100%;
+}
+
+/* --------------------------------------------------------------------------
+   16B. Four Pillars Section (Direct from Posters)
+   -------------------------------------------------------------------------- */
+.pillars-section {
+  padding: clamp(3.5rem, 6vw, 5.5rem) 0;
+  background: linear-gradient(180deg, #0A0A0A 0%, #121212 50%, #0A0A0A 100%);
+  border-top: 1px solid rgba(212, 175, 55, 0.15);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+.pillars-header {
+  text-align: center;
+  max-width: 740px;
+  margin: 0 auto clamp(2.5rem, 4vw, 3.5rem);
+}
+
+.pillars-title {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 3.8vw, 3.2rem);
+  color: var(--color-text-light);
+  line-height: 1.15;
+  margin-bottom: 12px;
+}
+
+.pillars-lead {
+  font-size: clamp(0.85rem, 1.3vw, 1.05rem);
+  color: var(--color-gold-light);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(1rem, 2vw, 1.8rem);
+}
+
+@media (max-width: 1024px) {
+  .pillars-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .pillars-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.pillar-card {
+  position: relative;
+  background: rgba(18, 18, 18, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(212, 175, 55, 0.22);
+  border-radius: 4px;
+  padding: clamp(1.6rem, 2.5vw, 2.2rem) clamp(1.2rem, 2vw, 1.6rem);
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--transition-smooth), border-color var(--transition-smooth), box-shadow var(--transition-smooth);
+}
+
+.pillar-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--color-gold-primary);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.8), 0 0 25px rgba(212, 175, 55, 0.2);
+}
+
+.pillar-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.pillar-number {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  color: var(--color-gold-primary);
+  opacity: 0.6;
+  font-weight: 600;
+}
+
+.pillar-badge {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--color-gold-light);
+  background: rgba(212, 175, 55, 0.12);
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  padding: 3px 12px;
+  border-radius: 9999px;
+}
+
+.pillar-sub {
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--color-text-light);
+  font-style: italic;
+  margin-bottom: 12px;
+}
+
+.pillar-desc {
+  font-size: 0.92rem;
+  line-height: 1.65;
+  color: var(--color-text-subtle);
+  margin-bottom: 0;
+}
+
+.pillar-card-accent {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--color-gold-shimmer);
+  opacity: 0;
+  transition: opacity var(--transition-smooth);
+}
+
+.pillar-card:hover .pillar-card-accent {
+  opacity: 1;
+}
+
+/* --------------------------------------------------------------------------
+   16C. Slick and Stylish Sarah Ogembo Signature
+   -------------------------------------------------------------------------- */
+.quote-signature-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1.8rem;
+}
+
+.signature-autograph-svg {
+  width: 280px;
+  height: 76px;
+  overflow: visible;
+  transition: transform 0.4s ease;
+  filter: drop-shadow(0 2px 10px rgba(212, 175, 55, 0.25));
+}
+
+.signature-autograph-svg:hover {
+  transform: scale(1.06);
+}
+
+.signature-cursive-text {
+  font-family: 'Pinyon Script', 'Alex Brush', cursive;
+  font-size: 56px;
+  fill: url(#sigGoldGrad);
+  font-weight: 400;
+  letter-spacing: 1px;
+}
+
+.signature-designation {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--color-gold-primary);
+  margin-top: -8px;
+  opacity: 0.85;
+}
+
+/* --------------------------------------------------------------------------
+   16D. Booking Concierge Tabs, Cal.com Embed & WhatsApp Piping
+   -------------------------------------------------------------------------- */
+.booking-concierge-panel {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.booking-tabs-nav {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+  background: rgba(14, 14, 14, 0.75);
+  padding: 6px;
+  border-radius: 6px;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.booking-tab-btn {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 16px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-subtle);
+  background: transparent;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.booking-tab-btn:hover {
+  color: var(--color-gold-light);
+  background: rgba(212, 175, 55, 0.08);
+}
+
+.booking-tab-btn.active {
+  background: var(--color-gold-primary);
+  color: #0A0A0A;
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.35);
+  font-weight: 700;
+}
+
+.booking-tab-panel {
+  display: none;
+  animation: fadeInTab 0.35s ease-out forwards;
+}
+
+.booking-tab-panel.active {
+  display: block;
+}
+
+@keyframes fadeInTab {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Pipe to WhatsApp Button */
+.btn-whatsapp-pipe {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: rgba(37, 211, 102, 0.15);
+  color: #25D366;
+  border: 1px solid #25D366;
+  padding: 13px 24px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  width: 100%;
+}
+
+.btn-whatsapp-pipe:hover {
+  background: #25D366;
+  color: #FFFFFF;
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.35);
+  transform: translateY(-2px);
+}
+
+.form-concierge-hint {
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+  margin-top: 8px;
+  text-align: center;
+}
+
+/* Cal.com Container */
+.cal-booking-container {
+  background: rgba(18, 18, 18, 0.95);
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  border-radius: 4px;
+  padding: clamp(1.5rem, 3vw, 2.2rem);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+}
+
+.cal-embed-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+  padding-bottom: 16px;
+}
+
+.cal-pill {
+  display: inline-block;
+  font-size: 0.72rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-gold-primary);
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.cal-title {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  color: var(--color-text-light);
+  margin-bottom: 6px;
+}
+
+.cal-desc {
+  font-size: 0.86rem;
+  color: var(--color-text-subtle);
+  max-width: 480px;
+  margin-bottom: 0;
+}
+
+.cal-link-button {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-gold-primary);
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  padding: 8px 16px;
+  border-radius: 2px;
+  transition: all var(--transition-fast);
+}
+
+.cal-link-button:hover {
+  background: rgba(212, 175, 55, 0.15);
+  color: var(--color-gold-light);
+  border-color: var(--color-gold-light);
+}
+
+.cal-iframe-wrapper {
+  position: relative;
+  width: 100%;
+  min-height: 580px;
+  border-radius: 4px;
+  overflow: hidden;
+  background: #0A0A0A;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.cal-embedded-iframe {
+  width: 100%;
+  height: 580px;
+  border: none;
+  display: block;
 }
 
 /* --------------------------------------------------------------------------

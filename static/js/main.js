@@ -302,9 +302,88 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // 10. Booking Concierge Form & Direct WhatsApp Integration
+  // 10. Booking Tabs (Brief Form vs Cal.com Virtual Discovery Call)
+  const tabFormTrigger = document.getElementById('tab-form-trigger');
+  const tabCalTrigger = document.getElementById('tab-cal-trigger');
+  const tabFormContent = document.getElementById('tab-form-content');
+  const tabCalContent = document.getElementById('tab-cal-content');
+
+  const switchBookingTab = (toCal) => {
+    if (toCal) {
+      tabCalTrigger?.classList.add('active');
+      tabCalTrigger?.setAttribute('aria-selected', 'true');
+      tabFormTrigger?.classList.remove('active');
+      tabFormTrigger?.setAttribute('aria-selected', 'false');
+
+      if (tabCalContent) tabCalContent.hidden = false;
+      tabCalContent?.classList.add('active');
+      if (tabFormContent) tabFormContent.hidden = true;
+      tabFormContent?.classList.remove('active');
+    } else {
+      tabFormTrigger?.classList.add('active');
+      tabFormTrigger?.setAttribute('aria-selected', 'true');
+      tabCalTrigger?.classList.remove('active');
+      tabCalTrigger?.setAttribute('aria-selected', 'false');
+
+      if (tabFormContent) tabFormContent.hidden = false;
+      tabFormContent?.classList.add('active');
+      if (tabCalContent) tabCalContent.hidden = true;
+      tabCalContent?.classList.remove('active');
+    }
+  };
+
+  tabFormTrigger?.addEventListener('click', () => switchBookingTab(false));
+  tabCalTrigger?.addEventListener('click', () => switchBookingTab(true));
+
+  // 10B. Booking Concierge Form & Direct WhatsApp Integration
   const bookingForm = document.getElementById('booking-form');
   const formStatus = document.getElementById('form-status');
+  const pipeWhatsAppBtn = document.getElementById('btn-pipe-whatsapp');
+
+  if (pipeWhatsAppBtn) {
+    pipeWhatsAppBtn.addEventListener('click', () => {
+      const name = document.getElementById('name')?.value.trim() || '';
+      const org = document.getElementById('organisation')?.value.trim() || '';
+      const email = document.getElementById('email')?.value.trim() || '';
+      const phone = document.getElementById('phone')?.value.trim() || '';
+      const eventType = document.getElementById('event_type')?.value || '';
+      const eventDate = document.getElementById('event_date')?.value || '';
+      const location = document.getElementById('location')?.value.trim() || '';
+      const guests = document.getElementById('expected_guests')?.value.trim() || '';
+      const message = document.getElementById('message')?.value.trim() || '';
+
+      if (!name) {
+        alert('Please enter your name first.');
+        document.getElementById('name')?.focus();
+        return;
+      }
+
+      let text = `*New Event Booking Inquiry for Sarah Ogembo*\n`;
+      text += `━━━━━━━━━━━━━━━━━━━━━━\n`;
+      if (name) text += `👤 *Client Name:* ${name}\n`;
+      if (org) text += `🏢 *Organisation:* ${org}\n`;
+      if (email) text += `✉️ *Work Email:* ${email}\n`;
+      if (phone) text += `📞 *Phone:* ${phone}\n`;
+      if (eventType) text += `🎙️ *Event Type:* ${eventType}\n`;
+      if (eventDate) text += `📅 *Target Date:* ${eventDate}\n`;
+      if (location) text += `📍 *Venue / City:* ${location}\n`;
+      if (guests) text += `👥 *Expected Attendees:* ${guests}\n`;
+      if (message) text += `📝 *Event Overview:* ${message}\n`;
+      text += `━━━━━━━━━━━━━━━━━━━━━━\n`;
+      text += `_Sent directly via sarahogembo.com concierge_`;
+
+      const waUrl = `https://wa.me/254719411433?text=${encodeURIComponent(text)}`;
+      window.open(waUrl, '_blank', 'noopener,noreferrer');
+
+      if (formStatus) {
+        formStatus.innerHTML = `
+          <div style="background: rgba(37, 211, 102, 0.12); border: 1px solid #25D366; color: #E8F8EE; padding: 14px 18px; border-radius: 4px; margin-top: 14px; animation: fadeIn 0.4s ease;">
+            <p><strong>✨ Details Piped to WhatsApp!</strong> A new WhatsApp window has opened with your information ready to send to Sarah.</p>
+          </div>
+        `;
+      }
+    });
+  }
 
   if (bookingForm) {
     bookingForm.addEventListener('submit', (e) => {

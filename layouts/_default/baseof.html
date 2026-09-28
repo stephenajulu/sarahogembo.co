@@ -30,14 +30,14 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <link rel="manifest" href="/manifest.webmanifest">
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
   <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
 
   <!-- Typography Preconnect & Font Loading -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Pinyon+Script&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <!-- Main Stylesheet -->
   <link rel="stylesheet" href="/css/style.css">
@@ -91,7 +91,10 @@
   <header class="site-header" role="banner">
     <div class="container nav-wrapper">
       <a href="/" class="brand-logo" aria-label="Sarah Ogembo - Return to Homepage">
-        <img src="/icons/apple-touch-icon.png" alt="Sarah Ogembo Monogram" class="brand-monogram-img" width="44" height="44">
+        <picture>
+          <source srcset="/images/logos/logo-so-crest.webp" type="image/webp">
+          <img src="/images/logos/logo-so-crest.png" alt="Sarah Ogembo Monogram Crest" class="brand-monogram-img" width="46" height="46">
+        </picture>
         <div class="brand-meta">
           <span class="brand-name">{{ $settings.brand.name | default "SARAH OGEMBO" }}</span>
           <span class="brand-tagline">{{ $settings.brand.tagline | default "PEOPLE • CONVERSATIONS • IMPACT" }}</span>
@@ -129,9 +132,26 @@
     <div class="container">
       <!-- Editorial Quote Banner -->
       <div class="footer-quote-wrap">
-        <p class="footer-quote">
+        <blockquote class="footer-quote">
           “{{ $settings.footer.quote | default "People may forget the agenda. They may forget the venue. But they will always remember how your event made them feel." }}”
-        </p>
+        </blockquote>
+        <div class="quote-signature-block">
+          <svg class="signature-autograph-svg" viewBox="0 0 340 90" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Sarah Ogembo Autograph Signature">
+            <defs>
+              <linearGradient id="sigGoldGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#D4AF37"/>
+                <stop offset="50%" stop-color="#F7E7A9"/>
+                <stop offset="100%" stop-color="#D4AF37"/>
+              </linearGradient>
+              <filter id="sigGlowFilter" x="-10%" y="-10%" width="120%" height="120%">
+                <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#D4AF37" flood-opacity="0.3"/>
+              </filter>
+            </defs>
+            <text x="170" y="52" text-anchor="middle" class="signature-cursive-text" filter="url(#sigGlowFilter)">Sarah Ogembo</text>
+            <path d="M 55 64 Q 120 78 200 62 T 285 68 Q 305 70 290 78 Q 265 83 220 72" stroke="url(#sigGoldGrad)" stroke-width="1.8" stroke-linecap="round" fill="none" opacity="0.85"/>
+          </svg>
+          <span class="signature-designation">Sarah Ogembo • Corporate MC</span>
+        </div>
       </div>
 
       <!-- Main Footer Row -->

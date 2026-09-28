@@ -7,16 +7,16 @@ description: "Sarah Ogembo is a prestigious corporate Master of Ceremonies, conf
 # ==============================================================================
 hero:
   eyebrow: "CORPORATE MC • CONFERENCE MODERATOR • EVENT HOST"
-  headline_start: "Creating Meaningful Moments,"
-  headline_italic: "One Stage at a Time."
-  intro_lead: "Some events are simply attended. Others are remembered."
-  intro_body: "I help organisations, leaders, and brands create experiences that engage audiences, spark conversations, and leave lasting impressions long after the final applause."
+  headline_start: "Your Event."
+  headline_italic: "Powerfully Delivered."
+  intro_lead: "You focus on your event. I bring it to life!"
+  intro_body: "Poised under pressure, prepared for excellence, and passionate about impact. Sarah partners with leading organisations to captivate audiences, amplify purpose, and leave lasting impressions."
   primary_cta_text: "Book Sarah"
   primary_cta_link: "#contact"
   secondary_cta_text: "Watch Showreel"
-  image: "/images/hero-sarah.webp"
-  image_alt: "Sarah Ogembo hosting live at the executive podium with microphone"
-  script_flourish: "Events\nPeople\nRemember"
+  image: "/images/hero-sarah-transparent.webp"
+  image_alt: "Sarah Ogembo Corporate Master of Ceremonies in red dress and black blazer"
+  script_flourish: "Events People Remember"
 
 # ==============================================================================
 # 2. TRUST / CLIENT PARTNERS BAR
@@ -42,6 +42,28 @@ trust:
       category: "Global Payments"
     - name: "Nairobi Securities Exchange"
       category: "Capital Markets"
+
+# ==============================================================================
+# 2B. FOUR CORE PILLARS (DIRECT FROM POSTERS)
+# ==============================================================================
+pillars_section:
+  eyebrow: "THE EXECUTIVE STANDARD"
+  title: "Four Pillars of"
+  title_highlight: "Stage Delivery"
+  lead: "Engaging Audiences • Amplifying Purpose • Leaving Lasting Impressions"
+  pillars:
+    - badge: "POISED"
+      subtitle: "Under Pressure"
+      desc: "Commanding authority, unflappable composure, and grace that keeps high-stakes corporate agendas flowing seamlessly."
+    - badge: "PREPARED"
+      subtitle: "For Excellence"
+      desc: "Deep research diligence, speaker alignment, and meticulous attention to protocol that guarantees flawless execution."
+    - badge: "PASSIONATE"
+      subtitle: "About Impact"
+      desc: "Infectious warmth and human connection that turns formal gatherings into vibrant, unforgettable moments."
+    - badge: "FOCUSED"
+      subtitle: "On Your Success"
+      desc: "Every word, transition, and podium interaction is engineered to advance your strategic brand vision and objectives."
 
 # ==============================================================================
 # 3. ABOUT SARAH SECTION
@@ -276,4 +298,10 @@ booking_section:
   script_flourish: "Great Events. Greater People."
   whatsapp_button_text: "Quick Inquiry via WhatsApp"
   submit_button_text: "Send Booking Inquiry"
+  pipe_whatsapp_text: "Pipe Details to WhatsApp"
+  cal_tab_title: "Virtual Discovery Call (Cal.com)"
+  cal_heading: "Schedule a Virtual Discovery Call"
+  cal_lead: "Select a date and time that suits your committee for an introductory 20-minute video consultation."
+  cal_embed_url: "https://cal.com/sarahogembo/discovery"
+  cal_external_link_text: "Open Calendar in New Tab ↗"
 ---

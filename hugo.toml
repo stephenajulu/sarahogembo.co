@@ -18,7 +18,7 @@ enableRobotsTXT = true
   linkedin = "https://www.linkedin.com/in/sarah-ogembo"
   instagram = "https://www.instagram.com/ogembo.s"
   whatsapp = "https://wa.me/254719411433?text=Hello%20Sarah,%20I%20would%20like%20to%20inquire%20about%20booking%20you%20for%20an%20event."
-  og_image = "/images/about-sarah.jpg"
+  og_image = "/images/og-image.jpg"
 
   # Core Brand Colors
   [params.colors]
