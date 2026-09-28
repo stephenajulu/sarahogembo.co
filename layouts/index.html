@@ -106,38 +106,6 @@
 </section>
 
 <!-- ========================================================================
-     2B. FOUR PILLARS SECTION: The Executive Standard (Direct From Posters)
-     ======================================================================== -->
-{{ with .Params.pillars_section }}
-<section class="pillars-section" aria-label="Core Pillars of Stage Delivery">
-  <div class="container">
-    <div class="pillars-header text-center">
-      <span class="eyebrow" data-cms-bind="pillars_section.eyebrow">{{ .eyebrow }}</span>
-      <h2 class="pillars-title">
-        <span data-cms-bind="pillars_section.title">{{ .title }}</span>
-        <span class="hero-title-italic" data-cms-bind="pillars_section.title_highlight">{{ .title_highlight }}</span>
-      </h2>
-      <p class="pillars-lead" data-cms-bind="pillars_section.lead">{{ .lead }}</p>
-    </div>
-
-    <div class="pillars-grid">
-      {{ range $index, $pillar := .pillars }}
-      <div class="pillar-card" data-cms-bind="pillars_section.pillars.{{ $index }}">
-        <div class="pillar-top-row">
-          <span class="pillar-number">0{{ add $index 1 }}</span>
-          <span class="pillar-badge">{{ .badge }}</span>
-        </div>
-        <h3 class="pillar-sub">{{ .subtitle }}</h3>
-        <p class="pillar-desc">{{ .desc }}</p>
-        <div class="pillar-card-accent" aria-hidden="true"></div>
-      </div>
-      {{ end }}
-    </div>
-  </div>
-</section>
-{{ end }}
-
-<!-- ========================================================================
      3. ABOUT SARAH SECTION: Warm Ivory Editorial Layout
      ======================================================================== -->
 <section id="about" class="about-section" aria-labelledby="about-heading">
@@ -242,6 +210,71 @@
     </div>
   </div>
 </section>
+
+<!-- ========================================================================
+     4B. VIRTUAL DISCOVERY CALL (CAL.COM SCHEDULING SUITE)
+     ======================================================================== -->
+{{ with .Params.cal_section }}
+{{ if .enable }}
+<section id="virtual-consultation" class="cal-booking-section" aria-labelledby="cal-heading">
+  <div class="container">
+    <div class="cal-section-card">
+      <div class="cal-card-grid">
+        <!-- Left: Editorial Value & Context -->
+        <div class="cal-context-content">
+          <div class="eyebrow" data-cms-bind="cal_section.eyebrow">{{ .eyebrow }}</div>
+          <h2 id="cal-heading" class="cal-section-title">
+            <span data-cms-bind="cal_section.title">{{ .title }}</span>
+            <span class="hero-title-italic text-gold" data-cms-bind="cal_section.title_highlight">{{ .title_highlight }}</span>
+          </h2>
+          <p class="cal-section-lead" data-cms-bind="cal_section.lead">{{ .lead }}</p>
+
+          <ul class="cal-benefits-list" data-cms-bind="cal_section.benefits">
+            {{ range .benefits }}
+              <li class="cal-benefit-item">
+                <svg class="cal-check-icon" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                <span>{{ . }}</span>
+              </li>
+            {{ end }}
+          </ul>
+
+          <div class="cal-action-actions">
+            <a href="{{ .cal_embed_url | default "https://cal.com/sarahogembo/discovery" }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary" data-cms-bind="cal_section.external_link_text">
+              {{ .external_link_text | default "Open Calendar in New Tab ↗" }}
+            </a>
+            <p class="cal-notice-text" data-cms-bind="cal_section.notice">💡 {{ .notice }}</p>
+          </div>
+        </div>
+
+        <!-- Right: Tailored Cal.com Embed Container -->
+        <div class="cal-interactive-panel">
+          <div class="cal-embed-browser-mockup">
+            <div class="cal-browser-topbar">
+              <div class="cal-browser-dots">
+                <span></span><span></span><span></span>
+              </div>
+              <span class="cal-browser-url">cal.com/sarahogembo/discovery</span>
+              <span class="cal-live-badge">Live Scheduling</span>
+            </div>
+            <div class="cal-frame-container" data-cms-bind="cal_section.cal_embed_url">
+              <iframe 
+                src="{{ .cal_embed_url | default "https://cal.com/sarahogembo/discovery" }}?embed=true" 
+                title="Schedule a Discovery Call with Sarah Ogembo" 
+                class="cal-embedded-iframe" 
+                loading="lazy" 
+                allow="camera; microphone; autoplay; fullscreen">
+              </iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
 
 <!-- ========================================================================
      5. SIGNATURE TRIO: Difference Checklist + Showreel + Testimonials
@@ -356,26 +389,57 @@
       </a>
     </div>
 
-    <!-- Real Event Photography Thumbnails -->
+    <!-- Real Event Photography Thumbnails with Overflow Plus Tile -->
+    {{ $totalItems := len $gallery.items }}
     <div class="gallery-grid" data-cms-bind="gallery_section.items">
-      {{ range $gallery.items }}
-        <div class="gallery-item" tabindex="0" role="button" aria-label="Enlarge {{ .title }}" data-title="{{ .title }}" data-caption="{{ .caption }}">
-          <picture>
-            <source srcset="{{ .image }}" type="image/webp">
-            <img src="{{ .image_fallback }}" alt="{{ .title }} - {{ .caption }}" width="280" height="210" loading="lazy">
-          </picture>
-          <div class="gallery-hover-overlay">
-            <svg class="gallery-zoom-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <circle cx="11" cy="11" r="8"></circle>
-              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-              <line x1="11" y1="8" x2="11" y2="14"></line>
-              <line x1="8" y1="11" x2="14" y2="11"></line>
-            </svg>
-            <span class="gallery-item-title">{{ .title }}</span>
+      {{ range $index, $item := $gallery.items }}
+        {{ if and (gt $totalItems 8) (eq $index 7) }}
+          <!-- 8th Tile: Paginated Plus Tile triggering Full Scrollable Gallery Modal -->
+          <div class="gallery-item gallery-more-tile" tabindex="0" role="button" aria-label="View all {{ $totalItems }} event photographs" data-trigger="open-all-gallery">
+            <picture>
+              <source srcset="{{ $item.image }}" type="image/webp">
+              <img src="{{ $item.image_fallback }}" alt="{{ $item.title }}" width="280" height="210" loading="lazy">
+            </picture>
+            <div class="gallery-more-overlay">
+              <span class="gallery-more-plus">+{{ sub $totalItems 7 }}</span>
+              <span class="gallery-more-label">More Photographs</span>
+              <span class="gallery-more-hint">Click to View Complete Gallery ↗</span>
+            </div>
           </div>
-        </div>
+        {{ else if or (le $totalItems 8) (lt $index 7) }}
+          <div class="gallery-item" tabindex="0" role="button" aria-label="Enlarge {{ .title }}" 
+               data-image="{{ .image }}" 
+               data-fallback="{{ .image_fallback }}" 
+               data-title="{{ .title }}" 
+               data-caption="{{ .caption }}" 
+               data-category="{{ .category | default "Live Event" }}">
+            <picture>
+              <source srcset="{{ .image }}" type="image/webp">
+              <img src="{{ .image_fallback }}" alt="{{ .title }} - {{ .caption }}" width="280" height="210" loading="lazy">
+            </picture>
+            <div class="gallery-hover-overlay">
+              <svg class="gallery-zoom-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                <line x1="11" y1="8" x2="11" y2="14"></line>
+                <line x1="8" y1="11" x2="14" y2="11"></line>
+              </svg>
+              <span class="gallery-item-title">{{ .title }}</span>
+            </div>
+          </div>
+        {{ end }}
       {{ end }}
     </div>
+
+    {{ if gt $totalItems 8 }}
+      <div class="gallery-view-all-wrap text-center">
+        <button type="button" class="btn btn-secondary open-all-gallery-btn" aria-label="View all {{ $totalItems }} photographs in full gallery">
+          <span class="gallery-btn-plus">+</span>
+          <span>View All {{ $totalItems }} Event Photographs</span>
+          <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        </button>
+      </div>
+    {{ end }}
   </div>
 </section>
 
@@ -478,129 +542,84 @@
       </div>
     </div>
 
-    <!-- Right Column: Booking Concierge Interface (Tabs: Form & Cal.com) -->
-    <div class="booking-concierge-panel">
-      <!-- Luxury Tab Switcher -->
-      <div class="booking-tabs-nav" role="tablist" aria-label="Booking Mode">
-        <button type="button" class="booking-tab-btn active" id="tab-form-trigger" role="tab" aria-selected="true" aria-controls="tab-form-content">
-          <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
-          <span>Direct Event Brief</span>
-        </button>
-        <button type="button" class="booking-tab-btn" id="tab-cal-trigger" role="tab" aria-selected="false" aria-controls="tab-cal-content" data-cms-bind="booking_section.cal_tab_title">
-          <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-          <span>{{ $booking.cal_tab_title | default "Virtual Discovery Call" }}</span>
-        </button>
-      </div>
-
-      <!-- Tab Content 1: Direct Event Brief Form -->
-      <div id="tab-form-content" class="booking-tab-panel active" role="tabpanel" aria-labelledby="tab-form-trigger">
-        <div class="booking-form-card">
-          <form id="booking-form" action="#" method="POST" novalidate>
-            <div class="form-group-row">
-              <div class="form-field">
-                <label for="name" class="form-label">Full Name *</label>
-                <input type="text" id="name" name="name" class="form-input" placeholder="e.g. Christine Wangari" required>
-              </div>
-              <div class="form-field">
-                <label for="organisation" class="form-label">Organisation / Brand *</label>
-                <input type="text" id="organisation" name="organisation" class="form-input" placeholder="e.g. Safaricom PLC" required>
-              </div>
-            </div>
-
-            <div class="form-group-row">
-              <div class="form-field">
-                <label for="email" class="form-label">Work Email *</label>
-                <input type="email" id="email" name="email" class="form-input" placeholder="c.wangari@company.com" required>
-              </div>
-              <div class="form-field">
-                <label for="phone" class="form-label">Phone / WhatsApp *</label>
-                <input type="tel" id="phone" name="phone" class="form-input" placeholder="+254 700 000 000" required>
-              </div>
-            </div>
-
-            <div class="form-group-row">
-              <div class="form-field">
-                <label for="event_type" class="form-label">Event Type *</label>
-                <select id="event_type" name="event_type" class="form-select" required>
-                  <option value="" disabled selected>Select event category</option>
-                  <option value="Corporate Conference">Corporate Conference</option>
-                  <option value="Executive Leadership Summit">Executive Leadership Summit</option>
-                  <option value="Panel Moderation">Panel Moderation</option>
-                  <option value="Awards Gala / Ceremony">Awards Gala / Ceremony</option>
-                  <option value="Product Launch">Product Launch</option>
-                  <option value="Corporate Celebration / AGM">Corporate Celebration / AGM</option>
-                  <option value="International Forum">International / Diplomatic Forum</option>
-                </select>
-              </div>
-              <div class="form-field">
-                <label for="event_date" class="form-label">Event Date</label>
-                <input type="date" id="event_date" name="event_date" class="form-input">
-              </div>
-            </div>
-
-            <div class="form-group-row">
-              <div class="form-field">
-                <label for="location" class="form-label">City / Venue</label>
-                <input type="text" id="location" name="location" class="form-input" placeholder="e.g. Nairobi (Sarit Expo / Villa Rosa Kempinski)">
-              </div>
-              <div class="form-field">
-                <label for="expected_guests" class="form-label">Expected Attendees</label>
-                <input type="text" id="expected_guests" name="expected_guests" class="form-input" placeholder="e.g. 350 Delegates">
-              </div>
-            </div>
-
-            <div class="form-field">
-              <label for="message" class="form-label">Brief Event Overview & Objectives</label>
-              <textarea id="message" name="message" class="form-textarea" placeholder="Tell us about the theme, desired atmosphere, and programme timeline..."></textarea>
-            </div>
-
-            <div class="form-submit-row">
-              <button type="submit" class="btn btn-primary" id="btn-submit-form" data-cms-bind="booking_section.submit_button_text">
-                {{ $booking.submit_button_text | default "Send Booking Inquiry" }}
-                <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-                  <line x1="22" y1="2" x2="11" y2="13"></line>
-                  <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-                </svg>
-              </button>
-
-              <!-- Pipe to WhatsApp Action Button -->
-              <button type="button" id="btn-pipe-whatsapp" class="btn btn-whatsapp-pipe" data-cms-bind="booking_section.pipe_whatsapp_text" title="Pipes the above form fields directly into a formatted WhatsApp chat with Sarah">
-                <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
-                <span>{{ $booking.pipe_whatsapp_text | default "Pipe Details to WhatsApp" }}</span>
-              </button>
-            </div>
-            <p class="form-concierge-hint">💡 <em>Tip: Fill your event details above, then tap <strong>Pipe Details to WhatsApp</strong> to instantly initiate a pre-filled booking chat with Sarah.</em></p>
-            <div id="form-status" role="status" aria-live="polite"></div>
-          </form>
-        </div>
-      </div>
-
-      <!-- Tab Content 2: Cal.com Virtual Discovery Call Embed -->
-      <div id="tab-cal-content" class="booking-tab-panel" role="tabpanel" aria-labelledby="tab-cal-trigger" hidden>
-        <div class="cal-booking-container">
-          <div class="cal-embed-header">
-            <div>
-              <span class="cal-pill">Virtual 20-Minute Consultation</span>
-              <h3 class="cal-title" data-cms-bind="booking_section.cal_heading">{{ $booking.cal_heading | default "Schedule a Virtual Discovery Call" }}</h3>
-              <p class="cal-desc" data-cms-bind="booking_section.cal_lead">{{ $booking.cal_lead | default "Select a date and time that suits your committee for an introductory 20-minute video consultation." }}</p>
-            </div>
-            <a href="{{ $booking.cal_embed_url | default "https://cal.com/sarahogembo/discovery" }}" target="_blank" rel="noopener noreferrer" class="cal-link-button" data-cms-bind="booking_section.cal_external_link_text">
-              {{ $booking.cal_external_link_text | default "Open Calendar in New Tab ↗" }}
-            </a>
+    <!-- Right Column: Luxury Inquiry Form -->
+    <div class="booking-form-card">
+      <form id="booking-form" action="#" method="POST" novalidate>
+        <div class="form-group-row">
+          <div class="form-field">
+            <label for="name" class="form-label">Full Name *</label>
+            <input type="text" id="name" name="name" class="form-input" placeholder="e.g. Christine Wangari" required>
           </div>
-
-          <!-- Cal.com Responsive Embed Frame -->
-          <div class="cal-iframe-wrapper">
-            <iframe 
-              src="{{ $booking.cal_embed_url | default "https://cal.com/sarahogembo/discovery" }}?embed=true" 
-              title="Schedule a Discovery Call with Sarah Ogembo" 
-              class="cal-embedded-iframe" 
-              loading="lazy" 
-              allow="camera; microphone; autoplay; fullscreen">
-            </iframe>
+          <div class="form-field">
+            <label for="organisation" class="form-label">Organisation / Brand *</label>
+            <input type="text" id="organisation" name="organisation" class="form-input" placeholder="e.g. Safaricom PLC" required>
           </div>
         </div>
-      </div>
+
+        <div class="form-group-row">
+          <div class="form-field">
+            <label for="email" class="form-label">Work Email *</label>
+            <input type="email" id="email" name="email" class="form-input" placeholder="c.wangari@company.com" required>
+          </div>
+          <div class="form-field">
+            <label for="phone" class="form-label">Phone / WhatsApp *</label>
+            <input type="tel" id="phone" name="phone" class="form-input" placeholder="+254 700 000 000" required>
+          </div>
+        </div>
+
+        <div class="form-group-row">
+          <div class="form-field">
+            <label for="event_type" class="form-label">Event Type *</label>
+            <select id="event_type" name="event_type" class="form-select" required>
+              <option value="" disabled selected>Select event category</option>
+              <option value="Corporate Conference">Corporate Conference</option>
+              <option value="Executive Leadership Summit">Executive Leadership Summit</option>
+              <option value="Panel Moderation">Panel Moderation</option>
+              <option value="Awards Gala / Ceremony">Awards Gala / Ceremony</option>
+              <option value="Product Launch">Product Launch</option>
+              <option value="Corporate Celebration / AGM">Corporate Celebration / AGM</option>
+              <option value="International Forum">International / Diplomatic Forum</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label for="event_date" class="form-label">Event Date</label>
+            <input type="date" id="event_date" name="event_date" class="form-input">
+          </div>
+        </div>
+
+        <div class="form-group-row">
+          <div class="form-field">
+            <label for="location" class="form-label">City / Venue</label>
+            <input type="text" id="location" name="location" class="form-input" placeholder="e.g. Nairobi (Sarit Expo / Villa Rosa Kempinski)">
+          </div>
+          <div class="form-field">
+            <label for="expected_guests" class="form-label">Expected Attendees</label>
+            <input type="text" id="expected_guests" name="expected_guests" class="form-input" placeholder="e.g. 350 Delegates">
+          </div>
+        </div>
+
+        <div class="form-field">
+          <label for="message" class="form-label">Brief Event Overview & Objectives</label>
+          <textarea id="message" name="message" class="form-textarea" placeholder="Tell us about the theme, desired atmosphere, and programme timeline..."></textarea>
+        </div>
+
+        <div class="form-submit-row">
+          <button type="submit" class="btn btn-primary" style="width: 100%;" data-cms-bind="booking_section.submit_button_text">
+            {{ $booking.submit_button_text | default "Send Booking Inquiry" }}
+            <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <line x1="22" y1="2" x2="11" y2="13"></line>
+              <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+            </svg>
+          </button>
+
+          <a href="{{ $settings.social_links.whatsapp | default .Site.Params.whatsapp }}" target="_blank" rel="noopener noreferrer" class="whatsapp-direct-btn" data-cms-bind="booking_section.whatsapp_button_text">
+            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+            {{ $booking.whatsapp_button_text | default "Quick Inquiry via WhatsApp" }}
+          </a>
+        </div>
+
+        <div id="form-status" role="status" aria-live="polite"></div>
+      </form>
     </div>
   </div>
 </section>

@@ -44,28 +44,6 @@ trust:
       category: "Capital Markets"
 
 # ==============================================================================
-# 2B. FOUR CORE PILLARS (DIRECT FROM POSTERS)
-# ==============================================================================
-pillars_section:
-  eyebrow: "THE EXECUTIVE STANDARD"
-  title: "Four Pillars of"
-  title_highlight: "Stage Delivery"
-  lead: "Engaging Audiences • Amplifying Purpose • Leaving Lasting Impressions"
-  pillars:
-    - badge: "POISED"
-      subtitle: "Under Pressure"
-      desc: "Commanding authority, unflappable composure, and grace that keeps high-stakes corporate agendas flowing seamlessly."
-    - badge: "PREPARED"
-      subtitle: "For Excellence"
-      desc: "Deep research diligence, speaker alignment, and meticulous attention to protocol that guarantees flawless execution."
-    - badge: "PASSIONATE"
-      subtitle: "About Impact"
-      desc: "Infectious warmth and human connection that turns formal gatherings into vibrant, unforgettable moments."
-    - badge: "FOCUSED"
-      subtitle: "On Your Success"
-      desc: "Every word, transition, and podium interaction is engineered to advance your strategic brand vision and objectives."
-
-# ==============================================================================
 # 3. ABOUT SARAH SECTION
 # ==============================================================================
 about:
@@ -156,6 +134,24 @@ services_section:
         - "Inclusive, uplifting atmosphere"
         - "Strengthened company culture & pride"
         - "Lasting camaraderie and celebration"
+
+# ==============================================================================
+# 5B. VIRTUAL DISCOVERY CALL (CAL.COM SCHEDULING SUITE)
+# ==============================================================================
+cal_section:
+  enable: true
+  eyebrow: "VIRTUAL DISCOVERY CALL"
+  title: "Schedule a 20-Minute"
+  title_highlight: "Virtual Consultation"
+  lead: "Planning an upcoming corporate summit, conference, or awards gala? Reserve a direct discovery session on Sarah's calendar to align on objectives, format, and availability."
+  cal_embed_url: "https://cal.com/sarahogembo/discovery"
+  external_link_text: "Open Calendar in New Tab ↗"
+  badge: "Direct Calendar Access"
+  notice: "Virtual consultations are conducted via Google Meet or Zoom. Instant calendar invite sent upon booking."
+  benefits:
+    - "Direct schedule coordination with Sarah's executive management"
+    - "Automatic timezone alignment (EAT, GMT, EST, CET)"
+    - "Preliminary scope review & date availability check"
 
 # ==============================================================================
 # 6. THE DIFFERENCE (SIGNATURE ATTRIBUTES CHECKLIST)
@@ -278,14 +274,14 @@ personal_section:
     - "I’ve always been deeply fascinated by people—their aspirations, their bold ideas, and the conversations that bind diverse communities together."
     - "Beyond the stage lights, I dedicate time to mentorship, thought leadership, and empowering emerging communicators. I believe every speaking platform is a sacred trust: an opportunity to inspire confidence, foster constructive dialogue, and champion the human spirit."
   pillars:
-    - title: "Executive Poise"
-      desc: "Calm, authoritative stage presence that puts VIP guests at ease."
-    - title: "Diligent Research"
-      desc: "Deep immersion into company culture and event objectives."
-    - title: "Authentic Warmth"
-      desc: "Genuine connection that turns passive listeners into active participants."
-    - title: "Adaptive Mastery"
-      desc: "Impeccable crisis navigation and backstage protocol flow."
+    - title: "Poised (Under Pressure)"
+      desc: "Calm, commanding authority and unflappable stage composure that keeps high-stakes corporate agendas flowing seamlessly."
+    - title: "Prepared (For Excellence)"
+      desc: "Deep research diligence, speaker alignment, and meticulous attention to protocol that guarantees flawless execution."
+    - title: "Passionate (About Impact)"
+      desc: "Infectious warmth and human connection that turns formal gatherings into vibrant, unforgettable moments."
+    - title: "Focused (On Your Success)"
+      desc: "Every word, transition, and podium interaction is engineered to advance your strategic brand vision and objectives."
 
 # ==============================================================================
 # 11. BOOKING CONCIERGE SECTION
@@ -298,10 +294,4 @@ booking_section:
   script_flourish: "Great Events. Greater People."
   whatsapp_button_text: "Quick Inquiry via WhatsApp"
   submit_button_text: "Send Booking Inquiry"
-  pipe_whatsapp_text: "Pipe Details to WhatsApp"
-  cal_tab_title: "Virtual Discovery Call (Cal.com)"
-  cal_heading: "Schedule a Virtual Discovery Call"
-  cal_lead: "Select a date and time that suits your committee for an introductory 20-minute video consultation."
-  cal_embed_url: "https://cal.com/sarahogembo/discovery"
-  cal_external_link_text: "Open Calendar in New Tab ↗"
 ---

@@ -244,56 +244,105 @@ document.addEventListener('DOMContentLoaded', () => {
 
   videoCloseBtn?.addEventListener('click', closeVideoModal);
 
-  // 9. Gallery Lightbox Modal
+  // 9. Gallery Lightbox Modal (Single Image View)
   const galleryModal = document.getElementById('gallery-modal');
-  const galleryItems = document.querySelectorAll('.gallery-item');
   const lightboxImg = document.getElementById('lightbox-image');
   const lightboxCaption = document.getElementById('lightbox-caption-text');
   const galleryCloseBtn = document.querySelector('.gallery-modal-close');
 
-  galleryItems.forEach((item) => {
-    item.addEventListener('click', () => {
-      const img = item.querySelector('img');
-      const title = item.getAttribute('data-title') || img?.alt || 'Sarah Ogembo on Stage';
-      const caption = item.getAttribute('data-caption') || '';
+  const openLightbox = (item) => {
+    const fullSrc = item.getAttribute('data-image') || item.getAttribute('data-fallback') || item.querySelector('img')?.currentSrc || item.querySelector('img')?.src;
+    const fallbackSrc = item.getAttribute('data-fallback') || item.getAttribute('data-image');
+    const title = item.getAttribute('data-title') || item.querySelector('img')?.alt || 'Sarah Ogembo on Stage';
+    const caption = item.getAttribute('data-caption') || '';
+    const category = item.getAttribute('data-category') || 'Live Event';
 
-      if (lightboxImg && img) {
-        lightboxImg.src = img.src;
-        lightboxImg.alt = title;
-      }
-      if (lightboxCaption) {
-        lightboxCaption.innerHTML = `<strong>${title}</strong><br><span style="color:#A67C00">${caption}</span>`;
-      }
-      if (galleryModal) {
-        galleryModal.classList.add('active');
-        document.body.style.overflow = 'hidden';
-        galleryCloseBtn?.focus();
-      }
-    });
+    if (lightboxImg && fullSrc) {
+      lightboxImg.onerror = function() {
+        if (fallbackSrc && this.src !== fallbackSrc) {
+          this.src = fallbackSrc;
+        }
+      };
+      lightboxImg.src = fullSrc;
+      lightboxImg.alt = title;
+    }
 
-    item.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        item.click();
-      }
-    });
-  });
+    if (lightboxCaption) {
+      lightboxCaption.innerHTML = `
+        <span class="lightbox-cat-badge">${category}</span>
+        <h4 class="lightbox-title">${title}</h4>
+        ${caption ? `<p class="lightbox-desc">${caption}</p>` : ''}
+      `;
+    }
 
-  galleryCloseBtn?.addEventListener('click', () => {
+    if (galleryModal) {
+      galleryModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      galleryCloseBtn?.focus();
+    }
+  };
+
+  const closeLightbox = () => {
     galleryModal?.classList.remove('active');
     document.body.style.overflow = '';
+  };
+
+  galleryCloseBtn?.addEventListener('click', closeLightbox);
+
+  // Bind single image click to all gallery items (both main grid and inside all-photos modal)
+  document.addEventListener('click', (e) => {
+    const item = e.target.closest('.gallery-item:not(.gallery-more-tile)');
+    if (item) {
+      e.preventDefault();
+      openLightbox(item);
+    }
   });
+
+  document.addEventListener('keydown', (e) => {
+    if ((e.key === 'Enter' || e.key === ' ') && e.target.matches?.('.gallery-item:not(.gallery-more-tile)')) {
+      e.preventDefault();
+      openLightbox(e.target);
+    }
+  });
+
+  // 9B. Complete Scrollable All-Photos Gallery Modal
+  const allGalleryModal = document.getElementById('all-gallery-modal');
+  const allGalleryCloseBtn = document.querySelector('.all-gallery-modal-close');
+
+  const openAllGallery = () => {
+    if (allGalleryModal) {
+      allGalleryModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      allGalleryCloseBtn?.focus();
+    }
+  };
+
+  const closeAllGallery = () => {
+    allGalleryModal?.classList.remove('active');
+    document.body.style.overflow = '';
+  };
+
+  // Triggers for all-photos modal:
+  document.addEventListener('click', (e) => {
+    if (e.target.closest('.gallery-more-tile') || e.target.closest('.open-all-gallery-btn')) {
+      e.preventDefault();
+      openAllGallery();
+    }
+  });
+
+  allGalleryCloseBtn?.addEventListener('click', closeAllGallery);
 
   // Global Close on ESC or click outside
   window.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
       closeVideoModal();
-      galleryModal?.classList.remove('active');
+      closeLightbox();
+      closeAllGallery();
       document.body.style.overflow = '';
     }
   });
 
-  [videoModal, galleryModal].forEach((modal) => {
+  [videoModal, galleryModal, allGalleryModal].forEach((modal) => {
     modal?.addEventListener('click', (e) => {
       if (e.target === modal) {
         modal.classList.remove('active');
@@ -302,40 +351,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // 10. Booking Tabs (Brief Form vs Cal.com Virtual Discovery Call)
-  const tabFormTrigger = document.getElementById('tab-form-trigger');
-  const tabCalTrigger = document.getElementById('tab-cal-trigger');
-  const tabFormContent = document.getElementById('tab-form-content');
-  const tabCalContent = document.getElementById('tab-cal-content');
-
-  const switchBookingTab = (toCal) => {
-    if (toCal) {
-      tabCalTrigger?.classList.add('active');
-      tabCalTrigger?.setAttribute('aria-selected', 'true');
-      tabFormTrigger?.classList.remove('active');
-      tabFormTrigger?.setAttribute('aria-selected', 'false');
-
-      if (tabCalContent) tabCalContent.hidden = false;
-      tabCalContent?.classList.add('active');
-      if (tabFormContent) tabFormContent.hidden = true;
-      tabFormContent?.classList.remove('active');
-    } else {
-      tabFormTrigger?.classList.add('active');
-      tabFormTrigger?.setAttribute('aria-selected', 'true');
-      tabCalTrigger?.classList.remove('active');
-      tabCalTrigger?.setAttribute('aria-selected', 'false');
-
-      if (tabFormContent) tabFormContent.hidden = false;
-      tabFormContent?.classList.add('active');
-      if (tabCalContent) tabCalContent.hidden = true;
-      tabCalContent?.classList.remove('active');
-    }
-  };
-
-  tabFormTrigger?.addEventListener('click', () => switchBookingTab(false));
-  tabCalTrigger?.addEventListener('click', () => switchBookingTab(true));
-
-  // 10B. Booking Concierge Form & Direct WhatsApp Integration
+  // 10. Booking Concierge Form & Direct WhatsApp Integration
   const bookingForm = document.getElementById('booking-form');
   const formStatus = document.getElementById('form-status');
   const pipeWhatsAppBtn = document.getElementById('btn-pipe-whatsapp');
