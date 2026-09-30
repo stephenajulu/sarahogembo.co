@@ -1,0 +1,17 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "sarahogembo-co",
+  "compatibility_date": "2026-09-30",
+  "assets": {
+    "binding": "ASSETS",
+    "directory": "public"
+  },
+  "vars": {
+    "HUGO_VERSION": "0.160.1",
+    "HUGO_ENABLEGITINFO": "true",
+    "HUGO_ENV": "production"
+  },
+  "observability": {
+    "enabled": true
+  }
+}
