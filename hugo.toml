@@ -266,6 +266,12 @@ enableRobotsTXT = true
     weight = 50
 
   [[menu.main]]
+    identifier = "cv"
+    name = "Profile & CV"
+    url = "/cv/"
+    weight = 55
+
+  [[menu.main]]
     identifier = "blog"
     name = "Blog"
     url = "/blog/"

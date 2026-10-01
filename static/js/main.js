@@ -216,11 +216,15 @@ document.addEventListener('DOMContentLoaded', () => {
   const videoTriggers = document.querySelectorAll('.trigger-video-modal');
   const videoCloseBtn = document.querySelector('.video-modal-close');
   const videoIframe = document.getElementById('showreel-iframe');
+  const videoPlayer = document.getElementById('showreel-video-player');
 
   function openVideoModal() {
     if (!videoModal) return;
     videoModal.classList.add('active');
     document.body.style.overflow = 'hidden';
+    if (videoPlayer) {
+      videoPlayer.play().catch(() => {});
+    }
     videoCloseBtn?.focus();
   }
 
@@ -228,6 +232,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!videoModal) return;
     videoModal.classList.remove('active');
     document.body.style.overflow = '';
+    if (videoPlayer) {
+      videoPlayer.pause();
+      videoPlayer.currentTime = 0;
+    }
     if (videoIframe) {
       const src = videoIframe.src;
       videoIframe.src = '';

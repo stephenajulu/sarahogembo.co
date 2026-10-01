@@ -11,3 +11,6 @@ desktop.ini
 # Temporary files
 *.tmp
 *.log
+
+# Raw working media dumps (optimized versions are placed in static/)
+sarahogembophotos/Requests/

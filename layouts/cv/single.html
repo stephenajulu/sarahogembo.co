@@ -1,0 +1,208 @@
+{{ define "main" }}
+<div class="cv-page-wrap">
+  <!-- Top Breadcrumb & Actions Bar -->
+  <div class="cv-top-bar container">
+    <a href="/" class="cv-back-link">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="19" y1="12" x2="5" y2="12"></line>
+        <polyline points="12 19 5 12 12 5"></polyline>
+      </svg>
+      <span>Back to Homepage</span>
+    </a>
+
+    <div class="cv-action-buttons">
+      <a href="{{ .Params.docx_download_url | default "/downloads/Sarah-Ogembo-MC-Resume.docx" }}" download class="btn-cv-download btn-cv-primary" aria-label="Download Sarah Ogembo MC Resume as Microsoft Word document">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+          <polyline points="7 10 12 15 17 10"></polyline>
+          <line x1="12" y1="15" x2="12" y2="3"></line>
+        </svg>
+        <span>Download Word Resume (.docx)</span>
+      </a>
+
+      <button type="button" class="btn-cv-download btn-cv-secondary" onclick="window.print()" aria-label="Print or Save Resume as PDF">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="6 9 6 2 18 2 18 9"></polyline>
+          <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+          <rect x="6" y="14" width="12" height="8"></rect>
+        </svg>
+        <span>Print / Save as PDF</span>
+      </button>
+
+      <a href="/#contact" class="btn-cv-download btn-cv-gold">
+        <span>Inquire for Booking →</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Main CV Document Paper -->
+  <article class="cv-document-container container">
+    <!-- Header Block -->
+    <header class="cv-header">
+      <div class="cv-header-grid">
+        <div class="cv-header-content">
+          <div class="cv-eyebrow">EXECUTIVE CREDENTIALS & PROFILE</div>
+          <h1 class="cv-name">{{ .Params.executive_profile.name }}</h1>
+          <p class="cv-title-tag">{{ .Params.executive_profile.role_display }}</p>
+          <p class="cv-tagline text-gold">“{{ .Params.executive_profile.tagline }}”</p>
+
+          <div class="cv-meta-links">
+            <span class="cv-meta-item">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+              {{ .Params.executive_profile.location }}
+            </span>
+            <a href="mailto:{{ .Params.executive_profile.email }}" class="cv-meta-item cv-link">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+              {{ .Params.executive_profile.email }}
+            </a>
+            <a href="tel:{{ replace .Params.executive_profile.phone " " "" }}" class="cv-meta-item cv-link">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+              {{ .Params.executive_profile.phone }}
+            </a>
+            <a href="{{ .Params.executive_profile.linkedin }}" target="_blank" rel="noopener noreferrer" class="cv-meta-item cv-link">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+              LinkedIn Profile ↗
+            </a>
+          </div>
+        </div>
+
+        <div class="cv-header-monogram">
+          <picture>
+            <source srcset="/images/logos/sarah-ogembo-monogram-gold.webp" type="image/webp">
+            <img src="/images/logos/sarah-ogembo-monogram-gold.png" alt="Sarah Ogembo Gold Crest Logo" class="cv-crest-img" width="160" height="160">
+          </picture>
+        </div>
+      </div>
+
+      <!-- Quick Metrics Strip -->
+      <div class="cv-metrics-strip">
+        {{ range .Params.metrics }}
+          <div class="cv-metric-box">
+            <span class="cv-metric-value">{{ .value }}</span>
+            <span class="cv-metric-label">{{ .label }}</span>
+          </div>
+        {{ end }}
+      </div>
+    </header>
+
+    <!-- Executive Summary -->
+    <section class="cv-section">
+      <h2 class="cv-section-heading">Executive Summary</h2>
+      <div class="cv-section-body cv-prose">
+        {{ range .Params.summary_paragraphs }}
+          <p>{{ . }}</p>
+        {{ end }}
+      </div>
+    </section>
+
+    <!-- Core Competencies -->
+    <section class="cv-section">
+      <h2 class="cv-section-heading">Core Competencies & Facilitation Strengths</h2>
+      <div class="cv-competencies-grid">
+        {{ range .Params.competencies }}
+          <div class="cv-comp-card">
+            <div class="cv-comp-title">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="cv-gold-icon">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span>{{ .title }}</span>
+            </div>
+            <p class="cv-comp-desc">{{ .desc }}</p>
+          </div>
+        {{ end }}
+      </div>
+    </section>
+
+    <!-- Selected Major Engagements -->
+    <section class="cv-section">
+      <h2 class="cv-section-heading">Selected Engagements & Notable Stages</h2>
+      <div class="cv-engagements-container">
+        {{ range .Params.engagements_categories }}
+          <div class="cv-category-block">
+            <h3 class="cv-category-title">
+              {{ if eq .icon "government" }}
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18"></path><path d="M5 21V7l7-4 7 4v14"></path><path d="M9 10v4"></path><path d="M15 10v4"></path></svg>
+              {{ else if eq .icon "globe" }}
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+              {{ else }}
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+              {{ end }}
+              <span>{{ .category }}</span>
+            </h3>
+
+            <div class="cv-items-list">
+              {{ range .items }}
+                <div class="cv-item-row">
+                  <div class="cv-item-main">
+                    <h4 class="cv-item-title">{{ .title }}</h4>
+                    <span class="cv-item-meta">{{ .meta }}</span>
+                    <p class="cv-item-desc">{{ .desc }}</p>
+                  </div>
+                </div>
+              {{ end }}
+            </div>
+          </div>
+        {{ end }}
+      </div>
+    </section>
+
+    <!-- Education & Academic Credentials -->
+    <section class="cv-section">
+      <h2 class="cv-section-heading">Education & Academic Background</h2>
+      <div class="cv-edu-grid">
+        {{ range .Params.education }}
+          <div class="cv-edu-card">
+            <h3 class="cv-edu-institution">{{ .institution }}</h3>
+            <div class="cv-edu-qual text-gold">{{ .qualification }}</div>
+            <p class="cv-edu-details">{{ .details }}</p>
+          </div>
+        {{ end }}
+      </div>
+    </section>
+
+    <!-- Professional Leadership & Certifications -->
+    <section class="cv-section">
+      <h2 class="cv-section-heading">Professional Leadership Programs & Certifications</h2>
+      <div class="cv-cert-grid">
+        {{ range .Params.certifications }}
+          <div class="cv-cert-card">
+            <h3 class="cv-cert-title">{{ .title }}</h3>
+            <span class="cv-cert-issuer">{{ .issuer }}</span>
+            <p class="cv-cert-desc">{{ .desc }}</p>
+          </div>
+        {{ end }}
+      </div>
+    </section>
+
+    <!-- Professional Referees -->
+    <section class="cv-section">
+      <h2 class="cv-section-heading">Professional Referees</h2>
+      <div class="cv-referees-grid">
+        {{ range .Params.referees }}
+          <div class="cv-ref-card">
+            <h3 class="cv-ref-name">{{ .name }}</h3>
+            <div class="cv-ref-org">{{ .organization }}</div>
+            <div class="cv-ref-role">{{ .role }}</div>
+            <div class="cv-ref-contact">
+              <a href="tel:{{ replace .phone " " "" }}" class="cv-ref-link">📞 {{ .phone }}</a>
+              <a href="mailto:{{ .email }}" class="cv-ref-link">✉️ {{ .email }}</a>
+            </div>
+          </div>
+        {{ end }}
+      </div>
+    </section>
+
+    <!-- Bottom Print / Booking Bar -->
+    <footer class="cv-footer-cta">
+      <div>
+        <h3 class="cv-footer-title">Ready to Discuss Your Upcoming Event?</h3>
+        <p class="cv-footer-desc">Direct executive booking coordination for summits, conferences, and galas.</p>
+      </div>
+      <div class="cv-footer-actions">
+        <a href="/#contact" class="btn btn-primary">Book Sarah Ogembo</a>
+        <a href="https://wa.me/254719411433?text=Hello%20Sarah,%20I%20have%20reviewed%20your%20Executive%20CV%20and%20would%20like%20to%20discuss%20an%20event." target="_blank" rel="noopener noreferrer" class="btn btn-secondary">Direct WhatsApp</a>
+      </div>
+    </footer>
+  </article>
+</div>
+{{ end }}
