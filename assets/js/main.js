@@ -144,22 +144,73 @@ document.addEventListener('DOMContentLoaded', () => {
     if (statsPlaque) statsObserver.observe(statsPlaque);
   }
 
-  // 6. Mobile Navigation Drawer Toggle
+  // 6. Mobile Navigation Drawer Toggle, Backdrop Lock & Focus Management
   const mobileToggle = document.querySelector('.mobile-toggle');
   const navMenu = document.querySelector('.nav-menu');
+  const navBackdrop = document.querySelector('.nav-backdrop');
+
+  const closeNav = () => {
+    if (!navMenu) return;
+    navMenu.classList.remove('open');
+    mobileToggle?.classList.remove('open');
+    mobileToggle?.setAttribute('aria-expanded', 'false');
+    document.body.classList.remove('nav-open');
+  };
+
+  const openNav = () => {
+    if (!navMenu) return;
+    navMenu.classList.add('open');
+    mobileToggle?.classList.add('open');
+    mobileToggle?.setAttribute('aria-expanded', 'true');
+    document.body.classList.add('nav-open');
+  };
+
   if (mobileToggle && navMenu) {
-    mobileToggle.addEventListener('click', () => {
-      const isExpanded = mobileToggle.getAttribute('aria-expanded') === 'true';
-      mobileToggle.setAttribute('aria-expanded', !isExpanded);
-      navMenu.classList.toggle('open');
+    mobileToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = navMenu.classList.contains('open');
+      if (isOpen) {
+        closeNav();
+      } else {
+        openNav();
+      }
     });
 
+    // Close when tapping any link inside the mobile drawer
     navMenu.querySelectorAll('a').forEach((link) => {
       link.addEventListener('click', () => {
-        navMenu.classList.remove('open');
-        mobileToggle.setAttribute('aria-expanded', 'false');
+        closeNav();
       });
     });
+
+    // Close when tapping backdrop overlay
+    if (navBackdrop) {
+      navBackdrop.addEventListener('click', () => {
+        closeNav();
+      });
+    }
+
+    // Close when clicking outside of nav menu & toggle button
+    document.addEventListener('click', (e) => {
+      if (navMenu.classList.contains('open') && !navMenu.contains(e.target) && !mobileToggle.contains(e.target)) {
+        closeNav();
+      }
+    });
+
+    // Close on Escape key press
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && navMenu.classList.contains('open')) {
+        closeNav();
+        mobileToggle.focus();
+      }
+    });
+
+    // Close drawer automatically if viewport resized beyond mobile breakpoint (1024px)
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 1024 && navMenu.classList.contains('open')) {
+        closeNav();
+      }
+    }, { passive: true });
   }
 
   // 7. Testimonials Slider
