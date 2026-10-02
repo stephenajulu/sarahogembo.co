@@ -312,7 +312,18 @@ personal_section:
       desc: "Every word, transition, and podium interaction is engineered to advance your strategic brand vision and objectives."
 
 # ==============================================================================
-# 11. FAQ SECTION (AEO & GEO DIRECT ANSWERS)
+# 11. PERSPECTIVES / LATEST ARTICLES SECTION
+# ==============================================================================
+articles_section:
+  eyebrow: "PERSPECTIVES & THOUGHT LEADERSHIP"
+  title: "Stage Authority &"
+  title_highlight: "Executive Dialogue"
+  lead: "Reflections on high-stakes event moderation, stage psychology, and crafting moments people remember."
+  cta_text: "Browse All Perspectives →"
+  cta_link: "/blog/"
+
+# ==============================================================================
+# 12. FAQ SECTION (AEO & GEO DIRECT ANSWERS)
 # ==============================================================================
 faqs_section:
   eyebrow: "FREQUENTLY ASKED QUESTIONS"

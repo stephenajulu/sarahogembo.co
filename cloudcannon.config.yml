@@ -342,6 +342,24 @@ _inputs:
   booking_section.lead:
     type: "textarea"
     label: "Booking Section Narrative"
+  articles_section.lead:
+    type: "textarea"
+    label: "Articles Section Subtitle / Lead"
+  articles_section.eyebrow:
+    type: "text"
+    label: "Articles Section Eyebrow"
+  articles_section.title:
+    type: "text"
+    label: "Articles Section Title"
+  articles_section.title_highlight:
+    type: "text"
+    label: "Articles Section Title Highlight (Gold)"
+  articles_section.cta_text:
+    type: "text"
+    label: "Articles Section Button Text"
+  articles_section.cta_link:
+    type: "url"
+    label: "Articles Section Button Link"
 
   # Single Line Texts with Clear Labels
   hero.eyebrow:

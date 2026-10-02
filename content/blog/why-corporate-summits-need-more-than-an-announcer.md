@@ -3,6 +3,8 @@ title: "Why Corporate Summits Need More Than an Announcer: The Psychological Imp
 date: 2026-09-02
 summary: "An MC does not merely introduce speakers from an agenda. An exceptional Master of Ceremonies orchestrates psychological safety, maintains audience energy, and preserves brand prestige through unforeseen live disruptions."
 tags: ["Event Strategy", "Corporate MC", "Audience Engagement", "Conference Experience"]
+image: "/images/gallery/moment-inside-out-seminar.webp"
+image_alt: "Sarah Ogembo commanding the conference stage with authority and warmth"
 ---
 
 There is a profound difference between an event that is strictly executed and an experience that is deeply felt.

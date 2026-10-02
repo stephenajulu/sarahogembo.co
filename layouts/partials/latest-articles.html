@@ -1,0 +1,86 @@
+{{ $articlesSection := .Params.articles_section | default .Site.Params.articles_section }}
+{{ $articles := where .Site.RegularPages "Section" "blog" }}
+
+{{ if gt (len $articles) 0 }}
+<!-- ========================================================================
+     LATEST ARTICLES / PERSPECTIVES SECTION: Thought Leadership & Stage Craft
+     Editorial Obsidian Glass Grid with Micro-Interactions & Accessible Tokens
+     ======================================================================== -->
+<section id="articles" class="articles-section" aria-labelledby="articles-heading">
+  <div class="container">
+    <div class="section-header-split">
+      <div>
+        <div class="eyebrow" data-cms-bind="articles_section.eyebrow">
+          {{ if $articlesSection.eyebrow }}{{ $articlesSection.eyebrow }}{{ else }}PERSPECTIVES & THOUGHT LEADERSHIP{{ end }}
+        </div>
+        <h2 id="articles-heading" class="section-title">
+          <span>{{ if $articlesSection.title }}{{ $articlesSection.title }}{{ else }}Stage Authority &{{ end }}</span>
+          <span class="text-gold">{{ if $articlesSection.title_highlight }}{{ $articlesSection.title_highlight }}{{ else }}Executive Dialogue{{ end }}</span>
+        </h2>
+      </div>
+      <div class="articles-header-action">
+        <p class="section-lead" data-cms-bind="articles_section.lead">
+          {{ if $articlesSection.lead }}{{ $articlesSection.lead }}{{ else }}Reflections on high-stakes event moderation, stage psychology, and crafting moments people remember.{{ end }}
+        </p>
+        <a href="{{ $articlesSection.cta_link | default "/blog/" }}" class="btn-book-nav articles-view-all-btn" data-cms-bind="articles_section.cta_text">
+          {{ if $articlesSection.cta_text }}{{ $articlesSection.cta_text }}{{ else }}Browse All Perspectives →{{ end }}
+        </a>
+      </div>
+    </div>
+
+    <div class="articles-grid" data-reveal="fade-up">
+      {{ range first 3 $articles }}
+        <article class="article-card">
+          <!-- Article Cover Image / Media Box -->
+          <div class="article-media-wrap">
+            {{ $img := .Params.image | default "/images/difference-card.webp" }}
+            <picture>
+              {{ if (hasSuffix $img ".webp") }}
+                <source srcset="{{ $img }}" type="image/webp">
+                <img src="{{ replace $img ".webp" ".jpg" }}" alt="{{ .Params.image_alt | default .Title }}" class="article-card-img" width="560" height="320" loading="lazy" decoding="async">
+              {{ else }}
+                <img src="{{ $img }}" alt="{{ .Params.image_alt | default .Title }}" class="article-card-img" width="560" height="320" loading="lazy" decoding="async">
+              {{ end }}
+            </picture>
+
+            <div class="article-media-overlay" aria-hidden="true"></div>
+
+            <!-- Category Badge -->
+            {{ with .Params.tags }}
+              <span class="article-cat-badge">{{ index . 0 }}</span>
+            {{ end }}
+
+            <!-- Reading Time Badge -->
+            <span class="article-read-badge">{{ .ReadingTime }} min read</span>
+          </div>
+
+          <!-- Article Content Body -->
+          <div class="article-card-content">
+            <time datetime="{{ .Date.Format "2006-01-02" }}" class="article-card-date">
+              {{ .Date.Format "January 2, 2006" }}
+            </time>
+
+            <h3 class="article-card-title">
+              <a href="{{ .RelPermalink }}" class="article-card-title-link">{{ .Title }}</a>
+            </h3>
+
+            <p class="article-card-summary">
+              {{ .Summary | truncate 135 }}
+            </p>
+
+            <div class="article-card-footer">
+              <a href="{{ .RelPermalink }}" class="article-card-cta" aria-label="Read perspective: {{ .Title }}">
+                <span>Read Perspective</span>
+                <svg class="read-more-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </article>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
