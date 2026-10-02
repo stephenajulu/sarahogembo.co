@@ -1,12 +1,22 @@
 {
+  "$schema": "https://json.schemastore.org/web-manifest-combined.json",
+  "id": "https://sarahogembo.com/",
   "name": "Sarah Ogembo | Corporate Master of Ceremonies & Executive Moderator",
   "short_name": "Sarah Ogembo",
-  "description": "Prestigious corporate Master of Ceremonies, conference moderator, and executive event host.",
+  "description": "Prestigious corporate Master of Ceremonies, conference moderator, and executive event host in Nairobi, Kenya and globally.",
   "start_url": "/",
+  "scope": "/",
+  "lang": "en-US",
+  "dir": "ltr",
   "display": "standalone",
   "background_color": "#0A0A0A",
   "theme_color": "#0A0A0A",
-  "orientation": "portrait-primary",
+  "orientation": "any",
+  "categories": [
+    "business",
+    "lifestyle",
+    "entertainment"
+  ],
   "icons": [
     {
       "src": "/icons/icon-192.png",
@@ -24,6 +34,29 @@
       "src": "/favicon.svg",
       "sizes": "any",
       "type": "image/svg+xml"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Book Sarah Ogembo",
+      "short_name": "Book MC",
+      "description": "Inquire for your upcoming corporate event, summit, or gala",
+      "url": "/#contact",
+      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Executive Profile & CV",
+      "short_name": "CV & Credentials",
+      "description": "View career achievements, speaking track record, and download Word resume",
+      "url": "/cv/",
+      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Watch Showreel",
+      "short_name": "Showreel",
+      "description": "Watch Sarah commanding live stage at executive events",
+      "url": "/#showreel",
+      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }]
     }
   ]
 }

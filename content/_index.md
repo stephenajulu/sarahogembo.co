@@ -312,7 +312,29 @@ personal_section:
       desc: "Every word, transition, and podium interaction is engineered to advance your strategic brand vision and objectives."
 
 # ==============================================================================
-# 11. BOOKING CONCIERGE SECTION
+# 11. FAQ SECTION (AEO & GEO DIRECT ANSWERS)
+# ==============================================================================
+faqs_section:
+  eyebrow: "FREQUENTLY ASKED QUESTIONS"
+  title: "Direct Answers for"
+  title_highlight: "Event Organizers"
+  lead: "Clear details on event formats, stage preparation, international travel, and reservation protocol."
+  questions:
+    - question: "What event formats does Sarah Ogembo specialize in?"
+      answer: "Sarah Ogembo specializes in commanding high-stakes corporate conferences, executive leadership summits, diplomatic and governmental forums, C-suite panel moderation, prestigious awards galas, and national product launches across Kenya, East Africa, and globally."
+    - question: "What is Sarah's methodology for executive panel moderation?"
+      answer: "Sarah practices research-driven moderation. Before taking the stage, she analyzes each panelist's strategic policy positions, whitepapers, and corporate disclosures. On stage, she balances time diplomatically, bridges complex themes into actionable takeaways, and facilitates spontaneous, intellectually rigorous exchange."
+    - question: "Where is Sarah Ogembo based and is she available for international travel?"
+      answer: "Sarah is based in Nairobi, Kenya, and is available for national, continental, and international travel. She has hosted events across East Africa, the wider African continent, and the United States (including the PLA Summit in Nashville, USA)."
+    - question: "What languages does Sarah Ogembo host events in?"
+      answer: "Sarah delivers stage hosting and facilitation fluently in both English and Swahili, adapting her delivery from formal diplomatic protocol to high-energy corporate celebrations."
+    - question: "How far in advance should an organization book Sarah Ogembo?"
+      answer: "For major annual summits, multi-day conferences, and end-of-year galas, booking 2 to 6 months in advance is recommended. Executive inquiries for dates with shorter notice are reviewed based on current calendar availability."
+    - question: "What does the booking process look like?"
+      answer: "Clients can submit an inquiry via the online booking form or connect directly with Sarah's management team on WhatsApp (+254 719 411 433). Following an initial consultation on event objectives, programme timeline, and audience profile, Sarah's team provides booking terms and begins pre-event alignment."
+
+# ==============================================================================
+# 12. BOOKING CONCIERGE SECTION
 # ==============================================================================
 booking_section:
   eyebrow: "RESERVE YOUR DATE"

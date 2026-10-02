@@ -1,0 +1,305 @@
+{{ $settings := hugo.Data.settings }}
+{{ $siteUrl := strings.TrimRight "/" .Site.BaseURL }}
+{{ $author := $settings.brand.name | default .Site.Params.author }}
+{{ $phone := $settings.contacts.phone | default .Site.Params.phone }}
+{{ $email := $settings.contacts.email | default .Site.Params.email }}
+{{ $linkedin := $settings.social_links.linkedin | default .Site.Params.linkedin }}
+{{ $instagram := $settings.social_links.instagram | default .Site.Params.instagram }}
+{{ $pageUrl := .Permalink }}
+
+<!-- ==========================================================================
+     SCHEMA.ORG LINKED DATA GRAPH (WCAG AAA, AEO, GEO, & Google Rich Results)
+     Optimized for Answer Engines (Perplexity, ChatGPT, Claude, Google SGE)
+     ========================================================================== -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "{{ $siteUrl }}/#person",
+      "name": "{{ $author }}",
+      "alternateName": "Sarah Nyaboke Ogembo",
+      "givenName": "Sarah",
+      "familyName": "Ogembo",
+      "jobTitle": "Corporate Master of Ceremonies & Executive Event Moderator",
+      "description": "{{ .Site.Params.description }}",
+      "url": "{{ $siteUrl }}/",
+      "image": {
+        "@type": "ImageObject",
+        "@id": "{{ $siteUrl }}/#person-image",
+        "url": "{{ .Site.Params.og_image | absURL }}",
+        "caption": "Sarah Ogembo Corporate Master of Ceremonies"
+      },
+      "telephone": "{{ $phone }}",
+      "email": "{{ $email }}",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Nairobi",
+        "addressRegion": "Nairobi County",
+        "addressCountry": "KE"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": -1.2921,
+        "longitude": 36.8219
+      },
+      "alumniOf": [
+        {
+          "@type": "EducationalOrganization",
+          "name": "Kenyatta University",
+          "url": "https://www.ku.ac.ke"
+        },
+        {
+          "@type": "EducationalOrganization",
+          "name": "Kenya School of Government",
+          "url": "https://www.ksg.ac.ke"
+        },
+        {
+          "@type": "EducationalOrganization",
+          "name": "Young African Leaders Initiative (YALI Regional Leadership Center East Africa)",
+          "url": "https://www.yalieastafrica.org"
+        }
+      ],
+      "knowsAbout": [
+        "Corporate Event Moderation",
+        "Conference Master of Ceremonies",
+        "Executive Leadership Summits",
+        "Panel Discussion Moderation",
+        "Diplomatic Protocol & Government Ceremonies",
+        "Awards Gala Hosting",
+        "Public Speaking & Keynote Introductions",
+        "Corporate Communication & Media Strategy"
+      ],
+      "knowsLanguage": [
+        {
+          "@type": "Language",
+          "name": "English",
+          "alternateName": "en"
+        },
+        {
+          "@type": "Language",
+          "name": "Swahili",
+          "alternateName": "sw"
+        }
+      ],
+      "sameAs": [
+        "{{ $linkedin }}",
+        "{{ $instagram }}"
+      ]
+    },
+    {
+      "@type": "ProfessionalService",
+      "@id": "{{ $siteUrl }}/#service",
+      "name": "Sarah Ogembo Corporate Event Moderation",
+      "url": "{{ $siteUrl }}/",
+      "logo": "{{ "/images/logos/logo-so-crest.png" | absURL }}",
+      "image": "{{ .Site.Params.og_image | absURL }}",
+      "telephone": "{{ $phone }}",
+      "email": "{{ $email }}",
+      "priceRange": "$$$$",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Nairobi",
+        "addressRegion": "Nairobi County",
+        "addressCountry": "KE"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": -1.2921,
+        "longitude": 36.8219
+      },
+      "areaServed": [
+        { "@type": "Country", "name": "Kenya" },
+        { "@type": "AdministrativeArea", "name": "East Africa" },
+        { "@type": "AdministrativeArea", "name": "Global" }
+      ],
+      "provider": {
+        "@id": "{{ $siteUrl }}/#person"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5.0",
+        "bestRating": "5",
+        "ratingCount": "4",
+        "reviewCount": "4"
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Corporate MC & Event Moderation Services",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Corporate Conferences",
+              "description": "Professional event flow and engaging audience experiences for multi-day conferences."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Executive Summits",
+              "description": "High-level moderation, C-suite facilitation, and commanding boardroom stage authority."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Panel Moderation",
+              "description": "Research-driven dialogues, intellectual rigor, and active participant engagement."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Awards Ceremonies",
+              "description": "Sophisticated, glamorous, and dignified corporate recognition evenings and galas."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "{{ $siteUrl }}/#website",
+      "url": "{{ $siteUrl }}/",
+      "name": "{{ .Site.Title }}",
+      "description": "{{ .Site.Params.description }}",
+      "inLanguage": "en-US",
+      "publisher": {
+        "@id": "{{ $siteUrl }}/#person"
+      }
+    },
+    {{ if .IsHome }}
+    {
+      "@type": "WebPage",
+      "@id": "{{ $pageUrl }}#webpage",
+      "url": "{{ $pageUrl }}",
+      "name": "{{ .Site.Title }}",
+      "isPartOf": {
+        "@id": "{{ $siteUrl }}/#website"
+      },
+      "about": {
+        "@id": "{{ $siteUrl }}/#person"
+      },
+      "description": "{{ .Site.Params.description }}",
+      "speakable": {
+        "@type": "SpeakableSpecification",
+        "cssSelector": [
+          ".hero-title",
+          ".hero-text",
+          ".about-narrative",
+          ".footer-quote"
+        ]
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "{{ $siteUrl }}/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What event formats does Sarah Ogembo specialize in?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sarah Ogembo specializes in commanding high-stakes corporate conferences, executive leadership summits, diplomatic and governmental forums, C-suite panel moderation, prestigious awards galas, and national product launches across Kenya, East Africa, and globally."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is Sarah's methodology for executive panel moderation?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sarah practices research-driven moderation. Before taking the stage, she analyzes each panelist's strategic policy positions, whitepapers, and corporate disclosures. On stage, she balances time diplomatically, bridges complex themes into actionable takeaways, and facilitates spontaneous, intellectually rigorous exchange."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Where is Sarah Ogembo based and is she available for international travel?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sarah is based in Nairobi, Kenya, and is available for national, continental, and international travel. She has hosted events in multiple countries across East Africa, the African continent, and the United States (including the PLA Summit in Nashville, USA)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What languages does Sarah Ogembo host events in?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sarah delivers stage hosting and facilitation fluently in both English and Swahili, adapting her delivery from formal diplomatic protocol to high-energy corporate celebrations."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How far in advance should an organization book Sarah Ogembo?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "For major annual summits, multi-day conferences, and end-of-year galas, booking 2 to 6 months in advance is recommended. Executive inquiries for dates with shorter notice are reviewed based on current calendar availability."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What does the booking process look like?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Clients can submit an inquiry via the online booking form or connect directly with Sarah's management team on WhatsApp (+254 719 411 433). Following an initial consultation on event objectives, programme timeline, and audience profile, Sarah's team provides booking terms and begins pre-event alignment."
+          }
+        }
+      ]
+    }
+    {{ else if eq .Section "cv" }}
+    {
+      "@type": "ProfilePage",
+      "@id": "{{ $pageUrl }}#profilepage",
+      "url": "{{ $pageUrl }}",
+      "name": "Executive Credentials & Profile | Sarah Ogembo",
+      "isPartOf": {
+        "@id": "{{ $siteUrl }}/#website"
+      },
+      "mainEntity": {
+        "@id": "{{ $siteUrl }}/#person"
+      },
+      "description": "Executive curriculum vitae, career achievements, speaking track record, and professional competencies of Sarah Ogembo."
+    }
+    {{ else if eq .Type "blog" }}
+    {
+      "@type": "BlogPosting",
+      "@id": "{{ $pageUrl }}#article",
+      "url": "{{ $pageUrl }}",
+      "headline": "{{ .Title }}",
+      "description": "{{ with .Description }}{{ . }}{{ else }}{{ .Summary }}{{ end }}",
+      "datePublished": "{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}",
+      {{ with .Lastmod }}
+      "dateModified": "{{ .Format "2006-01-02T15:04:05Z07:00" }}",
+      {{ end }}
+      "author": {
+        "@id": "{{ $siteUrl }}/#person"
+      },
+      "publisher": {
+        "@id": "{{ $siteUrl }}/#person"
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "{{ $pageUrl }}"
+      },
+      "image": "{{ .Site.Params.og_image | absURL }}"
+    }
+    {{ else }}
+    {
+      "@type": "WebPage",
+      "@id": "{{ $pageUrl }}#webpage",
+      "url": "{{ $pageUrl }}",
+      "name": "{{ .Title }}",
+      "isPartOf": {
+        "@id": "{{ $siteUrl }}/#website"
+      },
+      "description": "{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}"
+    }
+    {{ end }}
+  ]
+}
+</script>

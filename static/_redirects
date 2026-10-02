@@ -1,0 +1,11 @@
+# ==============================================================================
+# CLOUDFLARE PAGES & WORKERS REDIRECT RULES
+# Canonical 301 Permanent Redirects for CV, Aliases & Clean URLs
+# ==============================================================================
+
+/resume       /cv/      301
+/resume/      /cv/      301
+/credentials  /cv/      301
+/credentials/ /cv/      301
+/profile      /cv/      301
+/profile/     /cv/      301

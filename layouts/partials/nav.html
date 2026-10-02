@@ -1,0 +1,39 @@
+{{ $settings := hugo.Data.settings }}
+
+<!-- Accessible Skip to Main Content Link (WCAG 2.1 AAA Success Criterion 2.4.1) -->
+<a href="#main-content" class="skip-to-content">Skip to main content</a>
+
+<!-- Top Glass Navigation Bar -->
+<header class="site-header" role="banner">
+  <div class="container nav-wrapper">
+    <a href="/" class="brand-logo" aria-label="Sarah Ogembo - Return to Homepage">
+      <picture>
+        <source srcset="/images/logos/logo-so-crest.webp" type="image/webp">
+        <img src="/images/logos/logo-so-crest.png" alt="Sarah Ogembo Monogram Crest" class="brand-monogram-img" width="46" height="46">
+      </picture>
+      <div class="brand-meta">
+        <span class="brand-name">{{ $settings.brand.name | default "SARAH OGEMBO" }}</span>
+        <span class="brand-tagline">{{ $settings.brand.tagline | default "PEOPLE • CONVERSATIONS • IMPACT" }}</span>
+      </div>
+    </a>
+
+    <!-- Desktop & Mobile Navigation Links -->
+    <nav id="site-navigation" class="nav-menu" role="navigation" aria-label="Primary Navigation">
+      {{ range .Site.Menus.main }}
+        <a href="{{ .URL }}" class="nav-link{{ if $.IsMenuCurrent "main" . }} active{{ end }}">{{ .Name }}</a>
+      {{ end }}
+    </nav>
+
+    <!-- Action Button & Mobile Hamburger Toggle -->
+    <div class="header-actions">
+      <a href="/#contact" class="btn-book-nav">Book Sarah</a>
+      <button class="mobile-toggle" aria-label="Toggle navigation menu" aria-controls="site-navigation" aria-expanded="false" type="button">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>

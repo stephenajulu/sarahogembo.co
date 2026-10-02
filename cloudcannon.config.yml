@@ -179,6 +179,110 @@ _structures:
             type: "text"
             label: "Short Description"
 
+  faqs:
+    style: "card"
+    values:
+      - value:
+          question: "Frequently Asked Question"
+          answer: "Authoritative direct answer for clients and AI answer engines."
+        _inputs:
+          question:
+            type: "text"
+            label: "Question"
+          answer:
+            type: "textarea"
+            label: "Authoritative Answer"
+
+  cv_metrics:
+    style: "card"
+    values:
+      - value:
+          value: "7+ Years"
+          label: "On Live Stage"
+        _inputs:
+          value:
+            type: "text"
+            label: "Metric Value"
+          label:
+            type: "text"
+            label: "Metric Label"
+
+  cv_competencies:
+    style: "card"
+    values:
+      - value:
+          title: "Competency Title"
+          desc: "Description of core stage leadership strength."
+        _inputs:
+          title:
+            type: "text"
+            label: "Competency Title"
+          desc:
+            type: "textarea"
+            label: "Description"
+
+  cv_education:
+    style: "card"
+    values:
+      - value:
+          institution: "Academic Institution"
+          qualification: "Degree / Program"
+          details: "Honors, concentration, or thesis details."
+        _inputs:
+          institution:
+            type: "text"
+            label: "Institution"
+          qualification:
+            type: "text"
+            label: "Qualification / Degree"
+          details:
+            type: "textarea"
+            label: "Details"
+
+  cv_certifications:
+    style: "card"
+    values:
+      - value:
+          title: "Program Title"
+          issuer: "Issuing Organization"
+          desc: "Fellowship or certification focus."
+        _inputs:
+          title:
+            type: "text"
+            label: "Title"
+          issuer:
+            type: "text"
+            label: "Issuer"
+          desc:
+            type: "textarea"
+            label: "Description"
+
+  cv_referees:
+    style: "card"
+    values:
+      - value:
+          name: "Referee Full Name"
+          organization: "Organization"
+          role: "Executive Title"
+          phone: "+254 700 000 000"
+          email: "referee@company.com"
+        _inputs:
+          name:
+            type: "text"
+            label: "Referee Name"
+          organization:
+            type: "text"
+            label: "Organization"
+          role:
+            type: "text"
+            label: "Role / Title"
+          phone:
+            type: "text"
+            label: "Phone Number"
+          email:
+            type: "email"
+            label: "Email Address"
+
 # ==============================================================================
 # INPUTS CONFIGURATION (Human-Friendly Form Controls)
 # ==============================================================================
@@ -307,3 +411,36 @@ _inputs:
     label: "Core Leadership Pillars"
     options:
       structures: "_structures.pillars"
+  faqs_section.questions:
+    type: "array"
+    label: "FAQ Questions & Answers"
+    options:
+      structures: "_structures.faqs"
+  metrics:
+    type: "array"
+    label: "CV Executive Metrics"
+    options:
+      structures: "_structures.cv_metrics"
+  competencies:
+    type: "array"
+    label: "CV Core Competencies"
+    options:
+      structures: "_structures.cv_competencies"
+  education:
+    type: "array"
+    label: "CV Academic Background"
+    options:
+      structures: "_structures.cv_education"
+  certifications:
+    type: "array"
+    label: "CV Leadership Programs & Certifications"
+    options:
+      structures: "_structures.cv_certifications"
+  referees:
+    type: "array"
+    label: "CV Professional Referees"
+    options:
+      structures: "_structures.cv_referees"
+  docx_download_url:
+    type: "file"
+    label: "Downloadable Word Resume (.docx) File"

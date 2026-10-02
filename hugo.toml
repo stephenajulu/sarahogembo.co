@@ -3,6 +3,30 @@ languageCode = 'en-US'
 title = 'Sarah Ogembo | Corporate Master of Ceremonies & Executive Moderator'
 enableRobotsTXT = true
 
+[build]
+  writeStats = true
+
+[minify]
+  minifyOutput = true
+  disableCSS = false
+  disableJS = false
+  disableHTML = false
+  disableXML = false
+  disableSVG = false
+
+[sitemap]
+  changefreq = 'weekly'
+  priority = 0.8
+  filename = 'sitemap.xml'
+
+[privacy]
+  [privacy.youtube]
+    privacyEnhanced = true
+
+[security]
+  [security.funcs]
+    getenv = ['^HUGO_']
+
 [params]
   author = "Sarah Ogembo"
   title = "Sarah Ogembo | Corporate Master of Ceremonies & Executive Moderator"
@@ -15,6 +39,10 @@ enableRobotsTXT = true
   email = "hello@sarahogembo.com"
   email_alt = "nyabokeogembo@gmail.com"
   location = "Nairobi, Kenya"
+  geo_region = "KE-30"
+  geo_placename = "Nairobi, Kenya"
+  geo_position = "-1.2921;36.8219"
+  icbm = "-1.2921, 36.8219"
   linkedin = "https://www.linkedin.com/in/sarah-ogembo"
   instagram = "https://www.instagram.com/ogembo.s"
   whatsapp = "https://wa.me/254719411433?text=Hello%20Sarah,%20I%20would%20like%20to%20inquire%20about%20booking%20you%20for%20an%20event."
@@ -276,6 +304,12 @@ enableRobotsTXT = true
     name = "Blog"
     url = "/blog/"
     weight = 60
+
+  [[menu.main]]
+    identifier = "faq"
+    name = "FAQ"
+    url = "/#faq"
+    weight = 65
 
   [[menu.main]]
     identifier = "contact"
