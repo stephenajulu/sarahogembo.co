@@ -980,11 +980,26 @@ body.nav-open .nav-backdrop {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  flex-wrap: wrap;
-  gap: 28px;
+  gap: clamp(1.5rem, 3.5vw, 3.5rem);
   margin-bottom: clamp(3rem, 5vw, 4.5rem);
   padding-bottom: var(--space-6);
   border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+}
+
+.section-header-split > div:first-child,
+.section-header-title-wrap {
+  flex: 1 1 auto;
+  max-width: 580px;
+  min-width: 0;
+}
+
+.section-header-split > .section-lead,
+.section-header-split > .articles-header-action,
+.articles-header-action {
+  flex: 0 1 480px;
+  max-width: 480px;
+  min-width: 0;
+  margin-left: auto;
 }
 
 .section-title {
@@ -2119,9 +2134,22 @@ body.nav-open .nav-backdrop {
     gap: 18px;
     margin-bottom: 2.5rem;
   }
+  .section-header-split > div:first-child,
+  .section-header-title-wrap {
+    max-width: 100%;
+    width: 100%;
+  }
+  .section-header-split > .section-lead,
+  .section-header-split > .articles-header-action,
   .articles-header-action {
     width: 100%;
+    max-width: 100%;
+    margin-left: 0;
     align-items: flex-start;
+    text-align: left;
+  }
+  .articles-header-action .section-lead {
+    text-align: left;
   }
   .articles-header-action .articles-view-all-btn {
     width: 100%;
