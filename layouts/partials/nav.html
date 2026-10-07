@@ -7,13 +7,13 @@
 <header class="site-header" role="banner">
   <div class="container nav-wrapper">
     <a href="/" class="brand-logo" aria-label="Sarah Ogembo - Return to Homepage">
-      <picture>
-        <source srcset="/images/logos/logo-so-crest.webp" type="image/webp">
-        <img src="/images/logos/logo-so-crest.png" alt="Sarah Ogembo Monogram Crest" class="brand-monogram-img" width="46" height="46">
+      <picture class="brand-logo-picture">
+        <source srcset="/images/logos/logo-so-crest-round.webp" type="image/webp">
+        <img src="/images/logos/logo-so-crest-round.png" alt="Sarah Ogembo Monogram Crest" class="brand-monogram-img" width="46" height="46" loading="eager">
       </picture>
       <div class="brand-meta">
-        <span class="brand-name">{{ $settings.brand.name | default "SARAH OGEMBO" }}</span>
-        <span class="brand-tagline">{{ $settings.brand.tagline | default "PEOPLE • CONVERSATIONS • IMPACT" }}</span>
+        <span class="brand-name">{{ $settings.brand.name | default "Sarah Ogembo" }}</span>
+        <span class="brand-tagline">{{ $settings.brand.tagline | default "People · Conversations · Impact" }}</span>
       </div>
     </a>
 

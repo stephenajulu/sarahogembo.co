@@ -248,44 +248,88 @@ button, input, textarea, select {
   display: flex;
   align-items: center;
   gap: 14px;
+  text-decoration: none;
+  flex-shrink: 0;
+  transition: opacity var(--transition-fast);
+}
+.brand-logo:hover {
+  opacity: 0.95;
+}
+
+/* Strictly 1:1 Circular Monogram - Zero Borders, Always Round */
+.brand-logo-picture,
+.brand-logo picture {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  min-width: 46px;
+  min-height: 46px;
+  max-width: 46px;
+  max-height: 46px;
+  aspect-ratio: 1 / 1;
+  flex-shrink: 0;
+  border-radius: 50%;
+  overflow: hidden;
+  border: none !important;
+  padding: 0 !important;
+  background: transparent !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
 }
 
 .brand-monogram-img {
-  width: 44px;
-  height: 44px;
+  width: 100%;
+  height: 100%;
+  min-width: 100%;
+  min-height: 100%;
+  aspect-ratio: 1 / 1;
   border-radius: 50%;
   object-fit: cover;
-  border: 1px solid var(--color-gold-primary);
-  padding: 2px;
-  background: #000;
-  transition: transform var(--transition-fast);
+  border: none !important;
+  padding: 0 !important;
+  background: transparent !important;
+  display: block;
+  flex-shrink: 0;
+  transition: transform var(--transition-fast), filter var(--transition-fast);
 }
 .brand-logo:hover .brand-monogram-img {
   transform: scale(1.05);
+  filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.4));
 }
 
 .brand-meta {
   display: flex;
   flex-direction: column;
+  justify-content: center;
 }
 
 .brand-name {
   font-family: var(--font-heading);
-  font-size: 1.25rem;
-  letter-spacing: 0.12em;
-  font-weight: 700;
-  color: var(--color-text-light);
+  font-size: clamp(1.22rem, 1.4vw, 1.38rem);
+  letter-spacing: 0.03em;
+  font-weight: 600;
+  color: #FFFFFF;
   line-height: 1.1;
-  text-transform: uppercase;
+  text-transform: none; /* Respects natural, sophisticated Title Case 'Sarah Ogembo' */
+  transition: color var(--transition-fast);
+  white-space: nowrap;
+}
+.brand-logo:hover .brand-name {
+  color: var(--color-gold-light);
 }
 
 .brand-tagline {
+  font-family: var(--font-body);
   font-size: 0.62rem;
-  letter-spacing: 0.26em;
-  color: var(--color-gold-primary);
+  letter-spacing: 0.2em;
+  color: var(--color-gold-light);
   text-transform: uppercase;
-  font-weight: 500;
-  margin-top: 3px;
+  font-weight: 600;
+  margin-top: 4px;
+  line-height: 1;
+  white-space: nowrap;
+  opacity: 0.95;
 }
 
 /* Nav Menu */
@@ -2000,6 +2044,21 @@ body.nav-open .nav-backdrop {
    15. Responsive Adaptations (Mobile-First Luxury Layout Engine)
    -------------------------------------------------------------------------- */
 
+/* Refined Nav Spacing on Mid-Sized Desktops (1025px - 1240px) */
+@media (min-width: 1025px) and (max-width: 1240px) {
+  .nav-menu {
+    gap: clamp(0.6rem, 1.1vw, 1.15rem);
+  }
+  .nav-link {
+    font-size: 0.82rem;
+    letter-spacing: 0.03em;
+  }
+  .btn-book-nav {
+    padding: 8px 16px;
+    font-size: 0.78rem;
+  }
+}
+
 /* Tablet & Smaller Screens (<= 1024px) */
 @media (max-width: 1024px) {
   /* Navigation Drawer Activation */
@@ -2308,21 +2367,31 @@ body.nav-open .nav-backdrop {
 
 /* Smallest Handhelds & Foldables (<= 480px) */
 @media (max-width: 480px) {
-  /* Header & Logo Scaling for 320px-375px screens */
+  /* Header & Logo Scaling for 320px-480px screens */
   .brand-logo {
     gap: 10px;
   }
-  .brand-monogram-img {
+  .brand-logo-picture,
+  .brand-logo picture {
     width: 38px;
     height: 38px;
+    min-width: 38px;
+    min-height: 38px;
+    max-width: 38px;
+    max-height: 38px;
+  }
+  .brand-monogram-img {
+    width: 100%;
+    height: 100%;
   }
   .brand-name {
-    font-size: 1.02rem;
-    letter-spacing: 0.08em;
+    font-size: 1.12rem;
+    letter-spacing: 0.02em;
   }
   .brand-tagline {
-    font-size: 0.54rem;
-    letter-spacing: 0.16em;
+    font-size: 0.52rem;
+    letter-spacing: 0.15em;
+    margin-top: 2px;
   }
 
   /* Hero CTA Group: Full Width Stacking */
