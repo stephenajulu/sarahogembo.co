@@ -264,55 +264,53 @@ enableRobotsTXT = true
 
 [menu]
   [[menu.main]]
-    identifier = "home"
-    name = "Home"
-    url = "/#home"
-    weight = 10
-
-  [[menu.main]]
     identifier = "about"
     name = "About"
     url = "/#about"
-    weight = 20
+    weight = 10
 
   [[menu.main]]
     identifier = "services"
     name = "Services"
     url = "/#services"
+    weight = 20
+
+  [[menu.main]]
+    identifier = "experience"
+    name = "Experience"
+    url = "#"
     weight = 30
 
   [[menu.main]]
     identifier = "gallery"
-    name = "Gallery"
+    name = "Stage Gallery"
     url = "/#gallery"
-    weight = 40
+    parent = "experience"
+    weight = 31
 
   [[menu.main]]
     identifier = "testimonials"
-    name = "Testimonials"
+    name = "Client Reviews"
     url = "/#testimonials"
-    weight = 50
-
-  [[menu.main]]
-    identifier = "cv"
-    name = "Profile & CV"
-    url = "/cv/"
-    weight = 55
+    parent = "experience"
+    weight = 32
 
   [[menu.main]]
     identifier = "blog"
     name = "Perspectives"
     url = "/#articles"
-    weight = 60
+    parent = "experience"
+    weight = 33
 
   [[menu.main]]
     identifier = "faq"
-    name = "FAQ"
+    name = "Event FAQ"
     url = "/#faq"
-    weight = 65
+    parent = "experience"
+    weight = 34
 
   [[menu.main]]
-    identifier = "contact"
-    name = "Contact"
-    url = "/#contact"
-    weight = 70
+    identifier = "cv"
+    name = "Profile & CV"
+    url = "/cv/"
+    weight = 40

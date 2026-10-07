@@ -213,6 +213,51 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { passive: true });
   }
 
+  // 6B. Navigation Dropdowns Keyboard, Focus & Touch Interaction
+  const dropdownWrappers = document.querySelectorAll('.nav-item-dropdown');
+  dropdownWrappers.forEach((dropdown) => {
+    const trigger = dropdown.querySelector('.nav-dropdown-trigger');
+
+    trigger?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = dropdown.classList.contains('is-open');
+
+      // Close other open dropdowns
+      dropdownWrappers.forEach((d) => {
+        if (d !== dropdown) {
+          d.classList.remove('is-open');
+          d.querySelector('.nav-dropdown-trigger')?.setAttribute('aria-expanded', 'false');
+        }
+      });
+
+      if (isOpen) {
+        dropdown.classList.remove('is-open');
+        trigger.setAttribute('aria-expanded', 'false');
+      } else {
+        dropdown.classList.add('is-open');
+        trigger.setAttribute('aria-expanded', 'true');
+      }
+    });
+
+    dropdown.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && dropdown.classList.contains('is-open')) {
+        dropdown.classList.remove('is-open');
+        trigger?.setAttribute('aria-expanded', 'false');
+        trigger?.focus();
+      }
+    });
+  });
+
+  // Global close dropdowns when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.nav-item-dropdown')) {
+      dropdownWrappers.forEach((d) => {
+        d.classList.remove('is-open');
+        d.querySelector('.nav-dropdown-trigger')?.setAttribute('aria-expanded', 'false');
+      });
+    }
+  });
+
   // 7. Testimonials Slider
   const slides = document.querySelectorAll('.test-slide');
   const dots = document.querySelectorAll('.test-dot');

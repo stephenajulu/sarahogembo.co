@@ -38,8 +38,15 @@
 
       <nav class="footer-nav" aria-label="Footer Navigation">
         {{ range .Site.Menus.main }}
-          <a href="{{ .URL }}">{{ .Name }}</a>
+          {{ if .HasChildren }}
+            {{ range .Children }}
+              <a href="{{ .URL }}">{{ .Name }}</a>
+            {{ end }}
+          {{ else if ne .URL "#" }}
+            <a href="{{ .URL }}">{{ .Name }}</a>
+          {{ end }}
         {{ end }}
+        <a href="/#contact">Contact</a>
       </nav>
 
       <div class="footer-socials">

@@ -21,7 +21,25 @@
     <nav id="site-navigation" class="nav-menu" role="navigation" aria-label="Primary Navigation">
       <div class="nav-links">
         {{ range .Site.Menus.main }}
-          <a href="{{ .URL }}" class="nav-link{{ if $.IsMenuCurrent "main" . }} active{{ end }}">{{ .Name }}</a>
+          {{ if .HasChildren }}
+            <div class="nav-item-dropdown">
+              <button class="nav-link nav-dropdown-trigger" type="button" aria-expanded="false" aria-haspopup="true">
+                <span>{{ .Name }}</span>
+                <svg class="dropdown-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </button>
+              <div class="dropdown-menu" role="menu" aria-label="{{ .Name }} sub-menu">
+                {{ range .Children }}
+                  <a href="{{ .URL }}" class="dropdown-item" role="menuitem">
+                    <span class="dropdown-item-title">{{ .Name }}</span>
+                  </a>
+                {{ end }}
+              </div>
+            </div>
+          {{ else }}
+            <a href="{{ .URL }}" class="nav-link{{ if $.IsMenuCurrent "main" . }} active{{ end }}">{{ .Name }}</a>
+          {{ end }}
         {{ end }}
       </div>
 
