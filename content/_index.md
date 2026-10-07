@@ -50,8 +50,8 @@ about:
   eyebrow: "HELLO, I'M"
   name: "Sarah Ogembo"
   subtitle: "Every event tells a story."
-  image: "/images/sarahogembo-green.jpeg"
-  image_alt: "Sarah Ogembo in a tailored white executive suit"
+  image: "/images/sarahogembo-green.webp"
+  image_alt: "Sarah Ogembo in tailored executive emerald green attire"
   script_flourish: "Same People.\nBetter Conversations."
   paragraphs:
     - "Whether it’s a leadership conference, an awards gala, a product launch, or a corporate celebration, I believe the people in the room should feel part of something truly meaningful."

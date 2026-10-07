@@ -871,15 +871,64 @@ body.nav-open .nav-backdrop {
   transform: scale(1.03);
 }
 
+/* Frosted Luxury Callout Plaque - 100% Legibility & Contrast on Any Underlying Image */
 .about-script-callout {
   position: absolute;
-  bottom: 25px;
+  bottom: 24px;
   left: -20px;
-  z-index: 5;
-  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
+  z-index: 10;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 22px;
+  border-radius: 14px;
+  background: rgba(12, 12, 12, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(212, 175, 55, 0.45);
+  box-shadow: 
+    0 18px 45px rgba(0, 0, 0, 0.65), 
+    0 0 24px rgba(212, 175, 55, 0.22),
+    inset 0 1px 1px rgba(255, 255, 255, 0.15);
+  transform: rotate(-2.5deg);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  max-width: 320px;
+  pointer-events: auto;
 }
+
+.about-script-callout:hover {
+  transform: rotate(0deg) scale(1.03);
+  background: rgba(16, 16, 16, 0.97);
+  border-color: var(--color-gold-light);
+  box-shadow: 
+    0 24px 55px rgba(0, 0, 0, 0.75), 
+    0 0 35px rgba(212, 175, 55, 0.4);
+}
+
+.about-script-callout .badge-sparkle {
+  color: var(--color-gold-light);
+  font-size: 1.15rem;
+  line-height: 1;
+  flex-shrink: 0;
+  filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.7));
+}
+
+.about-script-content {
+  display: flex;
+  flex-direction: column;
+}
+
 .about-script-callout .script-accent {
-  color: var(--color-gold-deep);
+  font-family: var(--font-script);
+  font-size: clamp(1.4rem, 2.2vw, 1.85rem);
+  color: #FFF6D6; /* Warm Luminous Champagne Gold - Guaranteed 17:1 AAA Contrast */
+  line-height: 1.16;
+  font-weight: 400;
+  text-shadow: 
+    0 2px 6px rgba(0, 0, 0, 0.95), 
+    0 0 16px rgba(212, 175, 55, 0.35);
+  display: block;
+  white-space: normal;
 }
 
 .about-bio {
@@ -2237,6 +2286,24 @@ body.nav-open .nav-backdrop {
     width: 100%;
     justify-content: center;
   }
+
+  /* About Section Signature Callout Mobile Adaptation */
+  .about-script-callout {
+    bottom: 14px;
+    left: 10px;
+    padding: 10px 16px;
+    gap: 10px;
+    transform: rotate(-1.5deg);
+    max-width: calc(100% - 20px);
+    border-radius: 12px;
+  }
+  .about-script-callout .badge-sparkle {
+    font-size: 1rem;
+  }
+  .about-script-callout .script-accent {
+    font-size: 1.32rem;
+    line-height: 1.15;
+  }
 }
 
 /* Smallest Handhelds & Foldables (<= 480px) */
@@ -2282,6 +2349,15 @@ body.nav-open .nav-backdrop {
   }
   .stat-number {
     font-size: 2.2rem;
+  }
+  .about-script-callout {
+    bottom: 10px;
+    left: 8px;
+    padding: 8px 14px;
+    max-width: calc(100% - 16px);
+  }
+  .about-script-callout .script-accent {
+    font-size: 1.22rem;
   }
 }
 

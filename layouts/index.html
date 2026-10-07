@@ -118,9 +118,12 @@
           <img src="{{ replace $about.image ".webp" ".jpg" }}" alt="{{ $about.image_alt }}" width="400" height="500" loading="lazy">
         </picture>
       </div>
-      <!-- Script Callout Accent -->
-      <div class="about-script-callout" aria-hidden="true" data-cms-bind="about.script_flourish">
-        <span class="script-accent">{{ $about.script_flourish | replaceRE "\n" "<br>" | safeHTML }}</span>
+      <!-- Script Callout Accent: Frosted Luxury Badge ensuring 100% legibility on any background -->
+      <div class="about-script-callout frosted-luxury-badge" role="note" aria-label="Signature highlight: Same People. Better Conversations." data-cms-bind="about.script_flourish">
+        <span class="badge-sparkle" aria-hidden="true">✦</span>
+        <div class="about-script-content">
+          <span class="script-accent">{{ $about.script_flourish | replaceRE "\n" "<br>" | safeHTML }}</span>
+        </div>
       </div>
     </div>
 
