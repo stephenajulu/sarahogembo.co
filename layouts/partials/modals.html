@@ -17,15 +17,37 @@
   </div>
 </div>
 
-<!-- Lightbox: Gallery Photo Modal (Enlarged Single Image) -->
-<div id="gallery-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="gallery-modal-title">
+<!-- Lightbox: Gallery Photo Modal (Enlarged Single Image with Carousel Controls) -->
+<div id="gallery-modal" class="modal-overlay gallery-single-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="gallery-modal-title">
   <div class="modal-container gallery-lightbox-container">
     <h2 id="gallery-modal-title" class="sr-only">Enlarged Stage Photograph Viewer</h2>
-    <button class="modal-close-btn gallery-modal-close" aria-label="Close image viewer" type="button">✕</button>
-    <div class="lightbox-img-wrap">
-      <img id="lightbox-image" src="" alt="Enlarged Stage Photograph" loading="eager">
-      <div id="lightbox-caption-text" class="lightbox-caption"></div>
+    
+    <div class="lightbox-header-bar">
+      <span id="lightbox-counter" class="lightbox-counter" aria-live="polite">1 / 18</span>
+      <button class="modal-close-btn gallery-modal-close" aria-label="Close image viewer (Escape)" type="button">✕</button>
     </div>
+
+    <div class="lightbox-stage-wrapper">
+      <!-- Previous Photo Button -->
+      <button id="lightbox-prev-btn" class="lightbox-nav-btn lightbox-prev-btn" aria-label="Previous photograph (Left Arrow key)" type="button">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+      </button>
+
+      <div class="lightbox-img-wrap">
+        <img id="lightbox-image" src="" alt="Enlarged Stage Photograph" loading="eager">
+      </div>
+
+      <!-- Next Photo Button -->
+      <button id="lightbox-next-btn" class="lightbox-nav-btn lightbox-next-btn" aria-label="Next photograph (Right Arrow key)" type="button">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </button>
+    </div>
+
+    <div id="lightbox-caption-text" class="lightbox-caption"></div>
   </div>
 </div>
 
@@ -47,6 +69,7 @@
       <div class="all-gallery-grid">
         {{ range $idx, $item := .items }}
           <div class="gallery-item all-gallery-tile" tabindex="0" role="button" aria-label="Enlarge {{ .title }}" 
+               data-index="{{ $idx }}"
                data-image="{{ .image }}" 
                data-fallback="{{ .image_fallback | default (replace .image ".webp" ".jpg") }}" 
                data-title="{{ .title }}" 

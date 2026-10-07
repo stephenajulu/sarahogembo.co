@@ -349,6 +349,7 @@
           </div>
         {{ else if or (le $totalItems 8) (lt $index 7) }}
           <div class="gallery-item" tabindex="0" role="button" aria-label="Enlarge {{ .title }}" 
+               data-index="{{ $index }}"
                data-image="{{ .image }}" 
                data-fallback="{{ .image_fallback | default (replace .image ".webp" ".jpg") }}" 
                data-title="{{ .title }}" 

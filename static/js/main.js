@@ -334,37 +334,90 @@ document.addEventListener('DOMContentLoaded', () => {
 
   videoCloseBtn?.addEventListener('click', closeVideoModal);
 
-  // 9. Gallery Lightbox Modal (Single Image View)
+  // 9. Gallery Lightbox Modal with Full-Archive Carousel Cycling
   const galleryModal = document.getElementById('gallery-modal');
   const lightboxImg = document.getElementById('lightbox-image');
   const lightboxCaption = document.getElementById('lightbox-caption-text');
+  const lightboxCounter = document.getElementById('lightbox-counter');
   const galleryCloseBtn = document.querySelector('.gallery-modal-close');
+  const lightboxPrevBtn = document.getElementById('lightbox-prev-btn');
+  const lightboxNextBtn = document.getElementById('lightbox-next-btn');
+  const allGalleryModal = document.getElementById('all-gallery-modal');
+  const allGalleryCloseBtn = document.querySelector('.all-gallery-modal-close');
 
-  const openLightbox = (item) => {
-    lastActiveElement = item || document.activeElement;
-    const fullSrc = item.getAttribute('data-image') || item.getAttribute('data-fallback') || item.querySelector('img')?.currentSrc || item.querySelector('img')?.src;
-    const fallbackSrc = item.getAttribute('data-fallback') || item.getAttribute('data-image');
-    const title = item.getAttribute('data-title') || item.querySelector('img')?.alt || 'Sarah Ogembo on Stage';
-    const caption = item.getAttribute('data-caption') || '';
-    const category = item.getAttribute('data-category') || 'Live Event';
+  // Collect all gallery items across the complete gallery
+  let galleryItems = [];
+  let currentGalleryIndex = 0;
+  let openedFromAllGallery = false;
 
-    if (lightboxImg && fullSrc) {
+  const initGalleryItems = () => {
+    // Prefer items from #all-gallery-modal to get the full archive of 18 photos
+    let tileElements = document.querySelectorAll('#all-gallery-modal .all-gallery-tile');
+    if (tileElements.length === 0) {
+      tileElements = document.querySelectorAll('.gallery-grid .gallery-item:not(.gallery-more-tile)');
+    }
+    
+    galleryItems = Array.from(tileElements).map((el, idx) => {
+      return {
+        index: idx,
+        image: el.getAttribute('data-image') || el.querySelector('img')?.currentSrc || el.querySelector('img')?.src || '',
+        fallback: el.getAttribute('data-fallback') || el.getAttribute('data-image') || '',
+        title: el.getAttribute('data-title') || el.querySelector('img')?.alt || 'Sarah Ogembo on Stage',
+        caption: el.getAttribute('data-caption') || '',
+        category: el.getAttribute('data-category') || 'Live Event',
+        element: el
+      };
+    });
+  };
+
+  initGalleryItems();
+
+  const updateLightboxContent = (index, animate = false) => {
+    if (galleryItems.length === 0) initGalleryItems();
+    if (galleryItems.length === 0) return;
+
+    // Wrap-around bounds
+    currentGalleryIndex = (index + galleryItems.length) % galleryItems.length;
+    const item = galleryItems[currentGalleryIndex];
+
+    if (lightboxCounter) {
+      lightboxCounter.textContent = `${currentGalleryIndex + 1} / ${galleryItems.length}`;
+    }
+
+    if (lightboxImg) {
+      if (animate) {
+        lightboxImg.classList.add('is-changing');
+      }
+
       lightboxImg.onerror = function() {
-        if (fallbackSrc && this.src !== fallbackSrc) {
-          this.src = fallbackSrc;
+        if (item.fallback && this.src !== item.fallback) {
+          this.src = item.fallback;
         }
       };
-      lightboxImg.src = fullSrc;
-      lightboxImg.alt = title;
+      lightboxImg.src = item.image;
+      lightboxImg.alt = item.title;
+
+      if (animate) {
+        setTimeout(() => {
+          lightboxImg.classList.remove('is-changing');
+        }, 120);
+      }
     }
 
     if (lightboxCaption) {
       lightboxCaption.innerHTML = `
-        <span class="lightbox-cat-badge">${category}</span>
-        <h4 class="lightbox-title">${title}</h4>
-        ${caption ? `<p class="lightbox-desc">${caption}</p>` : ''}
+        <span class="lightbox-cat-badge">${item.category}</span>
+        <h4 class="lightbox-title">${item.title}</h4>
+        ${item.caption ? `<p class="lightbox-desc">${item.caption}</p>` : ''}
       `;
     }
+  };
+
+  const openLightboxByIndex = (index, triggerEl) => {
+    lastActiveElement = triggerEl || document.activeElement;
+    openedFromAllGallery = Boolean(allGalleryModal?.classList.contains('active'));
+    
+    updateLightboxContent(index, false);
 
     if (galleryModal) {
       galleryModal.classList.add('active');
@@ -374,36 +427,118 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
+  const showNextPhoto = () => {
+    if (!galleryModal?.classList.contains('active')) return;
+    updateLightboxContent(currentGalleryIndex + 1, true);
+  };
+
+  const showPrevPhoto = () => {
+    if (!galleryModal?.classList.contains('active')) return;
+    updateLightboxContent(currentGalleryIndex - 1, true);
+  };
+
   const closeLightbox = () => {
     if (galleryModal?.classList.contains('active')) {
       galleryModal.classList.remove('active');
-      document.body.style.overflow = '';
-      lastActiveElement?.focus();
+      
+      // If we were inside the complete gallery, keep it open and restore scroll lock
+      if (openedFromAllGallery && allGalleryModal?.classList.contains('active')) {
+        document.body.style.overflow = 'hidden';
+        trapFocus(allGalleryModal);
+        const activeTile = galleryItems[currentGalleryIndex]?.element;
+        activeTile?.focus();
+        openedFromAllGallery = false;
+      } else {
+        document.body.style.overflow = '';
+        lastActiveElement?.focus();
+        openedFromAllGallery = false;
+      }
     }
   };
 
-  galleryCloseBtn?.addEventListener('click', closeLightbox);
+  lightboxPrevBtn?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    showPrevPhoto();
+  });
 
-  // Bind single image click to all gallery items (both main grid and inside all-photos modal)
+  lightboxNextBtn?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    showNextPhoto();
+  });
+
+  galleryCloseBtn?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    closeLightbox();
+  });
+
+  // Open single lightbox on photo click
   document.addEventListener('click', (e) => {
-    const item = e.target.closest('.gallery-item:not(.gallery-more-tile)');
-    if (item) {
+    const tile = e.target.closest('.gallery-item:not(.gallery-more-tile)');
+    if (tile) {
       e.preventDefault();
-      openLightbox(item);
+      let idx = tile.getAttribute('data-index');
+      if (idx !== null && idx !== undefined && idx !== '') {
+        idx = parseInt(idx, 10);
+      } else {
+        const imgSrc = tile.getAttribute('data-image') || tile.querySelector('img')?.src;
+        idx = galleryItems.findIndex(item => item.image === imgSrc || item.fallback === imgSrc);
+      }
+      if (idx < 0) idx = 0;
+      openLightboxByIndex(idx, tile);
     }
   });
 
+  // Keyboard Enter / Space on tiles
   document.addEventListener('keydown', (e) => {
-    if ((e.key === 'Enter' || e.key === ' ') && e.target.matches?.('.gallery-item:not(.gallery-more-tile)')) {
-      e.preventDefault();
-      openLightbox(e.target);
+    if (e.key === 'Enter' || e.key === ' ') {
+      const tile = e.target.closest?.('.gallery-item:not(.gallery-more-tile)');
+      if (tile) {
+        e.preventDefault();
+        let idx = tile.getAttribute('data-index');
+        idx = idx !== null ? parseInt(idx, 10) : 0;
+        openLightboxByIndex(idx, tile);
+      }
     }
   });
+
+  // Arrow Key Navigation (Left Arrow & Right Arrow)
+  window.addEventListener('keydown', (e) => {
+    if (galleryModal?.classList.contains('active')) {
+      if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        showNextPhoto();
+      } else if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        showPrevPhoto();
+      }
+    }
+  });
+
+  // Touch swipe support for mobile
+  let touchStartX = 0;
+  let touchStartY = 0;
+  galleryModal?.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].clientX;
+    touchStartY = e.changedTouches[0].clientY;
+  }, { passive: true });
+
+  galleryModal?.addEventListener('touchend', (e) => {
+    const touchEndX = e.changedTouches[0].clientX;
+    const touchEndY = e.changedTouches[0].clientY;
+    const diffX = touchEndX - touchStartX;
+    const diffY = touchEndY - touchStartY;
+    
+    // Only handle horizontal swipes
+    if (Math.abs(diffX) > 45 && Math.abs(diffY) < 60) {
+      if (diffX < 0) {
+        showNextPhoto(); // Swipe left -> next
+      } else {
+        showPrevPhoto(); // Swipe right -> prev
+      }
+    }
+  }, { passive: true });
 
   // 9B. Complete Scrollable All-Photos Gallery Modal
-  const allGalleryModal = document.getElementById('all-gallery-modal');
-  const allGalleryCloseBtn = document.querySelector('.all-gallery-modal-close');
-
   const openAllGallery = (triggerEl) => {
     if (allGalleryModal) {
       lastActiveElement = triggerEl || document.activeElement;
@@ -433,25 +568,36 @@ document.addEventListener('DOMContentLoaded', () => {
 
   allGalleryCloseBtn?.addEventListener('click', closeAllGallery);
 
-  // Global Close on ESC or click outside
+  // Global Close on ESC
   window.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
-      closeVideoModal();
-      closeLightbox();
-      closeAllGallery();
-      document.body.style.overflow = '';
+      if (galleryModal?.classList.contains('active')) {
+        closeLightbox();
+      } else if (allGalleryModal?.classList.contains('active')) {
+        closeAllGallery();
+      } else if (videoModal?.classList.contains('active')) {
+        closeVideoModal();
+      }
     }
   });
 
-  [videoModal, galleryModal, allGalleryModal].forEach((modal) => {
-    modal?.addEventListener('click', (e) => {
-      if (e.target === modal) {
-        closeVideoModal();
-        closeLightbox();
-        closeAllGallery();
-        document.body.style.overflow = '';
-      }
-    });
+  // Modal Backdrop Clicks (outside of container)
+  galleryModal?.addEventListener('click', (e) => {
+    if (e.target === galleryModal) {
+      closeLightbox();
+    }
+  });
+
+  allGalleryModal?.addEventListener('click', (e) => {
+    if (e.target === allGalleryModal) {
+      closeAllGallery();
+    }
+  });
+
+  videoModal?.addEventListener('click', (e) => {
+    if (e.target === videoModal) {
+      closeVideoModal();
+    }
   });
 
   // 10. Booking Concierge Form & Direct WhatsApp Integration

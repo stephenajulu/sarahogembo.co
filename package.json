@@ -1,0 +1,25 @@
+{
+  "name": "sarahogembo-co",
+  "version": "1.0.0",
+  "description": "Sarah Ogembo - Corporate Master of Ceremonies & Executive Moderator",
+  "private": true,
+  "scripts": {
+    "build": "hugo --gc --minify",
+    "dev": "hugo server --disableFastRender",
+    "preview": "wrangler dev",
+    "deploy:cf": "wrangler deploy",
+    "clean": "hugo --cleanDestinationDir"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "hugo",
+    "static-site",
+    "portfolio",
+    "corporate-mc",
+    "sarah-ogembo"
+  ],
+  "author": "Sarah Ogembo",
+  "license": "UNLICENSED"
+}
