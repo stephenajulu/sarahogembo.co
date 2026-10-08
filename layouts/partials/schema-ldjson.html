@@ -1,4 +1,4 @@
-{{ $settings := hugo.Data.settings }}
+{{ $settings := site.Data.settings }}
 {{ $siteUrl := strings.TrimRight "/" .Site.BaseURL }}
 {{ $author := $settings.brand.name | default .Site.Params.author }}
 {{ $phone := $settings.contacts.phone | default .Site.Params.phone }}

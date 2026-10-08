@@ -10,7 +10,7 @@
 {{ $gallery := .Params.gallery_section | default .Site.Params.gallery_section }}
 {{ $personal := .Params.personal_section | default .Site.Params.personal_section }}
 {{ $booking := .Params.booking_section | default .Site.Params.booking_section }}
-{{ $settings := hugo.Data.settings }}
+{{ $settings := site.Data.settings }}
 
 <!-- ========================================================================
      1. HERO SECTION: Cinematic Stage Atmosphere
@@ -92,7 +92,7 @@
     <!-- Client Logo Strip Image as seen in reference design -->
     <picture data-cms-bind="trust.client_strip_image">
       <source srcset="{{ $trust.client_strip_image }}" type="image/webp">
-      <img src="{{ replace $trust.client_strip_image ".webp" ".png" }}" alt="Trusted corporate client logos" class="client-strip-img" width="750" height="34" loading="lazy">
+      <img src="{{ replace $trust.client_strip_image ".webp" ".png" }}" alt="Trusted client partners: Kenya National Library Service (KNLS), TİKA, PEPFAR, Book Aid International, KCB Bank Group, IFLA, EIFL, American Spaces U.S. Embassy" class="client-strip-img" width="644" height="36" loading="lazy">
     </picture>
 
     <!-- Semantic Text Strip for accessibility & SEO -->

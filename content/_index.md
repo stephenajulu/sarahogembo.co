@@ -25,23 +25,15 @@ trust:
   label: "Trusted by Leading Organisations"
   more_text: "And Many More"
   client_strip_image: "/images/logos/client-strip.webp"
-  #clients:
-  #  - name: "Safaricom"
-  #    category: "Telecommunications"
-  #  - name: "KCB Bank Group"
-  #    category: "Banking & Finance"
-  #  - name: "Absa Bank"
-  #    category: "Banking & Investment"
-  #  - name: "Microsoft"
-  #    category: "Technology"
-  #  - name: "UNDP"
-  #    category: "Diplomacy & #Development"
-  #  - name: "Kenya Airways"
-  #    category: "Aviation & Tourism"
-  #  - name: "Mastercard"
-  #    category: "Global Payments"
-  #  - name: "Nairobi Securities #Exchange"
-  #    category: "Capital Markets"
+  # Authentic clients & partners from Sarah's professional CV & engagements:
+  # - Kenya National Library Service (KNLS)
+  # - TİKA (Turkish Cooperation and Coordination Agency)
+  # - PEPFAR (U.S. President's Emergency Plan for AIDS Relief)
+  # - Book Aid International
+  # - KCB Bank Group
+  # - IFLA (International Federation of Library Associations and Institutions)
+  # - EIFL (Electronic Information for Libraries)
+  # - American Spaces / U.S. Embassy Nairobi
 
 # ==============================================================================
 # 3. ABOUT SARAH SECTION
