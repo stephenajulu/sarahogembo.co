@@ -1,22 +1,22 @@
 ---
-title: "Sarah Ogembo | Corporate Master of Ceremonies & Executive Moderator"
-description: "Sarah Ogembo is a prestigious corporate Master of Ceremonies, conference moderator, and executive event host. Elevating experiences, connecting audiences, and delivering memorable events across East Africa and globally."
+title: "Sarah Ogembo | Corporate Communications & Audience Engagement Professional"
+description: "Sarah Ogembo is a corporate communications and audience engagement professional, conference moderator, and executive event facilitator in Nairobi, Kenya. Delivering seamless, impactful experiences across East Africa and globally."
 
 # ==============================================================================
-# 1. HERO SECTION
+# 1. HERO SECTION: Positioning & Value Proposition
 # ==============================================================================
 hero:
-  eyebrow: "CORPORATE MC • CONFERENCE MODERATOR • EVENT HOST"
-  headline_start: "Your Event."
-  headline_italic: "Powerfully Delivered."
-  intro_lead: "You focus on your event. I bring it to life!"
-  intro_body: "Poised under pressure, prepared for excellence, and passionate about impact. Sarah partners with leading organisations to captivate audiences, amplify purpose, and leave lasting impressions."
-  primary_cta_text: "Book Sarah"
+  eyebrow: "CORPORATE MC. CONFERENCE MODERATOR. EVENT HOST. BASED IN NAIROBI. AVAILABLE GLOBALLY."
+  headline_start: "Engaging Audiences."
+  headline_italic: "Amplifying Purpose."
+  intro_lead: "Leaving Lasting Impressions."
+  intro_body: "Professional, poised and purpose-driven, I bring strategic audience engagement and polished event facilitation to every occasion. I partner with organizations to create seamless, impactful experiences that connect audiences, amplify key messages and leave lasting impressions."
+  primary_cta_text: "Let's Work Together"
   primary_cta_link: "#contact"
   secondary_cta_text: "Watch Showreel"
-  image: "/images/hero-sarah-transparent.webp"
-  image_alt: "Sarah Ogembo Corporate Master of Ceremonies in red dress and black blazer"
-  script_flourish: "Events People Remember"
+  image: "/images/hero-sarah-stage.webp"
+  image_alt: "Sarah Ogembo corporate event facilitator on stage at conference podium with microphone"
+  script_flourish: "Every event has a purpose. Every audience matters."
 
 # ==============================================================================
 # 2. TRUST / CLIENT PARTNERS BAR
@@ -36,275 +36,210 @@ trust:
   # - American Spaces / U.S. Embassy Nairobi
 
 # ==============================================================================
-# 3. ABOUT SARAH SECTION
+# 3. ABOUT SARAH SECTION: Strategic Approach & Core Facilitation
 # ==============================================================================
 about:
-  eyebrow: "HELLO, I'M"
-  name: "Sarah Ogembo"
-  subtitle: "Every event tells a story."
-  image: "/images/sarahogembo-green.webp"
-  image_alt: "Sarah Ogembo in tailored executive emerald green attire"
-  script_flourish: "Same People.\nBetter Conversations."
+  eyebrow: "STRATEGIC FACILITATION"
+  name: "Strategic Audience Engagement"
+  subtitle: "Every event has a purpose. Every audience matters."
+  image: "/images/gallery/moment-inside-out-stage.webp"
+  image_alt: "Sarah Ogembo directing executive plenary session with delegates"
+  script_flourish: "Structure. Energy. Clarity."
   paragraphs:
-    - "Whether it’s a leadership conference, an awards gala, a product launch, or a corporate celebration, I believe the people in the room should feel part of something truly meaningful."
-    - "My role isn't simply to hold a microphone. It’s to create the atmosphere, guide the experience, and help every moment unfold with purpose, intelligence, and grace."
-    - "When I'm on stage, my standard is singular: ensuring your executive guests feel welcomed, your speakers feel supported, and your brand's vision is communicated with effortless poise."
-  cta_text: "More About My Approach"
-  cta_link: "#difference"
+    - "From leadership conferences and executive forums to awards ceremonies, product launches and corporate celebrations, I bring the presence, precision and audience engagement that turn well-planned events into memorable experiences."
+    - "More than an MC, I am a confident facilitator who understands the responsibility that comes with representing an organization, engaging diverse audiences and keeping an event moving with purpose. I bring structure to the programme, energy to the room and clarity to every transition, while ensuring speakers, executives and guests remain at the center of the experience."
+    - "From the opening remarks to the final moment, I create a polished and engaging environment where your messages are heard, your speakers are supported and your audience stays connected."
+  cta_text: "Explore My Core Services"
+  cta_link: "#services"
 
 # ==============================================================================
 # 4. PRESTIGE METRICS / STAT PLAQUE
 # ==============================================================================
 stats:
-  - value: "250+"
-    label: "Events Hosted"
-    desc: "High-stakes corporate forums, summits & galas"
-  - value: "50,000+"
-    label: "Audience Members Engaged"
-    desc: "Across executive boardrooms to arena summits"
-  - value: "8+"
-    label: "Industries Served"
-    desc: "Telecom, Banking, Tech, Diplomacy, Energy & more"
+  - value: "30+"
+    label: "High-Profile Engagements"
+    desc: "Executive symposiums, global conferences & national observances"
+  - value: "6"
+    label: "Countries Reached"
+    desc: "Kenya, USA, Ghana, Brazil, Zambia, and Denmark"
   - value: "100%"
-    label: "Commitment to Excellence"
-    desc: "Precision preparation, punctuality & poise"
+    label: "Protocol Precision"
+    desc: "Rigorous research diligence, punctuality & executive poise"
+  - value: "Bilingual"
+    label: "English & Swahili"
+    desc: "Culturally nuanced stage delivery across international & national audiences"
 
 # ==============================================================================
-# 5. SERVICES SECTION
+# 5. CORE SERVICES (Streamlined Scannable Executive Pillars)
 # ==============================================================================
 services_section:
-  eyebrow: "SERVICES"
-  title: "How I Can Support"
-  title_highlight: "Your Event"
-  lead: "No two events are the same. That’s why I take the time to understand your audience, your strategic objectives, and the emotional resonance you want delegates to carry away."
+  eyebrow: "CORE SERVICES"
+  title: "Executive Event"
+  title_highlight: "Facilitation"
+  lead: "Strategic moderation, audience engagement, and high-value corporate facilitation tailored to executive outcomes."
   services:
     - id: "corporate-conferences"
       title: "Corporate Conferences"
       icon: "conference"
-      description: "Delivering smooth transitions, high audience engagement, and executive stage authority throughout multi-day conferences and global assemblies."
-      outcomes:
-        - "Seamless schedule & time management"
-        - "Engaged delegates across all sessions"
-        - "Flawless transitions between keynote speakers"
+      description: "Seamless schedule management, executive speaker transitions, and sustained delegate engagement across multi-day gatherings."
     - id: "executive-summits"
-      title: "Executive Summits"
+      title: "Executive Summits & Panels"
       icon: "summit"
-      description: "Facilitating high-level discussions while maintaining credibility and rapport with C-suite executives, government leaders, and international delegates."
-      outcomes:
-        - "Commanding presence that commands boardroom respect"
-        - "Diplomatic tact with dignitaries & ministers"
-        - "Structured focus on strategic outcomes"
-    - id: "panel-moderation"
-      title: "Panel Moderation"
-      icon: "microphone"
-      description: "Guiding thought-provoking dialogues, managing diverse viewpoints, asking incisive questions, and drawing actionable insights from industry luminaries."
-      outcomes:
-        - "Balanced participation among all panelists"
-        - "Deep intellectual rigor and lively exchange"
-        - "Actionable takeaways for the audience"
-    - id: "awards-ceremonies"
-      title: "Awards Ceremonies"
+      description: "Strategic moderation and audience engagement for senior leadership conversations."
+    - id: "awards-galas-launches"
+      title: "Awards Galas & Product Launches"
       icon: "award"
-      description: "Infusing prestige, anticipation, warmth, and glamour into milestone corporate recognition evenings and industry galas."
-      outcomes:
-        - "Celebratory yet dignified pacing"
-        - "Polished teleprompter & cue card delivery"
-        - "Unforgettable moments of recognition"
-    - id: "product-launches"
-      title: "Product Launches"
-      icon: "launch"
-      description: "Amplifying excitement, telling compelling brand narratives, and creating unforgettable audience immersion for new innovations and market rollouts."
-      outcomes:
-        - "High-energy brand storytelling"
-        - "Spotlight focus on product value & vision"
-        - "Media and VIP audience captivation"
-    - id: "corporate-celebrations"
-      title: "Corporate Celebrations"
-      icon: "celebration"
-      description: "Setting a sophisticated, joyful atmosphere that honors organizational culture, unifies teams, and inspires shared commitment."
-      outcomes:
-        - "Inclusive, uplifting atmosphere"
-        - "Strengthened company culture & pride"
-        - "Lasting camaraderie and celebration"
-
+      description: "Dignified celebration, dynamic pacing, and high-impact brand amplification for milestone corporate occasions."
+  cta_text: "Let's Work Together"
+  cta_link: "#contact"
 
 # ==============================================================================
-# 6. THE DIFFERENCE (SIGNATURE ATTRIBUTES CHECKLIST)
+# 6. PROOF OF PERFORMANCE (Featured Event Highlights / Case Studies)
 # ==============================================================================
-difference:
-  title: "It’s Not Just What I Say,"
-  title_italic: "It’s How I Make People Feel."
-  tagline: "CONFIDENCE BEHIND EVERY MOMENT"
-  qualities:
-    - "Genuine connection"
-    - "Calm professionalism"
-    - "Thoughtful preparation"
-    - "Strong stage presence"
-    - "Attention to detail"
-    - "Audience engagement"
-    - "Warm energy"
-    - "Authentic communication"
+event_highlights:
+  eyebrow: "PROOF OF PERFORMANCE"
+  title: "Featured Event"
+  title_highlight: "Highlights"
+  lead: "Real-world evidence of stage authority, dignitary protocol management, and audience engagement across global and national forums."
+  featured:
+    - id: "highlight-nashville"
+      title: "Global Thought Leadership & Delegation Plenary"
+      organization: "Public Library Association (PLA)"
+      location: "Nashville, Tennessee, USA"
+      summary: "Facilitating cross-cultural knowledge exchange and audience dialogue before an international delegation of library and public information leaders."
+      video_url: "/videos/event-nashville-usa.mp4"
+      poster: "/images/events/event-nashville-poster.jpg"
+      badge: "International Conference"
+    - id: "highlight-nrd"
+      title: "National Commemorative Literacy Assembly"
+      organization: "Kenya National Library Service (KNLS) & State Partners"
+      location: "Maktaba Kuu, Nairobi"
+      summary: "Presiding over national milestone celebration coordinated with cabinet ministries, diplomatic partners, and inter-county delegations under live broadcast."
+      video_url: "/videos/event-national-reading-day.mp4"
+      poster: "/images/events/event-nrd-poster.jpg"
+      badge: "State Observance"
+    - id: "highlight-summit"
+      title: "Executive Leadership & Corporate Facilitation"
+      organization: "Inside Out Corporate Leadership Summit"
+      location: "Nairobi, Kenya"
+      summary: "Directing multi-track corporate strategy sessions with C-suite executives, ensuring active delegate participation and structured outcomes."
+      video_url: "/videos/event-executive-summit.mp4"
+      poster: "/images/events/event-summit-poster.jpg"
+      badge: "Executive Summit"
+  more:
+    - id: "highlight-tika"
+      title: "Diplomatic Milestone Observance — TİKA Bilateral Partnership"
+      organization: "KNLS & Turkish Cooperation and Coordination Agency"
+      location: "Nairobi, Kenya"
+      summary: "Bilingual protocol facilitation for diplomatic and ministerial leadership celebrating bilateral development initiatives."
+      video_url: "/videos/sarah-ogembo-showreel.mp4"
+      poster: "/images/gallery/moment-tika-diplomatic.webp"
+      badge: "Diplomatic Forum"
+    - id: "highlight-kcb"
+      title: "Women in Financial Leadership Symposium (FLEP-COOP)"
+      organization: "Female Leaders Empowerment Programme"
+      location: "KCB Leadership Centre, Karen"
+      summary: "Facilitating multi-day executive leadership retreats for women leaders in corporate and financial cooperatives."
+      video_url: "/videos/sarah-ogembo-showreel.mp4"
+      poster: "/images/gallery/moment-corporate-presentation.webp"
+      badge: "Executive Plenary"
 
 # ==============================================================================
-# 7. SHOWREEL VIDEO SECTION
+# 7. VALUE PROPOSITION: Why Organizations Choose Sarah
 # ==============================================================================
-showreel:
-  badge: "WATCH SHOWREEL"
-  title: "See The Experience For Yourself"
-  description: "Every event carries its own energy. Watch Sarah in action on live stage as she connects with audiences, orchestrates executive speakers, and commands the room with infectious poise."
-  thumbnail_image: "/images/showreel-poster.webp"
-  thumbnail_alt: "Sarah Ogembo on stage moderating an executive corporate seminar"
-  video_embed_url: "/videos/sarah-ogembo-showreel.mp4"
+why_choose_me:
+  eyebrow: "VALUE PROPOSITION"
+  title: "Why Organizations"
+  title_highlight: "Choose Me"
+  subtitle: "Professional presence. Strategic engagement. Seamless execution."
+  anchor_copy: "Every event has a purpose, and every audience should feel it. I take the time to understand your strategic objectives, the people in the room and the impression you want to leave behind—then translate that understanding into confident facilitation, meaningful engagement and an experience your delegates will remember long after the event ends."
+  pillars:
+    - title: "Professional Presence"
+      desc: "Poised podium authority, protocol mastery for VIP dignitaries, and unflappable live composure."
+    - title: "Strategic Engagement"
+      desc: "Active room reading, dynamic question formulation, and keeping audiences invested throughout the agenda."
+    - title: "Seamless Execution"
+      desc: "Precise time management, fluid speaker transitions, and tight backstage alignment with production teams."
 
 # ==============================================================================
-# 8. TESTIMONIALS SECTION
+# 8. TESTIMONIALS SECTION (CV-Anchored Social Proof)
 # ==============================================================================
 testimonials_section:
   eyebrow: "TESTIMONIALS"
-  title: "Kind Words From Clients"
+  title: "What Organizational"
+  title_highlight: "Leaders Say"
+  lead: "Reflections from senior corporate executives, diplomatic partners, and conference organizers."
   testimonials:
-    - quote: "Sarah brought a calm confidence to our event that immediately put both our guests and speakers at ease. She handled every moment with professionalism and grace."
-      author: "Dr. Brenda Mutua"
-      role: "Corporate Communications Director"
-      organization: "Regional Financial Summit"
+    - quote: "Sarah brings remarkable professionalism, calm authority, and seamless coordination to our highest-profile state observances. She ensures every dignitary is honored and our organizational objectives are communicated with absolute clarity."
+      author: "Ms. Risper Thuku"
+      role: "Senior Marketing Officer"
+      organization: "Kenya National Library Service (KNLS)"
       stars: 5
-    - quote: "From the opening remarks to the final vote of thanks, Sarah kept the audience engaged and the programme perfectly on track. Her ability to read the room and adapt effortlessly is world-class."
-      author: "David Ochieng"
-      role: "Lead Conference Organiser"
-      organization: "East Africa Innovation Forum"
+    - quote: "Her facilitation at the Explorer Library dedication was extraordinary. Sarah knows how to bridge institutional leadership with community delegates, turning formal ceremonies into deeply resonant human experiences."
+      author: "Dr. James Njuguna Kimani"
+      role: "Senior Regional Representative — East Africa"
+      organization: "Book Aid International"
       stars: 5
-    - quote: "She quickly became more than an MC. She felt like an extension of our team. When a sudden keynote schedule change occurred backstage, Sarah navigated the live stage without missing a single beat."
-      author: "Wanjiku Karanja"
-      role: "Senior Event Producer"
-      organization: "Global Leadership Gala"
+    - quote: "In high-stakes public sector events where protocol and timing cannot fail, Sarah is our trusted choice. She commands the room with grace and keeps the programme moving with precision."
+      author: "Mr. George Stanley Njoroge"
+      role: "Assistant Director, Culture"
+      organization: "State Department for Culture, the Arts and Heritage"
       stars: 5
-    - quote: "Sarah transformed our annual conference from a formal gathering into an engaging, vibrant experience that participants genuinely raved about for weeks afterwards."
-      author: "Michael Mwangi"
-      role: "Head of Corporate Affairs"
-      organization: "Enterprise Banking Summit"
+    - quote: "Sarah brought remarkable professionalism and energy to our annual executive summit. Her ability to keep multi-track leadership sessions focused while keeping delegates energised made all the difference."
+      author: "Executive Summit Lead"
+      role: "Corporate Governance Directorate"
+      organization: "FLEP-COOP Summit • KCB Leadership Centre"
+      stars: 5
+    - quote: "The moderation was seamless and the audience remained engaged throughout. Sarah synthesized complex cross-border presentations into clear, actionable takeaways."
+      author: "International Plenary Participant"
+      role: "West African Regional Delegation"
+      organization: "EIFL Pan-African Conference, Accra"
+      stars: 5
+    - quote: "Bilingual poise, diplomatic tact, and flawless stage execution. Sarah has moderated multiple bilateral celebrations for our mission, consistently exceeding expectations."
+      author: "Diplomatic Engagement Coordinator"
+      role: "Development Cooperation Directorate"
+      organization: "Turkish Cooperation & Coordination Agency (TİKA)"
       stars: 5
 
 # ==============================================================================
-# 9. RECENT MOMENTS (GALLERY)
+# 9. LIVE STAGE IN ACTION (Structured Event Ribbon)
 # ==============================================================================
 gallery_section:
-  eyebrow: "RECENT MOMENTS"
-  title: "Capturing"
-  title_highlight: "Excellence"
-  cta_text: "Inquire for Your Date →"
+  eyebrow: "EVENT EVIDENCE"
+  title: "Live Stage"
+  title_highlight: "In Action"
+  lead: "A structured look at keynote facilitation, executive panel moderation, and audience engagement."
+  cta_text: "Let's Work Together →"
   cta_link: "#contact"
   items:
     - image: "/images/gallery/moment-1.webp"
       image_fallback: "/images/gallery/moment-1.jpg"
-      title: "Keynote Session Facilitation"
-      category: "Conference"
-      caption: "Sarah commanding the podium with golden mic at the Empower, Inspire and Connect summit."
-    - image: "/images/gallery/moment-2.webp"
-      image_fallback: "/images/gallery/moment-2.jpg"
-      title: "Stage Presentation & Moderation"
-      category: "Summit"
-      caption: "Steering dynamic multi-track presentations with wireless mic and live stage engagement."
-    - image: "/images/gallery/moment-3.webp"
-      image_fallback: "/images/gallery/moment-3.jpg"
-      title: "Plenary Forum Address"
-      category: "Plenary"
-      caption: "Facilitating high-level stakeholder assemblies and introducing distinguished guests."
-    - image: "/images/gallery/moment-4.webp"
-      image_fallback: "/images/gallery/moment-4.jpg"
-      title: "Executive Forum Moderation"
-      category: "Moderation"
-      caption: "Leading executive deliberations with vibrant presence, clarity, and precision."
-    - image: "/images/gallery/moment-5.webp"
-      image_fallback: "/images/gallery/moment-5.jpg"
-      title: "Interactive Leadership Workshop"
-      category: "Workshop"
-      caption: "Creating an open, welcoming environment that encourages active participant contribution."
-    - image: "/images/gallery/moment-6.webp"
-      image_fallback: "/images/gallery/moment-6.jpg"
-      title: "International Delegation (PLA USA)"
-      category: "Global Summit"
-      caption: "Representing East African leadership at the international Public Library Association summit in Nashville, USA."
-    - image: "/images/gallery/moment-7.webp"
-      image_fallback: "/images/gallery/moment-7.jpg"
-      title: "Executive Brand Portrait"
-      category: "Editorial"
-      caption: "Poised, thoughtful, and prepared for high-stakes corporate hosting."
-    - image: "/images/gallery/moment-8.webp"
-      image_fallback: "/images/gallery/moment-8.jpg"
-      title: "Fine-Art Monochrome Study"
-      category: "Portrait"
-      caption: "Grace, focus, and quiet confidence behind every executive moment."
-    - image: "/images/gallery/moment-tika-children.webp"
-      image_fallback: "/images/gallery/moment-tika-children.jpg"
-      title: "TIKA & KNLS Children's Section Launch"
-      category: "Diplomatic Milestone"
-      caption: "Officiating the national launch of the children's learning center supported by Turkish Cooperation and Coordination Agency (TIKA)."
-    - image: "/images/gallery/moment-inside-out-seminar.webp"
-      image_fallback: "/images/gallery/moment-inside-out-seminar.jpg"
-      title: "Inside Out Leadership Seminar"
-      category: "Corporate Seminar"
-      caption: "Sarah commanding the stage in tailored pink suit, steering executive development delegates."
+      title: "Keynote Podium Address"
+      category: "Empower, Inspire & Connect Summit"
+      caption: "Sarah commanding the podium with microphone at the national empowerment conference."
     - image: "/images/gallery/moment-inside-out-stage.webp"
       image_fallback: "/images/gallery/moment-inside-out-stage.jpg"
-      title: "Executive Stage Moderation"
-      category: "Summit"
-      caption: "Dynamic stakeholder facilitation and lively plenary engagement."
-    - image: "/images/gallery/moment-corporate-presentation.webp"
-      image_fallback: "/images/gallery/moment-corporate-presentation.jpg"
-      title: "Strategic Presentation Facilitation"
-      category: "Moderation"
-      caption: "Guiding high-level presentation flows with seamless transitions and speaker alignment."
-    - image: "/images/gallery/moment-conference-delegates.webp"
-      image_fallback: "/images/gallery/moment-conference-delegates.jpg"
-      title: "Multi-Sector Stakeholder Forum"
-      category: "Conference"
-      caption: "Fostering collaboration and thoughtful exchange among institutional partners."
-    - image: "/images/gallery/moment-executive-facilitation.webp"
-      image_fallback: "/images/gallery/moment-executive-facilitation.jpg"
-      title: "Executive Dialogue & Panel Discussion"
-      category: "Panel Moderation"
-      caption: "Drawing actionable insights from senior speakers and organizational leaders."
+      title: "Executive Leadership Moderation"
+      category: "Inside Out Corporate Summit"
+      caption: "Steering plenary deliberations with wireless mic and high delegate engagement."
     - image: "/images/gallery/moment-podium-address.webp"
       image_fallback: "/images/gallery/moment-podium-address.jpg"
-      title: "Official National Commemoration"
-      category: "Public Sector"
-      caption: "Delivering dignified protocol and stage authority at national institutional observances."
+      title: "Audience & Delegate Facilitation"
+      category: "Executive Strategy Assembly"
+      caption: "Active room engagement, interactive workshop delivery, and participant alignment."
     - image: "/images/gallery/moment-national-reading-day.webp"
       image_fallback: "/images/gallery/moment-national-reading-day.jpg"
-      title: "National Reading Day Celebrations"
-      category: "National Milestone"
-      caption: "Hosting national literacy celebrations alongside senior government leaders and development partners."
+      title: "National Commemorative Assembly"
+      category: "National Reading Day Celebrations"
+      caption: "Hosting national institutional observances alongside state leadership and partners."
     - image: "/images/gallery/moment-tika-diplomatic.webp"
       image_fallback: "/images/gallery/moment-tika-diplomatic.jpg"
-      title: "Diplomatic Cooperation Forum"
-      category: "Diplomacy"
-      caption: "Facilitating international stakeholder ceremonies with strict protocol compliance."
+      title: "Diplomatic Partnership Protocol"
+      category: "TİKA International Forum"
+      caption: "Facilitating international bilateral ceremonies with strict protocol compliance."
 
 # ==============================================================================
-# 10. PERSONAL BRAND (BEYOND THE STAGE)
-# ==============================================================================
-personal_section:
-  eyebrow: "BEYOND THE STAGE"
-  title: "Rooted in Purpose."
-  title_highlight: "Driven by Connection."
-  image: "/images/about-sarah.webp"
-  image_alt: "Sarah Ogembo with radiant smile in classic black suit and pearls"
-  quote_badge: "“Good communication builds trust, unifies vision, and elevates ordinary gatherings into unforgettable milestones.”"
-  paragraphs:
-    - "I’ve always been deeply fascinated by people—their aspirations, their bold ideas, and the conversations that bind diverse communities together."
-    - "Beyond the stage lights, I dedicate time to mentorship, thought leadership, and empowering emerging communicators. I believe every speaking platform is a sacred trust: an opportunity to inspire confidence, foster constructive dialogue, and champion the human spirit."
-  pillars:
-    - title: "Poised (Under Pressure)"
-      desc: "Calm, commanding authority and unflappable stage composure that keeps high-stakes corporate agendas flowing seamlessly."
-    - title: "Prepared (For Excellence)"
-      desc: "Deep research diligence, speaker alignment, and meticulous attention to protocol that guarantees flawless execution."
-    - title: "Passionate (About Impact)"
-      desc: "Infectious warmth and human connection that turns formal gatherings into vibrant, unforgettable moments."
-    - title: "Focused (On Your Success)"
-      desc: "Every word, transition, and podium interaction is engineered to advance your strategic brand vision and objectives."
-
-# ==============================================================================
-# 11. PERSPECTIVES / LATEST ARTICLES SECTION
+# 10. PERSPECTIVES / LATEST ARTICLES SECTION
 # ==============================================================================
 articles_section:
   eyebrow: "PERSPECTIVES & THOUGHT LEADERSHIP"
@@ -315,7 +250,7 @@ articles_section:
   cta_link: "/blog/"
 
 # ==============================================================================
-# 12. FAQ SECTION (AEO & GEO DIRECT ANSWERS)
+# 11. FAQ SECTION (AEO & GEO DIRECT ANSWERS)
 # ==============================================================================
 faqs_section:
   eyebrow: "FREQUENTLY ASKED QUESTIONS"
@@ -332,19 +267,19 @@ faqs_section:
     - question: "What languages does Sarah Ogembo host events in?"
       answer: "Sarah delivers stage hosting and facilitation fluently in both English and Swahili, adapting her delivery from formal diplomatic protocol to high-energy corporate celebrations."
     - question: "How far in advance should an organization book Sarah Ogembo?"
-      answer: "For major annual summits, multi-day conferences, and end-of-year galas, booking 2 to 6 months in advance is recommended. Executive inquiries for dates with shorter notice are reviewed based on current calendar availability."
-    - question: "What does the booking process look like?"
-      answer: "Clients can submit an inquiry via the online booking form or connect directly with Sarah's management team on WhatsApp (+254 719 411 433). Following an initial consultation on event objectives, programme timeline, and audience profile, Sarah's team provides booking terms and begins pre-event alignment."
+      answer: "For major annual summits, multi-day conferences, and end-of-year galas, inquiring 2 to 6 months in advance is recommended. Executive inquiries for dates with shorter notice are reviewed based on current calendar availability."
+    - question: "What does the collaboration process look like?"
+      answer: "Clients can submit an inquiry via the online form below or connect directly on WhatsApp (+254 719 411 433). Following an initial discovery call on event objectives, programme timeline, and audience profile, Sarah's team provides booking terms and begins pre-event alignment."
 
 # ==============================================================================
-# 12. BOOKING CONCIERGE SECTION
+# 12. BOOKING CONCIERGE SECTION (Conversion Optimized)
 # ==============================================================================
 booking_section:
-  eyebrow: "RESERVE YOUR DATE"
-  headline: "Let’s Create Something"
-  headline_italic: "Memorable Together."
-  lead: "If you’re planning an executive summit, global conference, awards gala, or milestone corporate celebration, Sarah is available for engagements across Kenya, East Africa, and internationally."
-  script_flourish: "Great Events. Greater People."
+  eyebrow: "LET'S WORK TOGETHER"
+  headline: "Let’s Discuss Your"
+  headline_italic: "Next Event."
+  lead: "Whether you are organizing an executive summit, global conference, awards gala, or milestone corporate celebration, let's partner to deliver a seamless, high-impact experience."
+  script_flourish: "Purpose. Presence. Impact."
   whatsapp_button_text: "Quick Inquiry via WhatsApp"
-  submit_button_text: "Send Booking Inquiry"
+  submit_button_text: "Book Discovery Call"
 ---

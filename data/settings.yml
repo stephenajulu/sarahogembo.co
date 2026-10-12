@@ -3,18 +3,18 @@
 
 brand:
   name: "Sarah Ogembo"
-  tagline: "People · Conversations · Impact"
-  role: "Corporate Master of Ceremonies • Conference Moderator • Event Host"
-  short_bio: "Sarah Ogembo is a prestigious corporate Master of Ceremonies, conference moderator, and executive event host in Nairobi, Kenya."
+  tagline: "Engaging Audiences · Amplifying Purpose · Leaving Lasting Impressions"
+  role: "Corporate Communications & Audience Engagement Professional • Executive Moderator"
+  short_bio: "Sarah Ogembo is a corporate communications and audience engagement professional, conference moderator, and executive event facilitator in Nairobi, Kenya."
 
 contacts:
-  email: "hello@sarahogembo.com"
-  email_alt: "nyabokeogembo@gmail.com"
+  email: "nyabokeogembo@gmail.com"
+  email_alt: "hello@sarahogembo.com"
   phone: "+254 719 411 433"
   phone_display: "+254 719 411 433"
-  location: "Nairobi, Kenya"
+  location: "Nairobi, Kenya • Available Globally"
   whatsapp_number: "254719411433"
-  whatsapp_default_message: "Hello Sarah, I would like to inquire about booking you for an upcoming corporate event."
+  whatsapp_default_message: "Hello Sarah, I would like to discuss collaborating with you for an upcoming corporate event."
 
 social_links:
   linkedin: "https://www.linkedin.com/in/sarah-ogembo"
@@ -24,7 +24,7 @@ social_links:
   cal_embed_slug: "sarahogembo/discovery"
 
 footer:
-  quote: "People may forget the agenda. They may forget the venue. But they will always remember how your event made them feel."
+  quote: "Every event has a purpose, and every audience should feel it. I partner with organizations to create seamless, impactful experiences that connect audiences, amplify key messages, and leave lasting impressions."
   copyright_year: "2026"
   rights_statement: "All rights reserved."
-  bottom_tagline: "Designed for a more connected world."
+  bottom_tagline: "Designed for high-impact executive gatherings."

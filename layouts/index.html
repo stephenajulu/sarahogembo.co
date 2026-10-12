@@ -4,16 +4,15 @@
 {{ $about := .Params.about | default .Site.Params.about }}
 {{ $stats := .Params.stats | default .Site.Params.stats }}
 {{ $services := .Params.services_section | default .Site.Params.services_section }}
-{{ $diff := .Params.difference | default .Site.Params.difference }}
-{{ $showreel := .Params.showreel | default .Site.Params.showreel }}
+{{ $highlights := .Params.event_highlights }}
+{{ $whyChoose := .Params.why_choose_me }}
 {{ $testimonials := .Params.testimonials_section | default .Site.Params.testimonials_section }}
 {{ $gallery := .Params.gallery_section | default .Site.Params.gallery_section }}
-{{ $personal := .Params.personal_section | default .Site.Params.personal_section }}
 {{ $booking := .Params.booking_section | default .Site.Params.booking_section }}
 {{ $settings := site.Data.settings }}
 
 <!-- ========================================================================
-     1. HERO SECTION: Cinematic Stage Atmosphere
+     1. HERO SECTION: Cinematic Stage Atmosphere & Strategic Positioning
      ======================================================================== -->
 <section id="home" class="hero-section" aria-labelledby="hero-heading">
   <div class="hero-bg-lights" aria-hidden="true"></div>
@@ -37,13 +36,13 @@
       <!-- Action Buttons -->
       <div class="hero-cta-group">
         <a href="{{ $hero.primary_cta_link | default "#contact" }}" class="btn btn-primary" data-cms-bind="hero.primary_cta_text">
-          {{ $hero.primary_cta_text | default "Book Sarah" }}
+          {{ $hero.primary_cta_text | default "Let's Work Together" }}
           <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
             <line x1="5" y1="12" x2="19" y2="12"></line>
             <polyline points="12 5 19 12 12 19"></polyline>
           </svg>
         </a>
-        <button type="button" class="btn btn-secondary trigger-video-modal" aria-label="Watch Showreel Highlight Video" data-cms-bind="hero.secondary_cta_text">
+        <button type="button" class="btn btn-secondary trigger-video-modal" aria-label="Watch Showreel Highlight Video" data-cms-bind="hero.secondary_cta_text" data-video-url="/videos/sarah-ogembo-showreel.mp4" data-video-poster="/images/showreel-poster.jpg" data-video-title="Sarah Ogembo • Executive Showreel">
           {{ $hero.secondary_cta_text | default "Watch Showreel" }}
           <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor">
             <polygon points="5 3 19 12 5 21 5 3"></polygon>
@@ -52,17 +51,17 @@
       </div>
     </div>
 
-    <!-- Right Hero Stage Photograph Frame with Luxury Cinematic Spotlight -->
+    <!-- Right Hero Stage Photograph Frame with Luxury Spotlight -->
     <div class="hero-media-wrapper">
       <div class="hero-spotlight" aria-hidden="true"></div>
       <div class="hero-pedestal-glow" aria-hidden="true"></div>
       <div class="hero-image-frame hero-transparent-frame" data-cms-bind="hero.image">
         <picture>
           <source srcset="{{ $hero.image }}" type="image/webp">
-          <img src="{{ replace $hero.image ".webp" ".png" }}" alt="{{ $hero.image_alt }}" class="hero-cutout-img" width="520" height="720" loading="eager" fetchpriority="high">
+          <img src="{{ replace $hero.image ".webp" ".jpg" }}" alt="{{ $hero.image_alt }}" class="hero-cutout-img" width="520" height="720" loading="eager" fetchpriority="high">
         </picture>
       </div>
-      <!-- Handwritten Luxury Script Flourish (Frosted Glass Pill Badge - Always Readable) -->
+      <!-- Handwritten Luxury Script Flourish -->
       <div class="hero-script-callout frosted-luxury-badge" aria-label="Signature highlight" data-cms-bind="hero.script_flourish">
         <span class="badge-sparkle" aria-hidden="true">✨</span>
         <span class="script-accent">{{ $hero.script_flourish | replaceRE "\n" " " | safeHTML }}</span>
@@ -89,7 +88,7 @@
       {{ $trust.label }}
     </div>
 
-    <!-- Client Logo Strip Image as seen in reference design -->
+    <!-- Client Logo Strip Image -->
     <picture data-cms-bind="trust.client_strip_image">
       <source srcset="{{ $trust.client_strip_image }}" type="image/webp">
       <img src="{{ replace $trust.client_strip_image ".webp" ".png" }}" alt="Trusted client partners: Kenya National Library Service (KNLS), TİKA, PEPFAR, Book Aid International, KCB Bank Group, IFLA, EIFL, American Spaces U.S. Embassy" class="client-strip-img" width="644" height="36" loading="lazy">
@@ -106,11 +105,11 @@
 </section>
 
 <!-- ========================================================================
-     3. ABOUT SARAH SECTION: Warm Ivory Editorial Layout
+     3. ABOUT SARAH SECTION: Strategic Facilitation & Audience Engagement
      ======================================================================== -->
 <section id="about" class="about-section" aria-labelledby="about-heading">
   <div class="container about-grid">
-    <!-- Left Column: Editorial Portrait -->
+    <!-- Left Column: Editorial Stage Portrait -->
     <div class="about-portrait-wrap">
       <div class="about-portrait-frame" data-cms-bind="about.image">
         <picture>
@@ -118,8 +117,8 @@
           <img src="{{ replace $about.image ".webp" ".jpg" }}" alt="{{ $about.image_alt }}" width="400" height="500" loading="lazy">
         </picture>
       </div>
-      <!-- Script Callout Accent: Frosted Luxury Badge ensuring 100% legibility on any background -->
-      <div class="about-script-callout frosted-luxury-badge" role="note" aria-label="Signature highlight: Same People. Better Conversations." data-cms-bind="about.script_flourish">
+      <!-- Script Callout Accent -->
+      <div class="about-script-callout frosted-luxury-badge" role="note" aria-label="Signature highlight" data-cms-bind="about.script_flourish">
         <span class="badge-sparkle" aria-hidden="true">✦</span>
         <div class="about-script-content">
           <span class="script-accent">{{ $about.script_flourish | replaceRE "\n" "<br>" | safeHTML }}</span>
@@ -140,8 +139,8 @@
       </div>
 
       <div>
-        <a href="{{ $about.cta_link | default "#difference" }}" class="btn btn-outline-dark" data-cms-bind="about.cta_text">
-          {{ $about.cta_text | default "More About My Approach" }}
+        <a href="{{ $about.cta_link | default "#services" }}" class="btn btn-outline-dark" data-cms-bind="about.cta_text">
+          {{ $about.cta_text | default "Explore My Core Services" }}
           <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <line x1="5" y1="12" x2="19" y2="12"></line>
             <polyline points="12 5 19 12 12 19"></polyline>
@@ -164,7 +163,7 @@
 </section>
 
 <!-- ========================================================================
-     4. SERVICES SECTION: Luxury Experience Cards
+     4. SERVICES SECTION: Streamlined Scannable Corporate Offerings
      ======================================================================== -->
 <section id="services" class="services-section" aria-labelledby="services-heading">
   <div class="container">
@@ -181,119 +180,206 @@
       </p>
     </div>
 
-    <div class="services-grid" data-cms-bind="services_section.services">
+    <div class="services-grid services-grid-streamlined" data-cms-bind="services_section.services">
       {{ range $services.services }}
-        <article class="service-card" id="{{ .id }}">
+        <article class="service-card service-card-clean" id="{{ .id }}">
           <div class="service-icon-wrap" aria-hidden="true">
             {{ if eq .icon "conference" }}
               <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
             {{ else if eq .icon "summit" }}
               <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
-            {{ else if eq .icon "microphone" }}
-              <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>
             {{ else if eq .icon "award" }}
               <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
-            {{ else if eq .icon "launch" }}
-              <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
             {{ else }}
-              <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+              <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>
             {{ end }}
           </div>
 
           <h3 class="service-card-title">{{ .title }}</h3>
           <p class="service-card-desc">{{ .description }}</p>
-
-          <ul class="service-outcomes" aria-label="Key Outcomes">
-            {{ range .outcomes }}
-              <li class="service-outcome-item">{{ . }}</li>
-            {{ end }}
-          </ul>
         </article>
       {{ end }}
+    </div>
+
+    <!-- Consultative CTA Anchor -->
+    <div class="services-footer-cta text-center" style="margin-top: 2.5rem;">
+      <a href="{{ $services.cta_link | default "#contact" }}" class="btn btn-outline-gold" data-cms-bind="services_section.cta_text">
+        {{ $services.cta_text | default "Let's Work Together" }}
+        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </a>
     </div>
   </div>
 </section>
 
+<!-- ========================================================================
+     5. PROOF OF PERFORMANCE: Featured Event Highlights (Case Studies)
+     ======================================================================== -->
+{{ with $highlights }}
+<section id="event-highlights" class="highlights-section" aria-labelledby="highlights-heading">
+  <div class="container">
+    <div class="section-header-split">
+      <div>
+        <div class="eyebrow" data-cms-bind="event_highlights.eyebrow">{{ .eyebrow }}</div>
+        <h2 id="highlights-heading" class="section-title">
+          <span data-cms-bind="event_highlights.title">{{ .title }}</span>
+          <span class="text-gold" data-cms-bind="event_highlights.title_highlight">{{ .title_highlight }}</span>
+        </h2>
+      </div>
+      <p class="section-lead" data-cms-bind="event_highlights.lead">
+        {{ .lead }}
+      </p>
+    </div>
 
+    <!-- 3 Featured Video Case Studies -->
+    <div class="highlights-grid" data-cms-bind="event_highlights.featured">
+      {{ range .featured }}
+        <article class="highlight-card" id="{{ .id }}">
+          <div class="highlight-video-box">
+            <video class="highlight-video-el" playsinline preload="none" poster="{{ .poster }}" controls aria-label="{{ .title }}">
+              <source src="{{ .video_url }}" type="video/mp4">
+              Your browser does not support HTML5 video playback.
+            </video>
+            <div class="highlight-badge">{{ .badge }}</div>
+            <button type="button" class="highlight-modal-trigger trigger-video-modal" aria-label="Expand video: {{ .title }}" data-video-url="{{ .video_url }}" data-video-poster="{{ .poster }}" data-video-title="{{ .title }} • {{ .organization }}">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="15 3 21 3 21 9"></polyline>
+                <polyline points="9 21 3 21 3 15"></polyline>
+                <line x1="21" y1="3" x2="14" y2="10"></line>
+                <line x1="3" y1="21" x2="10" y2="14"></line>
+              </svg>
+            </button>
+          </div>
+
+          <div class="highlight-content">
+            <div class="highlight-meta">
+              <span class="highlight-org">{{ .organization }}</span>
+              <span class="highlight-loc">{{ .location }}</span>
+            </div>
+            <h3 class="highlight-title">{{ .title }}</h3>
+            <p class="highlight-summary">{{ .summary }}</p>
+          </div>
+        </article>
+      {{ end }}
+    </div>
+
+    <!-- Expandable Toggle for Additional Case Studies -->
+    {{ with .more }}
+      <div class="highlights-expand-wrap text-center" style="margin-top: 2.2rem;">
+        <button type="button" id="highlights-toggle-btn" class="btn btn-outline-gold highlights-toggle-btn" aria-expanded="false" aria-controls="more-highlights-grid">
+          <span class="toggle-text">View More Event Highlights (+{{ len . }})</span>
+          <svg class="btn-icon toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+      </div>
+
+      <div id="more-highlights-grid" class="highlights-grid more-highlights-grid is-collapsed" aria-hidden="true" data-cms-bind="event_highlights.more">
+        {{ range . }}
+          <article class="highlight-card" id="{{ .id }}">
+            <div class="highlight-video-box">
+              <video class="highlight-video-el" playsinline preload="none" poster="{{ .poster }}" controls aria-label="{{ .title }}">
+                <source src="{{ .video_url }}" type="video/mp4">
+              </video>
+              <div class="highlight-badge">{{ .badge }}</div>
+              <button type="button" class="highlight-modal-trigger trigger-video-modal" aria-label="Expand video: {{ .title }}" data-video-url="{{ .video_url }}" data-video-poster="{{ .poster }}" data-video-title="{{ .title }} • {{ .organization }}">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="15 3 21 3 21 9"></polyline>
+                  <polyline points="9 21 3 21 3 15"></polyline>
+                  <line x1="21" y1="3" x2="14" y2="10"></line>
+                  <line x1="3" y1="21" x2="10" y2="14"></line>
+                </svg>
+              </button>
+            </div>
+
+            <div class="highlight-content">
+              <div class="highlight-meta">
+                <span class="highlight-org">{{ .organization }}</span>
+                <span class="highlight-loc">{{ .location }}</span>
+              </div>
+              <h3 class="highlight-title">{{ .title }}</h3>
+              <p class="highlight-summary">{{ .summary }}</p>
+            </div>
+          </article>
+        {{ end }}
+      </div>
+    {{ end }}
+  </div>
+</section>
+{{ end }}
 
 <!-- ========================================================================
-     5. SIGNATURE TRIO: Difference Checklist + Showreel + Testimonials
+     6. VALUE PROPOSITION: Why Organizations Choose Sarah
      ======================================================================== -->
-<section id="difference" class="trio-section" aria-label="Signature Highlights">
-  <div class="container trio-grid">
-    <!-- Card A: Difference Checklist Parchment Card -->
-    <div class="difference-card">
-      <div>
-        <h3 class="diff-title">
-          <span data-cms-bind="difference.title">{{ $diff.title }}</span>
-          <span class="diff-title-italic" data-cms-bind="difference.title_italic">{{ $diff.title_italic }}</span>
-        </h3>
-
-        <ul class="diff-checklist" aria-label="Sarah's Signature Event Attributes" data-cms-bind="difference.qualities">
-          {{ range $diff.qualities }}
-            <li class="diff-item">
-              <span class="diff-check-icon" aria-hidden="true">✓</span>
-              <span>{{ . }}</span>
-            </li>
-          {{ end }}
-        </ul>
-      </div>
-
-      <div class="diff-tag" data-cms-bind="difference.tagline">
-        {{ $diff.tagline }}
-      </div>
+{{ with $whyChoose }}
+<section id="why-choose-me" class="why-choose-section" aria-labelledby="why-choose-heading">
+  <div class="container">
+    <div class="why-choose-header text-center">
+      <div class="eyebrow" data-cms-bind="why_choose_me.eyebrow">{{ .eyebrow }}</div>
+      <h2 id="why-choose-heading" class="section-title">
+        <span data-cms-bind="why_choose_me.title">{{ .title }}</span>
+        <span class="text-gold" data-cms-bind="why_choose_me.title_highlight">{{ .title_highlight }}</span>
+      </h2>
+      <p class="why-choose-subtitle" data-cms-bind="why_choose_me.subtitle">{{ .subtitle }}</p>
     </div>
 
-    <!-- Card B: Showreel Video Area -->
-    <div id="showreel" class="showreel-card">
-      <div class="showreel-media-box" data-cms-bind="showreel.thumbnail_image">
-        <picture>
-          <source srcset="{{ $showreel.thumbnail_image }}" type="image/webp">
-          <img src="{{ replace $showreel.thumbnail_image ".webp" ".jpg" }}" alt="{{ $showreel.thumbnail_alt }}" class="showreel-thumb-img" width="550" height="350" loading="lazy">
-        </picture>
-
-        <div class="showreel-overlay">
-          <div class="showreel-badge" data-cms-bind="showreel.badge">{{ $showreel.badge }}</div>
-          <button type="button" class="play-trigger-btn trigger-video-modal" aria-label="Play showreel video">
-            <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor">
-              <polygon points="5 3 19 12 5 21 5 3"></polygon>
-            </svg>
-          </button>
-          <div></div>
-        </div>
-      </div>
-
-      <div class="showreel-info-bar">
-        <h3 class="showreel-info-title" data-cms-bind="showreel.title">{{ $showreel.title }}</h3>
-        <p class="showreel-info-text" data-cms-bind="showreel.description">{{ $showreel.description }}</p>
-      </div>
+    <!-- Central Anchor Copy Card -->
+    <div class="why-choose-anchor-card">
+      <div class="anchor-quote-icon" aria-hidden="true">“</div>
+      <p class="why-choose-anchor-text" data-cms-bind="why_choose_me.anchor_copy">
+        {{ .anchor_copy }}
+      </p>
     </div>
 
-    <!-- Card C: Testimonials Slider Card -->
-    <div id="testimonials" class="testimonials-card" aria-label="Client Testimonials">
-      <div>
-        <div class="test-header">
-          <div>
-            <div class="eyebrow" style="color: var(--color-gold-deep); margin-bottom: 2px;" data-cms-bind="testimonials_section.eyebrow">
-              {{ $testimonials.eyebrow }}
-            </div>
-            <h3 class="test-title" data-cms-bind="testimonials_section.title">{{ $testimonials.title }}</h3>
-          </div>
-          <div class="quote-mark" aria-hidden="true">“</div>
+    <!-- 3 Strategic Outcome Pillars -->
+    <div class="why-choose-pillars" data-cms-bind="why_choose_me.pillars">
+      {{ range $idx, $pillar := .pillars }}
+        <div class="pillar-card">
+          <div class="pillar-number">0{{ add $idx 1 }}</div>
+          <h3 class="pillar-title">{{ .title }}</h3>
+          <p class="pillar-desc">{{ .desc }}</p>
         </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
 
-        <div class="testimonials-slider" data-cms-bind="testimonials_section.testimonials">
-          {{ range $idx, $t := $testimonials.testimonials }}
-            <div class="test-slide {{ if eq $idx 0 }}active{{ end }}">
-              <div class="test-stars" aria-label="{{ $t.stars }} stars">★★★★★</div>
-              <blockquote class="test-quote">
-                “{{ $t.quote }}”
-              </blockquote>
+<!-- ========================================================================
+     7. TESTIMONIALS SECTION: CV-Anchored Organizational Social Proof
+     ======================================================================== -->
+<section id="testimonials" class="testimonials-standalone-section" aria-labelledby="testimonials-heading">
+  <div class="container">
+    <div class="section-header-split">
+      <div>
+        <div class="eyebrow" data-cms-bind="testimonials_section.eyebrow">{{ $testimonials.eyebrow }}</div>
+        <h2 id="testimonials-heading" class="section-title">
+          <span data-cms-bind="testimonials_section.title">{{ $testimonials.title }}</span>
+          <span class="text-gold" data-cms-bind="testimonials_section.title_highlight">{{ $testimonials.title_highlight }}</span>
+        </h2>
+      </div>
+      <p class="section-lead" data-cms-bind="testimonials_section.lead">
+        {{ $testimonials.lead }}
+      </p>
+    </div>
+
+    <!-- Executive Testimonials Carousel / Slider -->
+    <div class="testimonials-card testimonials-standalone-card" aria-label="Client Testimonials">
+      <div class="testimonials-slider" data-cms-bind="testimonials_section.testimonials">
+        {{ range $idx, $t := $testimonials.testimonials }}
+          <div class="test-slide {{ if eq $idx 0 }}active{{ end }}">
+            <div class="test-stars" aria-label="{{ $t.stars }} stars">★★★★★</div>
+            <blockquote class="test-quote">
+              “{{ $t.quote }}”
+            </blockquote>
+            <div class="test-meta-wrap">
               <div class="test-author">{{ $t.author }}</div>
-              <div class="test-role">{{ $t.role }} • {{ $t.organization }}</div>
+              <div class="test-role">{{ $t.role }} • <strong class="test-org">{{ $t.organization }}</strong></div>
             </div>
-          {{ end }}
-        </div>
+          </div>
+        {{ end }}
       </div>
 
       <div class="test-controls">
@@ -312,7 +398,7 @@
 </section>
 
 <!-- ========================================================================
-     6. RECENT MOMENTS / GALLERY STRIP: Capturing Excellence
+     8. LIVE STAGE IN ACTION: Structured Horizontal Event Ribbon
      ======================================================================== -->
 <section id="gallery" class="gallery-section" aria-labelledby="gallery-heading">
   <div class="container">
@@ -323,131 +409,70 @@
           <span data-cms-bind="gallery_section.title">{{ $gallery.title }}</span>
           <span class="text-gold" data-cms-bind="gallery_section.title_highlight">{{ $gallery.title_highlight }}</span>
         </h2>
+        <p class="section-lead" data-cms-bind="gallery_section.lead" style="max-width: 600px; margin-top: 6px;">
+          {{ $gallery.lead }}
+        </p>
       </div>
-      <a href="{{ $gallery.cta_link | default "#contact" }}" class="btn-book-nav" style="border: 1px solid var(--color-gold-primary); background: transparent; color: var(--color-gold-primary);" data-cms-bind="gallery_section.cta_text">
-        {{ $gallery.cta_text | default "Inquire for Your Date →" }}
-      </a>
+      <div class="gallery-ribbon-controls">
+        <button type="button" class="gallery-nav-btn gallery-scroll-prev" aria-label="Scroll left through events">❮</button>
+        <button type="button" class="gallery-nav-btn gallery-scroll-next" aria-label="Scroll right through events">❯</button>
+      </div>
     </div>
 
-    <!-- Real Event Photography Thumbnails with Overflow Plus Tile -->
-    {{ $totalItems := len $gallery.items }}
-    <div class="gallery-grid" data-cms-bind="gallery_section.items">
-      {{ range $index, $item := $gallery.items }}
-        {{ if and (gt $totalItems 8) (eq $index 7) }}
-          <!-- 8th Tile: Paginated Plus Tile triggering Full Scrollable Gallery Modal -->
-          <div class="gallery-item gallery-more-tile" tabindex="0" role="button" aria-label="View all {{ $totalItems }} event photographs" data-trigger="open-all-gallery">
-            <picture>
-              {{ if (hasSuffix $item.image ".webp") }}
-                <source srcset="{{ $item.image }}" type="image/webp">
-                <img src="{{ $item.image_fallback | default (replace $item.image ".webp" ".jpg") }}" alt="{{ $item.title }}" width="280" height="210" loading="lazy">
-              {{ else }}
-                <img src="{{ $item.image }}" alt="{{ $item.title }}" width="280" height="210" loading="lazy">
-              {{ end }}
-            </picture>
-            <div class="gallery-more-overlay">
-              <span class="gallery-more-plus">+{{ sub $totalItems 7 }}</span>
-              <span class="gallery-more-label">More Photographs</span>
-              <span class="gallery-more-hint">Click to View Complete Gallery ↗</span>
-            </div>
-          </div>
-        {{ else if or (le $totalItems 8) (lt $index 7) }}
-          <div class="gallery-item" tabindex="0" role="button" aria-label="Enlarge {{ .title }}" 
+    <!-- Structured Horizontal Event Ribbon -->
+    <div class="gallery-ribbon-wrapper">
+      <div class="gallery-ribbon" id="gallery-ribbon" data-cms-bind="gallery_section.items">
+        {{ range $index, $item := $gallery.items }}
+          <div class="gallery-item gallery-ribbon-card" tabindex="0" role="button" aria-label="Enlarge {{ .title }}" 
                data-index="{{ $index }}"
                data-image="{{ .image }}" 
                data-fallback="{{ .image_fallback | default (replace .image ".webp" ".jpg") }}" 
                data-title="{{ .title }}" 
                data-caption="{{ .caption }}" 
                data-category="{{ .category | default "Live Event" }}">
-            <picture>
-              {{ if (hasSuffix .image ".webp") }}
-                <source srcset="{{ .image }}" type="image/webp">
-                <img src="{{ .image_fallback | default (replace .image ".webp" ".jpg") }}" alt="{{ .title }} - {{ .caption }}" width="280" height="210" loading="lazy">
-              {{ else }}
-                <img src="{{ .image }}" alt="{{ .title }} - {{ .caption }}" width="280" height="210" loading="lazy">
-              {{ end }}
-            </picture>
-            <div class="gallery-hover-overlay">
-              <svg class="gallery-zoom-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <circle cx="11" cy="11" r="8"></circle>
-                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                <line x1="11" y1="8" x2="11" y2="14"></line>
-                <line x1="8" y1="11" x2="14" y2="11"></line>
-              </svg>
-              <span class="gallery-item-title">{{ .title }}</span>
+            <div class="ribbon-event-badge">[EVENT 0{{ add $index 1 }}]</div>
+            <div class="gallery-img-container">
+              <picture>
+                {{ if (hasSuffix .image ".webp") }}
+                  <source srcset="{{ .image }}" type="image/webp">
+                  <img src="{{ .image_fallback | default (replace .image ".webp" ".jpg") }}" alt="{{ .title }} - {{ .caption }}" width="340" height="240" loading="lazy">
+                {{ else }}
+                  <img src="{{ .image }}" alt="{{ .title }} - {{ .caption }}" width="340" height="240" loading="lazy">
+                {{ end }}
+              </picture>
+              <div class="gallery-hover-overlay">
+                <svg class="gallery-zoom-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                  <line x1="11" y1="8" x2="11" y2="14"></line>
+                  <line x1="8" y1="11" x2="14" y2="11"></line>
+                </svg>
+              </div>
+            </div>
+            <div class="gallery-ribbon-caption">
+              <span class="ribbon-card-cat">{{ .category }}</span>
+              <h4 class="ribbon-card-title">{{ .title }}</h4>
+              <p class="ribbon-card-desc">{{ .caption }}</p>
             </div>
           </div>
         {{ end }}
-      {{ end }}
-    </div>
-
-    {{ if gt $totalItems 8 }}
-      <div class="gallery-view-all-wrap text-center">
-        <button type="button" class="btn btn-secondary open-all-gallery-btn" aria-label="View all {{ $totalItems }} photographs in full gallery">
-          <span class="gallery-btn-plus">+</span>
-          <span>View All {{ $totalItems }} Event Photographs</span>
-          <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-        </button>
-      </div>
-    {{ end }}
-  </div>
-</section>
-
-<!-- ========================================================================
-     7. PERSONAL BRAND SECTION: Beyond The Stage
-     ======================================================================== -->
-<section id="personal" class="personal-section" aria-labelledby="personal-heading">
-  <div class="container personal-grid">
-    <!-- Executive Presence Portrait -->
-    <div class="personal-media-wrap">
-      <div class="personal-image-frame" data-cms-bind="personal_section.image">
-        <picture>
-          <source srcset="{{ $personal.image }}" type="image/webp">
-          <img src="{{ replace $personal.image ".webp" ".jpg" }}" alt="{{ $personal.image_alt }}" width="480" height="600" loading="lazy">
-        </picture>
-      </div>
-      <div class="personal-quote-badge" data-cms-bind="personal_section.quote_badge">
-        <p>{{ $personal.quote_badge }}</p>
-      </div>
-    </div>
-
-    <!-- Story & Core Pillars -->
-    <div class="personal-content">
-      <div class="eyebrow" data-cms-bind="personal_section.eyebrow">{{ $personal.eyebrow }}</div>
-      <h2 id="personal-heading" class="personal-title">
-        <span data-cms-bind="personal_section.title">{{ $personal.title }}</span>
-        <span class="text-gold" data-cms-bind="personal_section.title_highlight">{{ $personal.title_highlight }}</span>
-      </h2>
-
-      <div class="personal-text" data-cms-bind="personal_section.paragraphs">
-        {{ range $personal.paragraphs }}
-          <p>{{ . }}</p>
-        {{ end }}
-      </div>
-
-      <div class="personal-pillars" data-cms-bind="personal_section.pillars">
-        {{ range $personal.pillars }}
-          <div class="pillar-item">
-            <div class="pillar-title">{{ .title }}</div>
-            <div class="pillar-desc">{{ .desc }}</div>
-          </div>
-        {{ end }}
       </div>
     </div>
   </div>
 </section>
 
 <!-- ========================================================================
-     8. LATEST ARTICLES / PERSPECTIVES SECTION: Thought Leadership & Stage Craft
+     9. PERSPECTIVES SECTION: Thought Leadership & Stage Craft ("Listen to Sarah")
      ======================================================================== -->
 {{ partial "latest-articles.html" . }}
 
 <!-- ========================================================================
-     9. FAQ SECTION: Direct Answers for Event Organizers (AEO & GEO)
+     10. FAQ SECTION: Direct Answers for Event Organizers (AEO & GEO)
      ======================================================================== -->
 {{ partial "faq.html" . }}
 
 <!-- ========================================================================
-     10. BOOKING CONCIERGE SECTION: Let's Create Something Memorable
+     11. BOOKING CONCIERGE SECTION: Consultative Partnership & Direct Channels
      ======================================================================== -->
 <section id="contact" class="booking-section" aria-labelledby="booking-heading">
   <div class="container booking-grid">
@@ -496,37 +521,30 @@
       </div>
 
       <!-- Script Annotation -->
-      <div style="margin-top: 10px;" data-cms-bind="booking_section.script_flourish">
+      <div style="margin-top: 14px;" data-cms-bind="booking_section.script_flourish">
         <span class="script-accent" style="color: var(--color-gold-light); font-size: 2.2rem;">{{ $booking.script_flourish }}</span>
       </div>
     </div>
 
-    <!-- Right Column: Luxury Inquiry Form -->
+    <!-- Right Column: Conversion-Optimized 5-Field Inquiry Form -->
     <div class="booking-form-card">
-      <form id="booking-form" action="#" method="POST" novalidate aria-label="Event Booking Concierge Form">
+      <form id="booking-form" action="#" method="POST" novalidate aria-label="Event Collaboration Inquiry Form">
         <div class="form-group-row">
           <div class="form-field">
             <label for="name" class="form-label">Full Name *</label>
             <input type="text" id="name" name="name" class="form-input" placeholder="e.g. Christine Wangari" required aria-required="true" autocomplete="name">
           </div>
           <div class="form-field">
-            <label for="organisation" class="form-label">Organisation / Brand *</label>
-            <input type="text" id="organisation" name="organisation" class="form-input" placeholder="e.g. Safaricom PLC" required aria-required="true" autocomplete="organization">
-          </div>
-        </div>
-
-        <div class="form-group-row">
-          <div class="form-field">
             <label for="email" class="form-label">Work Email *</label>
             <input type="email" id="email" name="email" class="form-input" placeholder="c.wangari@company.com" required aria-required="true" autocomplete="email">
           </div>
-          <div class="form-field">
-            <label for="phone" class="form-label">Phone / WhatsApp *</label>
-            <input type="tel" id="phone" name="phone" class="form-input" placeholder="+254 700 000 000" required aria-required="true" autocomplete="tel">
-          </div>
         </div>
 
         <div class="form-group-row">
+          <div class="form-field">
+            <label for="event_date" class="form-label">Event Date</label>
+            <input type="date" id="event_date" name="event_date" class="form-input" autocomplete="off">
+          </div>
           <div class="form-field">
             <label for="event_type" class="form-label">Event Type *</label>
             <select id="event_type" name="event_type" class="form-select" required aria-required="true">
@@ -537,34 +555,19 @@
               <option value="Awards Gala / Ceremony">Awards Gala / Ceremony</option>
               <option value="Product Launch">Product Launch</option>
               <option value="Corporate Celebration / AGM">Corporate Celebration / AGM</option>
-              <option value="International Forum">International / Diplomatic Forum</option>
+              <option value="International / Diplomatic Forum">International / Diplomatic Forum</option>
             </select>
-          </div>
-          <div class="form-field">
-            <label for="event_date" class="form-label">Event Date</label>
-            <input type="date" id="event_date" name="event_date" class="form-input" autocomplete="off">
-          </div>
-        </div>
-
-        <div class="form-group-row">
-          <div class="form-field">
-            <label for="location" class="form-label">City / Venue</label>
-            <input type="text" id="location" name="location" class="form-input" placeholder="e.g. Nairobi (Sarit Expo / Villa Rosa Kempinski)">
-          </div>
-          <div class="form-field">
-            <label for="expected_guests" class="form-label">Expected Attendees</label>
-            <input type="text" id="expected_guests" name="expected_guests" class="form-input" placeholder="e.g. 350 Delegates">
           </div>
         </div>
 
         <div class="form-field">
           <label for="message" class="form-label">Brief Event Overview & Objectives</label>
-          <textarea id="message" name="message" class="form-textarea" placeholder="Tell us about the theme, desired atmosphere, and programme timeline..."></textarea>
+          <textarea id="message" name="message" class="form-textarea" placeholder="Tell us about the event objectives, audience, and timeline..."></textarea>
         </div>
 
         <div class="form-submit-row">
           <button type="submit" class="btn btn-primary" style="width: 100%;" data-cms-bind="booking_section.submit_button_text">
-            {{ $booking.submit_button_text | default "Send Booking Inquiry" }}
+            {{ $booking.submit_button_text | default "Book Discovery Call" }}
             <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
               <line x1="22" y1="2" x2="11" y2="13"></line>
               <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>

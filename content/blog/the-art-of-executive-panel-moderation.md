@@ -3,8 +3,8 @@ title: "The Art of Executive Panel Moderation: Guiding C-Suite Dialogues with Po
 date: 2026-08-15
 summary: "High-stakes executive panels require more than reading prepared questions off cue cards. Discover how to cultivate genuine debate, navigate diplomatic sensitivities, and extract actionable insights from industry leaders."
 tags: ["Executive Moderation", "Panel Discussion", "C-Suite", "Conference Leadership"]
-image: "/images/gallery/moment-4.webp"
-image_alt: "Sarah Ogembo facilitating high-stakes executive panel discussion"
+image: "/images/perspectives/executive-panel-moderation.webp"
+image_alt: "Editorial conceptual art: Executive panel moderation and strategic C-suite dialogue"
 ---
 
 When corporate leaders, government ministers, and global thought leaders gather on a summit stage, the audience is rarely looking for safe, rehearsed soundbites. They are seeking clarity, vision, and real friction that produces genuine insight.

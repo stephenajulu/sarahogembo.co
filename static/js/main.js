@@ -341,10 +341,32 @@ document.addEventListener('DOMContentLoaded', () => {
   const videoCloseBtn = document.querySelector('.video-modal-close');
   const videoIframe = document.getElementById('showreel-iframe');
   const videoPlayer = document.getElementById('showreel-video-player');
+  const videoModalTitle = document.getElementById('video-modal-title');
+  const defaultVideoSrc = '/videos/sarah-ogembo-showreel.mp4';
+  const defaultVideoPoster = '/images/showreel-poster.jpg';
 
   function openVideoModal(triggerEl) {
     if (!videoModal) return;
     lastActiveElement = triggerEl || document.activeElement;
+
+    const customUrl = triggerEl?.getAttribute('data-video-url');
+    const customPoster = triggerEl?.getAttribute('data-video-poster');
+    const customTitle = triggerEl?.getAttribute('data-video-title');
+
+    if (videoModalTitle && customTitle) {
+      videoModalTitle.textContent = customTitle;
+    }
+
+    if (videoPlayer) {
+      const targetSrc = customUrl || defaultVideoSrc;
+      const targetPoster = customPoster || defaultVideoPoster;
+      const sourceEl = videoPlayer.querySelector('source');
+      if (sourceEl) sourceEl.src = targetSrc;
+      videoPlayer.src = targetSrc;
+      videoPlayer.poster = targetPoster;
+      videoPlayer.load();
+    }
+
     videoModal.classList.add('active');
     document.body.style.overflow = 'hidden';
     if (videoPlayer) {
@@ -361,11 +383,18 @@ document.addEventListener('DOMContentLoaded', () => {
     if (videoPlayer) {
       videoPlayer.pause();
       videoPlayer.currentTime = 0;
+      const sourceEl = videoPlayer.querySelector('source');
+      if (sourceEl) sourceEl.src = defaultVideoSrc;
+      videoPlayer.src = defaultVideoSrc;
+      videoPlayer.poster = defaultVideoPoster;
     }
     if (videoIframe) {
       const src = videoIframe.src;
       videoIframe.src = '';
       videoIframe.src = src;
+    }
+    if (videoModalTitle) {
+      videoModalTitle.textContent = 'Sarah Ogembo Showreel Highlight Video';
     }
     lastActiveElement?.focus();
   }
@@ -645,90 +674,93 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // 10. Booking Concierge Form & Direct WhatsApp Integration
-  const bookingForm = document.getElementById('booking-form');
-  const formStatus = document.getElementById('form-status');
-  const pipeWhatsAppBtn = document.getElementById('btn-pipe-whatsapp');
+  // 10. Proof of Performance: Highlights Expandable Toggle
+  const highlightsToggleBtn = document.getElementById('highlights-toggle-btn');
+  const moreHighlightsGrid = document.getElementById('more-highlights-grid');
 
-  if (pipeWhatsAppBtn) {
-    pipeWhatsAppBtn.addEventListener('click', () => {
-      const name = document.getElementById('name')?.value.trim() || '';
-      const org = document.getElementById('organisation')?.value.trim() || '';
-      const email = document.getElementById('email')?.value.trim() || '';
-      const phone = document.getElementById('phone')?.value.trim() || '';
-      const eventType = document.getElementById('event_type')?.value || '';
-      const eventDate = document.getElementById('event_date')?.value || '';
-      const location = document.getElementById('location')?.value.trim() || '';
-      const guests = document.getElementById('expected_guests')?.value.trim() || '';
-      const message = document.getElementById('message')?.value.trim() || '';
-
-      if (!name) {
-        alert('Please enter your name first.');
-        document.getElementById('name')?.focus();
-        return;
-      }
-
-      let text = `*New Event Booking Inquiry for Sarah Ogembo*\n`;
-      text += `━━━━━━━━━━━━━━━━━━━━━━\n`;
-      if (name) text += `👤 *Client Name:* ${name}\n`;
-      if (org) text += `🏢 *Organisation:* ${org}\n`;
-      if (email) text += `✉️ *Work Email:* ${email}\n`;
-      if (phone) text += `📞 *Phone:* ${phone}\n`;
-      if (eventType) text += `🎙️ *Event Type:* ${eventType}\n`;
-      if (eventDate) text += `📅 *Target Date:* ${eventDate}\n`;
-      if (location) text += `📍 *Venue / City:* ${location}\n`;
-      if (guests) text += `👥 *Expected Attendees:* ${guests}\n`;
-      if (message) text += `📝 *Event Overview:* ${message}\n`;
-      text += `━━━━━━━━━━━━━━━━━━━━━━\n`;
-      text += `_Sent directly via sarahogembo.com concierge_`;
-
-      const waUrl = `https://wa.me/254719411433?text=${encodeURIComponent(text)}`;
-      window.open(waUrl, '_blank', 'noopener,noreferrer');
-
-      if (formStatus) {
-        formStatus.innerHTML = `
-          <div style="background: rgba(37, 211, 102, 0.12); border: 1px solid #25D366; color: #E8F8EE; padding: 14px 18px; border-radius: 4px; margin-top: 14px; animation: fadeIn 0.4s ease;">
-            <p><strong>✨ Details Piped to WhatsApp!</strong> A new WhatsApp window has opened with your information ready to send to Sarah.</p>
-          </div>
-        `;
+  if (highlightsToggleBtn && moreHighlightsGrid) {
+    highlightsToggleBtn.addEventListener('click', () => {
+      const isExpanded = highlightsToggleBtn.getAttribute('aria-expanded') === 'true';
+      if (isExpanded) {
+        highlightsToggleBtn.setAttribute('aria-expanded', 'false');
+        moreHighlightsGrid.classList.add('is-collapsed');
+        moreHighlightsGrid.setAttribute('aria-hidden', 'true');
+        const toggleText = highlightsToggleBtn.querySelector('.toggle-text');
+        if (toggleText) toggleText.textContent = 'View More Event Highlights (+2)';
+      } else {
+        highlightsToggleBtn.setAttribute('aria-expanded', 'true');
+        moreHighlightsGrid.classList.remove('is-collapsed');
+        moreHighlightsGrid.setAttribute('aria-hidden', 'false');
+        const toggleText = highlightsToggleBtn.querySelector('.toggle-text');
+        if (toggleText) toggleText.textContent = 'Show Fewer Highlights';
       }
     });
   }
+
+  // 11. Live Stage In Action: Horizontal Ribbon Controls
+  const galleryRibbon = document.getElementById('gallery-ribbon');
+  const ribbonPrevBtn = document.querySelector('.gallery-scroll-prev');
+  const ribbonNextBtn = document.querySelector('.gallery-scroll-next');
+
+  if (galleryRibbon) {
+    if (ribbonNextBtn) {
+      ribbonNextBtn.addEventListener('click', () => {
+        const cardWidth = galleryRibbon.querySelector('.gallery-ribbon-card')?.offsetWidth || 320;
+        galleryRibbon.scrollBy({ left: cardWidth + 20, behavior: 'smooth' });
+      });
+    }
+    if (ribbonPrevBtn) {
+      ribbonPrevBtn.addEventListener('click', () => {
+        const cardWidth = galleryRibbon.querySelector('.gallery-ribbon-card')?.offsetWidth || 320;
+        galleryRibbon.scrollBy({ left: -(cardWidth + 20), behavior: 'smooth' });
+      });
+    }
+  }
+
+  // 12. Booking Concierge Form (Conversion-Optimized 5 Fields)
+  const bookingForm = document.getElementById('booking-form');
+  const formStatus = document.getElementById('form-status');
 
   if (bookingForm) {
     bookingForm.addEventListener('submit', (e) => {
       e.preventDefault();
 
-      const name = document.getElementById('name')?.value || '';
-      const org = document.getElementById('organisation')?.value || '';
-      const email = document.getElementById('email')?.value || '';
-      const phone = document.getElementById('phone')?.value || '';
+      const name = document.getElementById('name')?.value.trim() || '';
+      const email = document.getElementById('email')?.value.trim() || '';
       const eventType = document.getElementById('event_type')?.value || '';
       const eventDate = document.getElementById('event_date')?.value || '';
-      const location = document.getElementById('location')?.value || '';
-      const guests = document.getElementById('expected_guests')?.value || '';
-      const message = document.getElementById('message')?.value || '';
+      const message = document.getElementById('message')?.value.trim() || '';
 
-      const waText = encodeURIComponent(
-        `*New Event Booking Inquiry*\n\n` +
-        `*Name:* ${name}\n` +
-        `*Organisation:* ${org}\n` +
-        `*Email:* ${email}\n` +
-        `*Phone:* ${phone}\n` +
-        `*Event Type:* ${eventType}\n` +
-        `*Date:* ${eventDate}\n` +
-        `*Location:* ${location}\n` +
-        `*Expected Guests:* ${guests}\n` +
-        `*Message:* ${message}`
-      );
+      if (!name) {
+        alert('Please enter your name.');
+        document.getElementById('name')?.focus();
+        return;
+      }
+      if (!email) {
+        alert('Please enter your work email.');
+        document.getElementById('email')?.focus();
+        return;
+      }
 
-      const waUrl = `https://wa.me/254719411433?text=${waText}`;
+      let waTextParts = [
+        `*New Event Collaboration Inquiry*`,
+        `━━━━━━━━━━━━━━━━━━━━━━`,
+        `👤 *Name:* ${name}`,
+        `✉️ *Email:* ${email}`,
+        `🎙️ *Event Type:* ${eventType || 'General Corporate Event'}`
+      ];
+      if (eventDate) waTextParts.push(`📅 *Date:* ${eventDate}`);
+      if (message) waTextParts.push(`📝 *Overview:* ${message}`);
+      waTextParts.push(`━━━━━━━━━━━━━━━━━━━━━━`);
+      waTextParts.push(`_Sent via sarahogembo.com concierge_`);
+
+      const waUrl = `https://wa.me/254719411433?text=${encodeURIComponent(waTextParts.join('\n'))}`;
 
       if (formStatus) {
         formStatus.innerHTML = `
-          <div style="background: rgba(212,175,55,0.1); border: 1px solid var(--color-gold-primary); color: #F7E7A9; padding: 16px; border-radius: 4px; margin-top: 16px; animation: fadeIn 0.4s ease;">
-            <p><strong>Thank you, ${name}.</strong> Your event details have been captured.</p>
-            <p style="margin-top: 8px; font-size: 0.9rem;">To connect directly via WhatsApp with these details pre-filled, <a href="${waUrl}" target="_blank" rel="noopener noreferrer" style="color: #25D366; text-decoration: underline; font-weight: bold;">Click Here to Open WhatsApp</a>, or Sarah's executive management team will reach out to <em>${email}</em> promptly.</p>
+          <div style="background: rgba(212,175,55,0.1); border: 1px solid var(--color-gold-primary); color: #F7E7A9; padding: 18px; border-radius: 4px; margin-top: 16px; animation: fadeIn 0.4s ease;">
+            <p><strong>Thank you, ${name}.</strong> Your discovery call inquiry has been received.</p>
+            <p style="margin-top: 8px; font-size: 0.9rem;">To connect directly via WhatsApp with your inquiry pre-filled, <a href="${waUrl}" target="_blank" rel="noopener noreferrer" style="color: #25D366; text-decoration: underline; font-weight: bold;">Click Here to Open WhatsApp</a>, or Sarah will reach out to <em>${email}</em> promptly.</p>
           </div>
         `;
       }
@@ -737,7 +769,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 11. Back to Top Button
+  // 13. Back to Top Button
   const backToTopBtn = document.querySelector('.back-to-top-btn');
   if (backToTopBtn) {
     backToTopBtn.addEventListener('click', () => {
