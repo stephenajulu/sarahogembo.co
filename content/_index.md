@@ -14,8 +14,8 @@ hero:
   primary_cta_text: "Let's Work Together"
   primary_cta_link: "#contact"
   secondary_cta_text: "Watch Showreel"
-  image: "/images/hero-sarah-stage.webp"
-  image_alt: "Sarah Ogembo corporate event facilitator on stage at conference podium with microphone"
+  image: "/images/hero-sarah-transparent.webp"
+  image_alt: "Sarah Ogembo Corporate Communications and Audience Engagement Professional in red dress and black blazer"
   script_flourish: "Every event has a purpose. Every audience matters."
 
 # ==============================================================================
@@ -98,8 +98,8 @@ services_section:
 # ==============================================================================
 event_highlights:
   eyebrow: "PROOF OF PERFORMANCE"
-  title: "Featured Event"
-  title_highlight: "Highlights"
+  title: "Featured Highlights &"
+  title_highlight: "Live Evidence"
   lead: "Real-world evidence of stage authority, dignitary protocol management, and audience engagement across global and national forums."
   featured:
     - id: "highlight-nashville"
@@ -170,7 +170,7 @@ testimonials_section:
   title_highlight: "Leaders Say"
   lead: "Reflections from senior corporate executives, diplomatic partners, and conference organizers."
   testimonials:
-    - quote: "Sarah brings remarkable professionalism, calm authority, and seamless coordination to our highest-profile state observances. She ensures every dignitary is honored and our organizational objectives are communicated with absolute clarity."
+    - quote: "Having worked in marketing and communications, I know that a great MC does more than host an event; they bring it to life! Sarah brings the confidence, presence, and audience engagement that turn well-planned events into memorable experiences. She knows how to connect with people, keep the energy flowing, and ensure every moment feels intentional. If you’re looking for an MC who understands the value of your brand, your audience, and the experience you want to create, Sarah is a recommendation I’m happy to make!"
       author: "Ms. Risper Thuku"
       role: "Senior Marketing Officer"
       organization: "Kenya National Library Service (KNLS)"
