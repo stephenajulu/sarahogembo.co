@@ -300,17 +300,17 @@ button, input, textarea, select {
 
 .brand-meta {
   display: flex;
-  flex-direction: column;
+  align-items: center;
   justify-content: center;
 }
 
 .brand-name {
   font-family: var(--font-heading);
-  font-size: clamp(1.22rem, 1.4vw, 1.38rem);
-  letter-spacing: 0.03em;
+  font-size: clamp(1.35rem, 1.6vw, 1.55rem);
+  letter-spacing: 0.02em;
   font-weight: 600;
   color: #FFFFFF;
-  line-height: 1.1;
+  line-height: 1;
   text-transform: none; /* Respects natural, sophisticated Title Case 'Sarah Ogembo' */
   transition: color var(--transition-fast);
   white-space: nowrap;
@@ -320,16 +320,7 @@ button, input, textarea, select {
 }
 
 .brand-tagline {
-  font-family: var(--font-body);
-  font-size: 0.62rem;
-  letter-spacing: 0.2em;
-  color: var(--color-gold-light);
-  text-transform: uppercase;
-  font-weight: 600;
-  margin-top: 4px;
-  line-height: 1;
-  white-space: nowrap;
-  opacity: 0.95;
+  display: none !important;
 }
 
 /* Nav Menu - Spacious, Elegant Hierarchy */
@@ -989,6 +980,10 @@ body.nav-open .nav-backdrop {
 
 .about-portrait-wrap {
   position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .about-portrait-frame {
@@ -996,14 +991,24 @@ body.nav-open .nav-backdrop {
   overflow: hidden;
   box-shadow: 0 20px 45px rgba(20, 19, 18, 0.15);
   border: 1px solid var(--color-ivory-border);
+  aspect-ratio: 2 / 3;
+  width: 100%;
+}
+
+.about-portrait-frame picture {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 .about-portrait-frame img {
   width: 100%;
-  height: auto;
-  aspect-ratio: 4 / 5;
+  height: 100%;
+  aspect-ratio: 2 / 3;
   object-fit: cover;
+  object-position: center 25%;
   transition: transform var(--transition-luxury);
+  display: block;
 }
 .about-portrait-frame:hover img {
   transform: scale(1.03);
@@ -4034,11 +4039,102 @@ a.btn-cv-download,
   position: relative;
 }
 
-.highlights-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: clamp(1.5rem, 2.5vw, 2.2rem);
+.highlights-header-controls,
+.gallery-header-controls {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.highlights-nav-buttons,
+.gallery-nav-buttons {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.carousel-nav-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(22, 22, 22, 0.9);
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  color: var(--color-gold-light);
+  cursor: pointer;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.carousel-nav-btn:hover {
+  background: var(--color-gold-primary);
+  color: #0A0A0A;
+  border-color: var(--color-gold-light);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(212, 175, 55, 0.35);
+}
+
+.carousel-nav-btn:focus-visible {
+  outline: 2px solid var(--color-gold-light);
+  outline-offset: 3px;
+}
+
+.carousel-nav-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+  pointer-events: none;
+}
+
+.highlights-carousel-wrapper {
+  position: relative;
+  width: 100%;
   margin-top: var(--space-7);
+}
+
+.highlights-carousel-track {
+  display: flex;
+  gap: clamp(1.5rem, 2.5vw, 2.2rem);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  padding: 12px 4px 20px 4px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.highlights-carousel-track::-webkit-scrollbar {
+  display: none;
+}
+
+.highlights-carousel-track .highlight-card {
+  flex: 0 0 calc((100% - (2 * clamp(1.5rem, 2.5vw, 2.2rem))) / 3);
+  max-width: calc((100% - (2 * clamp(1.5rem, 2.5vw, 2.2rem))) / 3);
+  scroll-snap-align: start;
+  min-width: 0;
+  margin-bottom: 0;
+}
+
+@media (max-width: 1024px) {
+  .highlights-carousel-track .highlight-card {
+    flex: 0 0 calc((100% - clamp(1.5rem, 2.5vw, 2.2rem)) / 2);
+    max-width: calc((100% - clamp(1.5rem, 2.5vw, 2.2rem)) / 2);
+  }
+}
+
+@media (max-width: 680px) {
+  .highlights-carousel-track .highlight-card {
+    flex: 0 0 88%;
+    max-width: 88%;
+  }
 }
 
 .highlight-card {
@@ -4061,7 +4157,7 @@ a.btn-cv-download,
 .highlight-video-box {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 16 / 9;
   background: #000;
   overflow: hidden;
 }
@@ -4156,35 +4252,6 @@ a.btn-cv-download,
   font-size: 0.88rem;
   color: var(--color-text-subtle);
   line-height: 1.6;
-}
-
-/* Expandable highlights toggle */
-.more-highlights-grid {
-  transition: all 0.4s ease;
-  overflow: hidden;
-}
-
-.more-highlights-grid.is-collapsed {
-  display: none !important;
-}
-
-.highlights-toggle-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 0.88rem;
-  letter-spacing: 0.06em;
-  padding: 10px 24px;
-}
-
-.highlights-toggle-btn .toggle-icon {
-  width: 18px;
-  height: 18px;
-  transition: transform var(--transition-smooth);
-}
-
-.highlights-toggle-btn[aria-expanded="true"] .toggle-icon {
-  transform: rotate(180deg);
 }
 
 /* Why Organizations Choose Me Section */
@@ -4323,17 +4390,42 @@ a.btn-cv-download,
   padding: clamp(4.5rem, 8vw, 7rem) 0;
   border-top: 1px solid var(--color-gold-border);
   position: relative;
+  overflow: hidden;
 }
 
-.stage-gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: clamp(1.2rem, 2.2vw, 2rem);
+.stage-carousel-wrapper {
+  position: relative;
+  width: 100%;
   margin-top: 2.5rem;
+  padding: 12px 0 25px 0;
+}
+
+.stage-gallery-track {
+  display: flex;
+  gap: clamp(1.2rem, 2vw, 1.8rem);
+  overflow-x: auto;
+  scroll-behavior: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  cursor: grab;
+  user-select: none;
+  padding: 0 max(24px, calc((100vw - 1280px) / 2));
+}
+
+.stage-gallery-track::-webkit-scrollbar {
+  display: none;
+}
+
+.stage-gallery-track.is-dragging {
+  cursor: grabbing;
 }
 
 .stage-gallery-card {
   position: relative;
+  flex: 0 0 clamp(290px, 28vw, 370px);
+  max-width: clamp(290px, 28vw, 370px);
+  min-width: clamp(290px, 28vw, 370px);
   border-radius: 6px;
   overflow: hidden;
   background: #111111;

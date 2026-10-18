@@ -341,14 +341,44 @@ document.addEventListener('DOMContentLoaded', () => {
   const videoCloseBtn = document.querySelector('.video-modal-close');
   const videoIframe = document.getElementById('showreel-iframe');
   const videoPlayer = document.getElementById('showreel-video-player');
+  const videoModalTitle = document.getElementById('video-modal-title');
+  const defaultVideoSrc = '/videos/sarah-ogembo-showreel.mp4';
+  const defaultVideoPoster = '/images/showreel-poster.jpg';
 
   function openVideoModal(triggerEl) {
     if (!videoModal) return;
     lastActiveElement = triggerEl || document.activeElement;
+
+    const customUrl = triggerEl?.getAttribute('data-video-url');
+    const customPoster = triggerEl?.getAttribute('data-video-poster');
+    const customTitle = triggerEl?.getAttribute('data-video-title');
+
+    if (videoModalTitle && customTitle) {
+      videoModalTitle.textContent = customTitle;
+    }
+
+    if (videoPlayer) {
+      const targetSrc = customUrl || defaultVideoSrc;
+      const targetPoster = customPoster || defaultVideoPoster;
+      let sourceEl = videoPlayer.querySelector('source');
+      if (!sourceEl) {
+        sourceEl = document.createElement('source');
+        sourceEl.type = 'video/mp4';
+        videoPlayer.appendChild(sourceEl);
+      }
+      sourceEl.src = targetSrc;
+      videoPlayer.src = targetSrc;
+      videoPlayer.poster = targetPoster;
+      videoPlayer.load();
+    }
+
     videoModal.classList.add('active');
     document.body.style.overflow = 'hidden';
     if (videoPlayer) {
-      videoPlayer.play().catch(() => {});
+      const playPromise = videoPlayer.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {});
+      }
     }
     trapFocus(videoModal);
     videoCloseBtn?.focus();
@@ -361,20 +391,30 @@ document.addEventListener('DOMContentLoaded', () => {
     if (videoPlayer) {
       videoPlayer.pause();
       videoPlayer.currentTime = 0;
+      const sourceEl = videoPlayer.querySelector('source');
+      if (sourceEl) sourceEl.src = defaultVideoSrc;
+      videoPlayer.src = defaultVideoSrc;
+      videoPlayer.poster = defaultVideoPoster;
     }
     if (videoIframe) {
       const src = videoIframe.src;
       videoIframe.src = '';
       videoIframe.src = src;
     }
+    if (videoModalTitle) {
+      videoModalTitle.textContent = 'Sarah Ogembo Showreel Highlight Video';
+    }
     lastActiveElement?.focus();
   }
 
-  videoTriggers.forEach((trigger) => {
-    trigger.addEventListener('click', (e) => {
+  // Delegated click handler to guarantee all current and future triggers open the exact video
+  document.addEventListener('click', (e) => {
+    const trigger = e.target.closest('.trigger-video-modal');
+    if (trigger) {
       e.preventDefault();
+      e.stopPropagation();
       openVideoModal(trigger);
-    });
+    }
   });
 
   videoCloseBtn?.addEventListener('click', closeVideoModal);
@@ -394,12 +434,16 @@ document.addEventListener('DOMContentLoaded', () => {
   let galleryItems = [];
   let currentGalleryIndex = 0;
   let openedFromAllGallery = false;
+  let galleryHasDragged = false;
 
   const initGalleryItems = () => {
-    // Prefer items from #all-gallery-modal to get the full archive of 18 photos
-    let tileElements = document.querySelectorAll('#all-gallery-modal .all-gallery-tile');
+    // Prioritize stage gallery items from the dedicated #gallery section
+    let tileElements = document.querySelectorAll('#stage-gallery-track .gallery-item, #gallery .gallery-item, .stage-gallery-grid .gallery-item');
     if (tileElements.length === 0) {
-      tileElements = document.querySelectorAll('.gallery-grid .gallery-item:not(.gallery-more-tile)');
+      tileElements = document.querySelectorAll('#all-gallery-modal .all-gallery-tile');
+    }
+    if (tileElements.length === 0) {
+      tileElements = document.querySelectorAll('.gallery-item:not(.gallery-more-tile)');
     }
     
     galleryItems = Array.from(tileElements).map((el, idx) => {
@@ -452,7 +496,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (lightboxCaption) {
       lightboxCaption.innerHTML = `
         <span class="lightbox-cat-badge">${item.category}</span>
-        <h4 class="lightbox-title">${item.title}</h4>
+        <h3 class="lightbox-title">${item.title}</h3>
         ${item.caption ? `<p class="lightbox-desc">${item.caption}</p>` : ''}
       `;
     }
@@ -520,6 +564,10 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('click', (e) => {
     const tile = e.target.closest('.gallery-item:not(.gallery-more-tile)');
     if (tile) {
+      if (galleryHasDragged) {
+        e.preventDefault();
+        return;
+      }
       e.preventDefault();
       let idx = tile.getAttribute('data-index');
       if (idx !== null && idx !== undefined && idx !== '') {
@@ -645,90 +693,177 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // 10. Booking Concierge Form & Direct WhatsApp Integration
-  const bookingForm = document.getElementById('booking-form');
-  const formStatus = document.getElementById('form-status');
-  const pipeWhatsAppBtn = document.getElementById('btn-pipe-whatsapp');
+  // 10. Featured Highlights Horizontal Carousel (Wheel Scroll + Nav Buttons)
+  const highlightsTrack = document.getElementById('highlights-carousel-track');
+  const highlightsPrevBtn = document.getElementById('highlights-prev-btn');
+  const highlightsNextBtn = document.getElementById('highlights-next-btn');
 
-  if (pipeWhatsAppBtn) {
-    pipeWhatsAppBtn.addEventListener('click', () => {
-      const name = document.getElementById('name')?.value.trim() || '';
-      const org = document.getElementById('organisation')?.value.trim() || '';
-      const email = document.getElementById('email')?.value.trim() || '';
-      const phone = document.getElementById('phone')?.value.trim() || '';
-      const eventType = document.getElementById('event_type')?.value || '';
-      const eventDate = document.getElementById('event_date')?.value || '';
-      const location = document.getElementById('location')?.value.trim() || '';
-      const guests = document.getElementById('expected_guests')?.value.trim() || '';
-      const message = document.getElementById('message')?.value.trim() || '';
+  if (highlightsTrack) {
+    const getHighlightStep = () => {
+      const firstCard = highlightsTrack.querySelector('.highlight-card');
+      return firstCard ? firstCard.offsetWidth + 24 : 380;
+    };
 
-      if (!name) {
-        alert('Please enter your name first.');
-        document.getElementById('name')?.focus();
-        return;
+    const updateHighlightsNav = () => {
+      if (!highlightsPrevBtn || !highlightsNextBtn) return;
+      const atStart = highlightsTrack.scrollLeft <= 10;
+      const atEnd = highlightsTrack.scrollLeft + highlightsTrack.clientWidth >= highlightsTrack.scrollWidth - 10;
+      highlightsPrevBtn.disabled = atStart;
+      highlightsNextBtn.disabled = atEnd;
+    };
+
+    highlightsTrack.addEventListener('scroll', updateHighlightsNav, { passive: true });
+    window.addEventListener('resize', updateHighlightsNav, { passive: true });
+    updateHighlightsNav();
+
+    highlightsPrevBtn?.addEventListener('click', () => {
+      highlightsTrack.scrollBy({ left: -getHighlightStep(), behavior: 'smooth' });
+    });
+
+    highlightsNextBtn?.addEventListener('click', () => {
+      highlightsTrack.scrollBy({ left: getHighlightStep(), behavior: 'smooth' });
+    });
+
+    // Horizontal wheel-scroll when cursor is over the highlights carousel
+    highlightsTrack.addEventListener('wheel', (e) => {
+      if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+        const canScrollLeft = highlightsTrack.scrollLeft > 0 && e.deltaY < 0;
+        const canScrollRight = highlightsTrack.scrollLeft + highlightsTrack.clientWidth < highlightsTrack.scrollWidth - 2 && e.deltaY > 0;
+        if (canScrollLeft || canScrollRight) {
+          e.preventDefault();
+          highlightsTrack.scrollLeft += e.deltaY * 0.9;
+        }
       }
+    }, { passive: false });
+  }
 
-      let text = `*New Event Booking Inquiry for Sarah Ogembo*\n`;
-      text += `━━━━━━━━━━━━━━━━━━━━━━\n`;
-      if (name) text += `👤 *Client Name:* ${name}\n`;
-      if (org) text += `🏢 *Organisation:* ${org}\n`;
-      if (email) text += `✉️ *Work Email:* ${email}\n`;
-      if (phone) text += `📞 *Phone:* ${phone}\n`;
-      if (eventType) text += `🎙️ *Event Type:* ${eventType}\n`;
-      if (eventDate) text += `📅 *Target Date:* ${eventDate}\n`;
-      if (location) text += `📍 *Venue / City:* ${location}\n`;
-      if (guests) text += `👥 *Expected Attendees:* ${guests}\n`;
-      if (message) text += `📝 *Event Overview:* ${message}\n`;
-      text += `━━━━━━━━━━━━━━━━━━━━━━\n`;
-      text += `_Sent directly via sarahogembo.com concierge_`;
+  // 11. "Moments on Stage" Auto Slow-Scrolling Carousel with Drag & Hover Pause
+  const stageGalleryTrack = document.getElementById('stage-gallery-track');
+  const stageGalleryPrev = document.getElementById('stage-gallery-prev');
+  const stageGalleryNext = document.getElementById('stage-gallery-next');
 
-      const waUrl = `https://wa.me/254719411433?text=${encodeURIComponent(text)}`;
-      window.open(waUrl, '_blank', 'noopener,noreferrer');
+  if (stageGalleryTrack) {
+    let isPaused = false;
+    let isPointerDown = false;
+    let startX = 0;
+    let scrollStart = 0;
+    let autoScrollRaf = null;
+    const scrollSpeed = 0.6; // Subtle luxury continuous scroll speed (~36px/sec)
 
-      if (formStatus) {
-        formStatus.innerHTML = `
-          <div style="background: rgba(37, 211, 102, 0.12); border: 1px solid #25D366; color: #E8F8EE; padding: 14px 18px; border-radius: 4px; margin-top: 14px; animation: fadeIn 0.4s ease;">
-            <p><strong>✨ Details Piped to WhatsApp!</strong> A new WhatsApp window has opened with your information ready to send to Sarah.</p>
-          </div>
-        `;
+    const stepGalleryCard = () => {
+      const firstCard = stageGalleryTrack.querySelector('.stage-gallery-card');
+      return firstCard ? firstCard.offsetWidth + 24 : 360;
+    };
+
+    // Auto Slow-Scroll Loop
+    const autoScrollLoop = () => {
+      if (!isPaused && !isPointerDown && !prefersReducedMotion) {
+        stageGalleryTrack.scrollLeft += scrollSpeed;
+        const maxScroll = stageGalleryTrack.scrollWidth - stageGalleryTrack.clientWidth;
+        if (stageGalleryTrack.scrollLeft >= maxScroll - 1) {
+          stageGalleryTrack.scrollLeft = 0; // Smooth loop restart
+        }
       }
+      autoScrollRaf = requestAnimationFrame(autoScrollLoop);
+    };
+
+    autoScrollRaf = requestAnimationFrame(autoScrollLoop);
+
+    // Pause on Hover & Focus
+    stageGalleryTrack.addEventListener('mouseenter', () => { isPaused = true; });
+    stageGalleryTrack.addEventListener('mouseleave', () => { if (!isPointerDown) isPaused = false; });
+    stageGalleryTrack.addEventListener('focusin', () => { isPaused = true; });
+    stageGalleryTrack.addEventListener('focusout', () => { isPaused = false; });
+
+    // Drag / Swipe to Scroll
+    stageGalleryTrack.addEventListener('pointerdown', (e) => {
+      if (e.button !== 0) return; // Only primary button
+      isPointerDown = true;
+      galleryHasDragged = false;
+      startX = e.pageX;
+      scrollStart = stageGalleryTrack.scrollLeft;
+      stageGalleryTrack.classList.add('is-dragging');
+    });
+
+    window.addEventListener('pointermove', (e) => {
+      if (!isPointerDown) return;
+      const walk = e.pageX - startX;
+      if (Math.abs(walk) > 6) {
+        galleryHasDragged = true;
+      }
+      stageGalleryTrack.scrollLeft = scrollStart - walk;
+    });
+
+    const endDrag = () => {
+      if (!isPointerDown) return;
+      isPointerDown = false;
+      stageGalleryTrack.classList.remove('is-dragging');
+      setTimeout(() => {
+        galleryHasDragged = false;
+      }, 60);
+    };
+
+    window.addEventListener('pointerup', endDrag);
+    window.addEventListener('pointercancel', endDrag);
+
+    // Prev / Next Buttons
+    stageGalleryPrev?.addEventListener('click', () => {
+      isPaused = true;
+      stageGalleryTrack.scrollBy({ left: -stepGalleryCard(), behavior: 'smooth' });
+      setTimeout(() => { isPaused = false; }, 2000);
+    });
+
+    stageGalleryNext?.addEventListener('click', () => {
+      isPaused = true;
+      stageGalleryTrack.scrollBy({ left: stepGalleryCard(), behavior: 'smooth' });
+      setTimeout(() => { isPaused = false; }, 2000);
     });
   }
+
+  // 12. Booking Concierge Form (Conversion-Optimized 5 Fields)
+  const bookingForm = document.getElementById('booking-form');
+  const formStatus = document.getElementById('form-status');
 
   if (bookingForm) {
     bookingForm.addEventListener('submit', (e) => {
       e.preventDefault();
 
-      const name = document.getElementById('name')?.value || '';
-      const org = document.getElementById('organisation')?.value || '';
-      const email = document.getElementById('email')?.value || '';
-      const phone = document.getElementById('phone')?.value || '';
+      const name = document.getElementById('name')?.value.trim() || '';
+      const email = document.getElementById('email')?.value.trim() || '';
       const eventType = document.getElementById('event_type')?.value || '';
       const eventDate = document.getElementById('event_date')?.value || '';
-      const location = document.getElementById('location')?.value || '';
-      const guests = document.getElementById('expected_guests')?.value || '';
-      const message = document.getElementById('message')?.value || '';
+      const message = document.getElementById('message')?.value.trim() || '';
 
-      const waText = encodeURIComponent(
-        `*New Event Booking Inquiry*\n\n` +
-        `*Name:* ${name}\n` +
-        `*Organisation:* ${org}\n` +
-        `*Email:* ${email}\n` +
-        `*Phone:* ${phone}\n` +
-        `*Event Type:* ${eventType}\n` +
-        `*Date:* ${eventDate}\n` +
-        `*Location:* ${location}\n` +
-        `*Expected Guests:* ${guests}\n` +
-        `*Message:* ${message}`
-      );
+      if (!name) {
+        alert('Please enter your name.');
+        document.getElementById('name')?.focus();
+        return;
+      }
+      if (!email) {
+        alert('Please enter your work email.');
+        document.getElementById('email')?.focus();
+        return;
+      }
 
-      const waUrl = `https://wa.me/254719411433?text=${waText}`;
+      let waTextParts = [
+        `*New Event Collaboration Inquiry*`,
+        `━━━━━━━━━━━━━━━━━━━━━━`,
+        `👤 *Name:* ${name}`,
+        `✉️ *Email:* ${email}`,
+        `🎙️ *Event Type:* ${eventType || 'General Corporate Event'}`
+      ];
+      if (eventDate) waTextParts.push(`📅 *Date:* ${eventDate}`);
+      if (message) waTextParts.push(`📝 *Overview:* ${message}`);
+      waTextParts.push(`━━━━━━━━━━━━━━━━━━━━━━`);
+      waTextParts.push(`_Sent via sarahogembo.com concierge_`);
+
+      const waUrl = `https://wa.me/254719411433?text=${encodeURIComponent(waTextParts.join('\n'))}`;
 
       if (formStatus) {
         formStatus.innerHTML = `
-          <div style="background: rgba(212,175,55,0.1); border: 1px solid var(--color-gold-primary); color: #F7E7A9; padding: 16px; border-radius: 4px; margin-top: 16px; animation: fadeIn 0.4s ease;">
-            <p><strong>Thank you, ${name}.</strong> Your event details have been captured.</p>
-            <p style="margin-top: 8px; font-size: 0.9rem;">To connect directly via WhatsApp with these details pre-filled, <a href="${waUrl}" target="_blank" rel="noopener noreferrer" style="color: #25D366; text-decoration: underline; font-weight: bold;">Click Here to Open WhatsApp</a>, or Sarah's executive management team will reach out to <em>${email}</em> promptly.</p>
+          <div style="background: rgba(212,175,55,0.1); border: 1px solid var(--color-gold-primary); color: #F7E7A9; padding: 18px; border-radius: 4px; margin-top: 16px; animation: fadeIn 0.4s ease;">
+            <p><strong>Thank you, ${name}.</strong> Your discovery call inquiry has been received.</p>
+            <p style="margin-top: 8px; font-size: 0.9rem;">To connect directly via WhatsApp with your inquiry pre-filled, <a href="${waUrl}" target="_blank" rel="noopener noreferrer" style="color: #25D366; text-decoration: underline; font-weight: bold;">Click Here to Open WhatsApp</a>, or Sarah will reach out to <em>${email}</em> promptly.</p>
           </div>
         `;
       }
@@ -737,7 +872,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 11. Back to Top Button
+  // 13. Back to Top Button
   const backToTopBtn = document.querySelector('.back-to-top-btn');
   if (backToTopBtn) {
     backToTopBtn.addEventListener('click', () => {

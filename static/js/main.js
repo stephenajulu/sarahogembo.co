@@ -360,8 +360,13 @@ document.addEventListener('DOMContentLoaded', () => {
     if (videoPlayer) {
       const targetSrc = customUrl || defaultVideoSrc;
       const targetPoster = customPoster || defaultVideoPoster;
-      const sourceEl = videoPlayer.querySelector('source');
-      if (sourceEl) sourceEl.src = targetSrc;
+      let sourceEl = videoPlayer.querySelector('source');
+      if (!sourceEl) {
+        sourceEl = document.createElement('source');
+        sourceEl.type = 'video/mp4';
+        videoPlayer.appendChild(sourceEl);
+      }
+      sourceEl.src = targetSrc;
       videoPlayer.src = targetSrc;
       videoPlayer.poster = targetPoster;
       videoPlayer.load();
@@ -370,7 +375,10 @@ document.addEventListener('DOMContentLoaded', () => {
     videoModal.classList.add('active');
     document.body.style.overflow = 'hidden';
     if (videoPlayer) {
-      videoPlayer.play().catch(() => {});
+      const playPromise = videoPlayer.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {});
+      }
     }
     trapFocus(videoModal);
     videoCloseBtn?.focus();
@@ -399,11 +407,14 @@ document.addEventListener('DOMContentLoaded', () => {
     lastActiveElement?.focus();
   }
 
-  videoTriggers.forEach((trigger) => {
-    trigger.addEventListener('click', (e) => {
+  // Delegated click handler to guarantee all current and future triggers open the exact video
+  document.addEventListener('click', (e) => {
+    const trigger = e.target.closest('.trigger-video-modal');
+    if (trigger) {
       e.preventDefault();
+      e.stopPropagation();
       openVideoModal(trigger);
-    });
+    }
   });
 
   videoCloseBtn?.addEventListener('click', closeVideoModal);
@@ -423,10 +434,11 @@ document.addEventListener('DOMContentLoaded', () => {
   let galleryItems = [];
   let currentGalleryIndex = 0;
   let openedFromAllGallery = false;
+  let galleryHasDragged = false;
 
   const initGalleryItems = () => {
     // Prioritize stage gallery items from the dedicated #gallery section
-    let tileElements = document.querySelectorAll('#gallery .gallery-item, .stage-gallery-grid .gallery-item');
+    let tileElements = document.querySelectorAll('#stage-gallery-track .gallery-item, #gallery .gallery-item, .stage-gallery-grid .gallery-item');
     if (tileElements.length === 0) {
       tileElements = document.querySelectorAll('#all-gallery-modal .all-gallery-tile');
     }
@@ -552,6 +564,10 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('click', (e) => {
     const tile = e.target.closest('.gallery-item:not(.gallery-more-tile)');
     if (tile) {
+      if (galleryHasDragged) {
+        e.preventDefault();
+        return;
+      }
       e.preventDefault();
       let idx = tile.getAttribute('data-index');
       if (idx !== null && idx !== undefined && idx !== '') {
@@ -677,47 +693,131 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // 10. Proof of Performance: Highlights Expandable Toggle
-  const highlightsToggleBtn = document.getElementById('highlights-toggle-btn');
-  const moreHighlightsGrid = document.getElementById('more-highlights-grid');
+  // 10. Featured Highlights Horizontal Carousel (Wheel Scroll + Nav Buttons)
+  const highlightsTrack = document.getElementById('highlights-carousel-track');
+  const highlightsPrevBtn = document.getElementById('highlights-prev-btn');
+  const highlightsNextBtn = document.getElementById('highlights-next-btn');
 
-  if (highlightsToggleBtn && moreHighlightsGrid) {
-    highlightsToggleBtn.addEventListener('click', () => {
-      const isExpanded = highlightsToggleBtn.getAttribute('aria-expanded') === 'true';
-      if (isExpanded) {
-        highlightsToggleBtn.setAttribute('aria-expanded', 'false');
-        moreHighlightsGrid.classList.add('is-collapsed');
-        moreHighlightsGrid.setAttribute('aria-hidden', 'true');
-        const toggleText = highlightsToggleBtn.querySelector('.toggle-text');
-        if (toggleText) toggleText.textContent = 'View More Event Highlights (+2)';
-      } else {
-        highlightsToggleBtn.setAttribute('aria-expanded', 'true');
-        moreHighlightsGrid.classList.remove('is-collapsed');
-        moreHighlightsGrid.setAttribute('aria-hidden', 'false');
-        const toggleText = highlightsToggleBtn.querySelector('.toggle-text');
-        if (toggleText) toggleText.textContent = 'Show Fewer Highlights';
-      }
+  if (highlightsTrack) {
+    const getHighlightStep = () => {
+      const firstCard = highlightsTrack.querySelector('.highlight-card');
+      return firstCard ? firstCard.offsetWidth + 24 : 380;
+    };
+
+    const updateHighlightsNav = () => {
+      if (!highlightsPrevBtn || !highlightsNextBtn) return;
+      const atStart = highlightsTrack.scrollLeft <= 10;
+      const atEnd = highlightsTrack.scrollLeft + highlightsTrack.clientWidth >= highlightsTrack.scrollWidth - 10;
+      highlightsPrevBtn.disabled = atStart;
+      highlightsNextBtn.disabled = atEnd;
+    };
+
+    highlightsTrack.addEventListener('scroll', updateHighlightsNav, { passive: true });
+    window.addEventListener('resize', updateHighlightsNav, { passive: true });
+    updateHighlightsNav();
+
+    highlightsPrevBtn?.addEventListener('click', () => {
+      highlightsTrack.scrollBy({ left: -getHighlightStep(), behavior: 'smooth' });
     });
+
+    highlightsNextBtn?.addEventListener('click', () => {
+      highlightsTrack.scrollBy({ left: getHighlightStep(), behavior: 'smooth' });
+    });
+
+    // Horizontal wheel-scroll when cursor is over the highlights carousel
+    highlightsTrack.addEventListener('wheel', (e) => {
+      if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+        const canScrollLeft = highlightsTrack.scrollLeft > 0 && e.deltaY < 0;
+        const canScrollRight = highlightsTrack.scrollLeft + highlightsTrack.clientWidth < highlightsTrack.scrollWidth - 2 && e.deltaY > 0;
+        if (canScrollLeft || canScrollRight) {
+          e.preventDefault();
+          highlightsTrack.scrollLeft += e.deltaY * 0.9;
+        }
+      }
+    }, { passive: false });
   }
 
-  // 11. Live Stage In Action: Horizontal Ribbon Controls
-  const galleryRibbon = document.getElementById('gallery-ribbon');
-  const ribbonPrevBtn = document.querySelector('.gallery-scroll-prev');
-  const ribbonNextBtn = document.querySelector('.gallery-scroll-next');
+  // 11. "Moments on Stage" Auto Slow-Scrolling Carousel with Drag & Hover Pause
+  const stageGalleryTrack = document.getElementById('stage-gallery-track');
+  const stageGalleryPrev = document.getElementById('stage-gallery-prev');
+  const stageGalleryNext = document.getElementById('stage-gallery-next');
 
-  if (galleryRibbon) {
-    if (ribbonNextBtn) {
-      ribbonNextBtn.addEventListener('click', () => {
-        const cardWidth = galleryRibbon.querySelector('.gallery-ribbon-card')?.offsetWidth || 320;
-        galleryRibbon.scrollBy({ left: cardWidth + 20, behavior: 'smooth' });
-      });
-    }
-    if (ribbonPrevBtn) {
-      ribbonPrevBtn.addEventListener('click', () => {
-        const cardWidth = galleryRibbon.querySelector('.gallery-ribbon-card')?.offsetWidth || 320;
-        galleryRibbon.scrollBy({ left: -(cardWidth + 20), behavior: 'smooth' });
-      });
-    }
+  if (stageGalleryTrack) {
+    let isPaused = false;
+    let isPointerDown = false;
+    let startX = 0;
+    let scrollStart = 0;
+    let autoScrollRaf = null;
+    const scrollSpeed = 0.6; // Subtle luxury continuous scroll speed (~36px/sec)
+
+    const stepGalleryCard = () => {
+      const firstCard = stageGalleryTrack.querySelector('.stage-gallery-card');
+      return firstCard ? firstCard.offsetWidth + 24 : 360;
+    };
+
+    // Auto Slow-Scroll Loop
+    const autoScrollLoop = () => {
+      if (!isPaused && !isPointerDown && !prefersReducedMotion) {
+        stageGalleryTrack.scrollLeft += scrollSpeed;
+        const maxScroll = stageGalleryTrack.scrollWidth - stageGalleryTrack.clientWidth;
+        if (stageGalleryTrack.scrollLeft >= maxScroll - 1) {
+          stageGalleryTrack.scrollLeft = 0; // Smooth loop restart
+        }
+      }
+      autoScrollRaf = requestAnimationFrame(autoScrollLoop);
+    };
+
+    autoScrollRaf = requestAnimationFrame(autoScrollLoop);
+
+    // Pause on Hover & Focus
+    stageGalleryTrack.addEventListener('mouseenter', () => { isPaused = true; });
+    stageGalleryTrack.addEventListener('mouseleave', () => { if (!isPointerDown) isPaused = false; });
+    stageGalleryTrack.addEventListener('focusin', () => { isPaused = true; });
+    stageGalleryTrack.addEventListener('focusout', () => { isPaused = false; });
+
+    // Drag / Swipe to Scroll
+    stageGalleryTrack.addEventListener('pointerdown', (e) => {
+      if (e.button !== 0) return; // Only primary button
+      isPointerDown = true;
+      galleryHasDragged = false;
+      startX = e.pageX;
+      scrollStart = stageGalleryTrack.scrollLeft;
+      stageGalleryTrack.classList.add('is-dragging');
+    });
+
+    window.addEventListener('pointermove', (e) => {
+      if (!isPointerDown) return;
+      const walk = e.pageX - startX;
+      if (Math.abs(walk) > 6) {
+        galleryHasDragged = true;
+      }
+      stageGalleryTrack.scrollLeft = scrollStart - walk;
+    });
+
+    const endDrag = () => {
+      if (!isPointerDown) return;
+      isPointerDown = false;
+      stageGalleryTrack.classList.remove('is-dragging');
+      setTimeout(() => {
+        galleryHasDragged = false;
+      }, 60);
+    };
+
+    window.addEventListener('pointerup', endDrag);
+    window.addEventListener('pointercancel', endDrag);
+
+    // Prev / Next Buttons
+    stageGalleryPrev?.addEventListener('click', () => {
+      isPaused = true;
+      stageGalleryTrack.scrollBy({ left: -stepGalleryCard(), behavior: 'smooth' });
+      setTimeout(() => { isPaused = false; }, 2000);
+    });
+
+    stageGalleryNext?.addEventListener('click', () => {
+      isPaused = true;
+      stageGalleryTrack.scrollBy({ left: stepGalleryCard(), behavior: 'smooth' });
+      setTimeout(() => { isPaused = false; }, 2000);
+    });
   }
 
   // 12. Booking Concierge Form (Conversion-Optimized 5 Fields)

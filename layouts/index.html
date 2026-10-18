@@ -114,7 +114,7 @@
       <div class="about-portrait-frame" data-cms-bind="about.image">
         <picture>
           <source srcset="{{ $about.image }}" type="image/webp">
-          <img src="{{ replace $about.image ".webp" ".jpg" }}" alt="{{ $about.image_alt }}" width="400" height="500" loading="lazy">
+          <img src="{{ replace $about.image ".webp" ".jpg" }}" alt="{{ $about.image_alt }}" width="480" height="720" loading="lazy">
         </picture>
       </div>
       <!-- Script Callout Accent -->
@@ -225,63 +225,37 @@
         <div class="eyebrow" data-cms-bind="event_highlights.eyebrow">{{ .eyebrow }}</div>
         <h2 id="highlights-heading" class="section-title">
           <span data-cms-bind="event_highlights.title">{{ .title }}</span>
-          <span class="text-gold" data-cms-bind="event_highlights.title_highlight">{{ .title_highlight }}</span>
+          {{ with .title_highlight }}<span class="text-gold" data-cms-bind="event_highlights.title_highlight">{{ . }}</span>{{ end }}
         </h2>
       </div>
-      <p class="section-lead" data-cms-bind="event_highlights.lead">
-        {{ .lead }}
-      </p>
-    </div>
-
-    <!-- 3 Featured Video Case Studies -->
-    <div class="highlights-grid" data-cms-bind="event_highlights.featured">
-      {{ range .featured }}
-        <article class="highlight-card" id="{{ .id }}">
-          <div class="highlight-video-box">
-            <video class="highlight-video-el" playsinline preload="none" poster="{{ .poster }}" controls aria-label="{{ .title }}">
-              <source src="{{ .video_url }}" type="video/mp4">
-              Your browser does not support HTML5 video playback.
-            </video>
-            <div class="highlight-badge">{{ .badge }}</div>
-            <button type="button" class="highlight-modal-trigger trigger-video-modal" aria-label="Expand video: {{ .title }}" data-video-url="{{ .video_url }}" data-video-poster="{{ .poster }}" data-video-title="{{ .title }} • {{ .organization }}">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polyline points="15 3 21 3 21 9"></polyline>
-                <polyline points="9 21 3 21 3 15"></polyline>
-                <line x1="21" y1="3" x2="14" y2="10"></line>
-                <line x1="3" y1="21" x2="10" y2="14"></line>
-              </svg>
-            </button>
-          </div>
-
-          <div class="highlight-content">
-            <div class="highlight-meta">
-              <span class="highlight-org">{{ .organization }}</span>
-              <span class="highlight-loc">{{ .location }}</span>
-            </div>
-            <h3 class="highlight-title">{{ .title }}</h3>
-            <p class="highlight-summary">{{ .summary }}</p>
-          </div>
-        </article>
-      {{ end }}
-    </div>
-
-    <!-- Expandable Toggle for Additional Case Studies -->
-    {{ with .more }}
-      <div class="highlights-expand-wrap text-center" style="margin-top: 2.2rem;">
-        <button type="button" id="highlights-toggle-btn" class="btn btn-outline-gold highlights-toggle-btn" aria-expanded="false" aria-controls="more-highlights-grid">
-          <span class="toggle-text">View More Event Highlights (+{{ len . }})</span>
-          <svg class="btn-icon toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-            <polyline points="6 9 12 15 18 9"></polyline>
-          </svg>
-        </button>
+      <div class="highlights-header-controls">
+        <p class="section-lead" data-cms-bind="event_highlights.lead">
+          {{ .lead }}
+        </p>
+        <div class="highlights-nav-buttons" aria-label="Highlights carousel navigation">
+          <button type="button" class="carousel-nav-btn highlights-nav-prev" id="highlights-prev-btn" aria-label="Previous video highlights">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </button>
+          <button type="button" class="carousel-nav-btn highlights-nav-next" id="highlights-next-btn" aria-label="Next video highlights">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
+        </div>
       </div>
+    </div>
 
-      <div id="more-highlights-grid" class="highlights-grid more-highlights-grid is-collapsed" aria-hidden="true" data-cms-bind="event_highlights.more">
-        {{ range . }}
+    <!-- 5 Featured Video Case Studies in a 3-Visible Horizontal Carousel -->
+    <div class="highlights-carousel-wrapper">
+      <div class="highlights-carousel-track" id="highlights-carousel-track" data-cms-bind="event_highlights.featured">
+        {{ range .featured }}
           <article class="highlight-card" id="{{ .id }}">
             <div class="highlight-video-box">
               <video class="highlight-video-el" playsinline preload="none" poster="{{ .poster }}" controls aria-label="{{ .title }}">
                 <source src="{{ .video_url }}" type="video/mp4">
+                Your browser does not support HTML5 video playback.
               </video>
               <div class="highlight-badge">{{ .badge }}</div>
               <button type="button" class="highlight-modal-trigger trigger-video-modal" aria-label="Expand video: {{ .title }}" data-video-url="{{ .video_url }}" data-video-poster="{{ .poster }}" data-video-title="{{ .title }} • {{ .organization }}">
@@ -305,7 +279,7 @@
           </article>
         {{ end }}
       </div>
-    {{ end }}
+    </div>
   </div>
 </section>
 {{ end }}
@@ -411,13 +385,29 @@
           <span class="text-gold" data-cms-bind="gallery_section.title_highlight">{{ .title_highlight }}</span>
         </h2>
       </div>
-      <p class="section-lead" data-cms-bind="gallery_section.lead">
-        {{ .lead }}
-      </p>
+      <div class="gallery-header-controls">
+        <p class="section-lead" data-cms-bind="gallery_section.lead">
+          {{ .lead }}
+        </p>
+        <div class="gallery-nav-buttons" aria-label="Stage gallery navigation">
+          <button type="button" class="carousel-nav-btn gallery-nav-prev" id="stage-gallery-prev" aria-label="Scroll stage gallery left">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </button>
+          <button type="button" class="carousel-nav-btn gallery-nav-next" id="stage-gallery-next" aria-label="Scroll stage gallery right">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
+        </div>
+      </div>
     </div>
+  </div>
 
-    <!-- Heavy Image Focus Gallery Grid -->
-    <div class="stage-gallery-grid" id="stage-gallery-grid" data-cms-bind="gallery_section.items">
+  <!-- Auto Slow-Scrolling Carousel Track with Drag and Click Expansion -->
+  <div class="stage-carousel-wrapper">
+    <div class="stage-gallery-track" id="stage-gallery-track" data-cms-bind="gallery_section.items">
       {{ range $index, $item := .items }}
         <article class="gallery-item stage-gallery-card" tabindex="0" role="button" aria-label="Expand image: {{ .title }} - {{ .category }}" 
              data-index="{{ $index }}"
@@ -430,9 +420,9 @@
             <picture>
               {{ if (hasSuffix .image ".webp") }}
                 <source srcset="{{ .image }}" type="image/webp">
-                <img src="{{ .image_fallback | default (replace .image ".webp" ".jpg") }}" alt="{{ .title }} - {{ .caption }}" width="600" height="450" loading="lazy" decoding="async">
+                <img src="{{ .image_fallback | default (replace .image ".webp" ".jpg") }}" alt="{{ .title }} - {{ .caption }}" width="420" height="315" loading="lazy" decoding="async">
               {{ else }}
-                <img src="{{ .image }}" alt="{{ .title }} - {{ .caption }}" width="600" height="450" loading="lazy" decoding="async">
+                <img src="{{ .image }}" alt="{{ .title }} - {{ .caption }}" width="420" height="315" loading="lazy" decoding="async">
               {{ end }}
             </picture>
             
@@ -458,7 +448,9 @@
         </article>
       {{ end }}
     </div>
+  </div>
 
+  <div class="container">
     <!-- Bottom Consultative Action -->
     <div class="stage-gallery-footer text-center">
       <a href="{{ .cta_link | default "#contact" }}" class="btn btn-outline-gold" data-cms-bind="gallery_section.cta_text">
