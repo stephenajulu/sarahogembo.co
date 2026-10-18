@@ -15,3 +15,6 @@ desktop.ini
 
 # Raw working media dumps (optimized versions are placed in static/)
 sarahogembophotos/
+
+# Local agent metadata
+.agent/

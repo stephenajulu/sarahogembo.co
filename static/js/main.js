@@ -425,10 +425,13 @@ document.addEventListener('DOMContentLoaded', () => {
   let openedFromAllGallery = false;
 
   const initGalleryItems = () => {
-    // Prefer items from #all-gallery-modal to get the full archive of 18 photos
-    let tileElements = document.querySelectorAll('#all-gallery-modal .all-gallery-tile');
+    // Prioritize stage gallery items from the dedicated #gallery section
+    let tileElements = document.querySelectorAll('#gallery .gallery-item, .stage-gallery-grid .gallery-item');
     if (tileElements.length === 0) {
-      tileElements = document.querySelectorAll('.gallery-grid .gallery-item:not(.gallery-more-tile)');
+      tileElements = document.querySelectorAll('#all-gallery-modal .all-gallery-tile');
+    }
+    if (tileElements.length === 0) {
+      tileElements = document.querySelectorAll('.gallery-item:not(.gallery-more-tile)');
     }
     
     galleryItems = Array.from(tileElements).map((el, idx) => {
@@ -481,7 +484,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (lightboxCaption) {
       lightboxCaption.innerHTML = `
         <span class="lightbox-cat-badge">${item.category}</span>
-        <h4 class="lightbox-title">${item.title}</h4>
+        <h3 class="lightbox-title">${item.title}</h3>
         ${item.caption ? `<p class="lightbox-desc">${item.caption}</p>` : ''}
       `;
     }

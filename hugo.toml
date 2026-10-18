@@ -205,62 +205,63 @@ enableRobotsTXT = true
     organization = "Enterprise Banking Summit"
     stars = 5
 
-  # Gallery Moments (Authentic Live Event Photography)
+  # Gallery Moments (Authentic Live Event Photography from Sarah on Stage)
   [[params.gallery]]
-    image = "/images/gallery/moment-1.webp"
-    image_fallback = "/images/gallery/moment-1.jpg"
-    title = "Keynote Session Facilitation"
-    category = "Conference"
-    caption = "Sarah commanding the podium with golden mic at the Empower, Inspire and Connect summit."
+    image = "/images/gallery/stage-outdoor-plenary-address.webp"
+    image_fallback = "/images/gallery/stage-outdoor-plenary-address.jpg"
+    title = "National Forum & Plenary Address"
+    category = "Plenary Address & Protocol"
+    caption = "Sarah presiding over an open-air national plenary assembly, upholding rigorous protocol, diplomatic pacing, and commanding stage poise before senior delegates."
 
   [[params.gallery]]
-    image = "/images/gallery/moment-2.webp"
-    image_fallback = "/images/gallery/moment-2.jpg"
-    title = "Stage Presentation & Moderation"
-    category = "Summit"
-    caption = "Steering dynamic multi-track presentations with wireless mic and live stage engagement."
+    image = "/images/gallery/stage-female-leaders-mentorship-panel.webp"
+    image_fallback = "/images/gallery/stage-female-leaders-mentorship-panel.jpg"
+    title = "Bilateral Cooperation & Female Leaders Forum"
+    category = "Executive Panel Moderation"
+    caption = "Moderating a high-level strategic panel for the Female Leaders Mentorship Programme for Co-operatives (FLEM-COOP), supported by DGRV and German Development Cooperation."
 
   [[params.gallery]]
-    image = "/images/gallery/moment-3.webp"
-    image_fallback = "/images/gallery/moment-3.jpg"
-    title = "Plenary Forum Address"
-    category = "Plenary"
-    caption = "Facilitating high-level stakeholder assemblies and introducing distinguished guests."
+    image = "/images/gallery/stage-tika-diplomatic-handover.webp"
+    image_fallback = "/images/gallery/stage-tika-diplomatic-handover.jpg"
+    title = "TİKA Bilateral Development Project Handover"
+    category = "Diplomatic Protocol & Partnership"
+    caption = "Facilitating official bilateral handover proceedings and donor acknowledgement ceremonies in collaboration with the Turkish Cooperation and Coordination Agency (TİKA)."
 
   [[params.gallery]]
-    image = "/images/gallery/moment-4.webp"
-    image_fallback = "/images/gallery/moment-4.jpg"
-    title = "Executive Forum Moderation"
-    category = "Moderation"
-    caption = "Leading executive deliberations with vibrant presence, clarity, and precision."
+    image = "/images/gallery/stage-corporate-strategy-workshop.webp"
+    image_fallback = "/images/gallery/stage-corporate-strategy-workshop.jpg"
+    title = "Corporate Strategy & Alignment Workshop"
+    category = "Interactive Strategy Facilitation"
+    caption = "Facilitating cross-functional alignment sessions with live participatory boards, synthesizing executive inputs in real time."
 
   [[params.gallery]]
-    image = "/images/gallery/moment-5.webp"
-    image_fallback = "/images/gallery/moment-5.jpg"
-    title = "Interactive Leadership Workshop"
-    category = "Workshop"
-    caption = "Creating an open, welcoming environment that encourages active participant contribution."
+    image = "/images/gallery/stage-keynote-presentation-clicker.webp"
+    image_fallback = "/images/gallery/stage-keynote-presentation-clicker.jpg"
+    title = "Knowledge Empowering Youth Summit"
+    category = "Keynote Delivery & Presentation"
+    caption = "Directing audience attention and narrative flow during the Knowledge Empowering Youth (KEY) conference, using dynamic presentation storytelling."
 
   [[params.gallery]]
-    image = "/images/gallery/moment-6.webp"
-    image_fallback = "/images/gallery/moment-6.jpg"
-    title = "International Delegation (PLA USA)"
-    category = "Global Summit"
-    caption = "Representing East African leadership at the international Public Library Association summit in Nashville, USA."
+    image = "/images/gallery/stage-inside-out-plenary-moderation.webp"
+    image_fallback = "/images/gallery/stage-inside-out-plenary-moderation.jpg"
+    title = "Inside Out Development Leadership Summit"
+    category = "Leadership Development Plenary"
+    caption = "Orchestrating interactive masterclasses and panel debriefs for senior human resource and organizational development professionals."
 
   [[params.gallery]]
-    image = "/images/gallery/moment-7.webp"
-    image_fallback = "/images/gallery/moment-7.jpg"
-    title = "Executive Brand Portrait"
-    category = "Editorial"
-    caption = "Poised, thoughtful, and prepared for high-stakes corporate hosting."
+    image = "/images/gallery/stage-she-sparkles-main-stage.webp"
+    image_fallback = "/images/gallery/stage-she-sparkles-main-stage.jpg"
+    title = "She Sparkles Annual Conference Stage"
+    category = "Annual Conference & Awards Stage"
+    caption = "Anchoring main-stage conversations and speaker transitions at the She Sparkles Annual Summit, harmonizing stage presence and sponsor acknowledgements."
 
   [[params.gallery]]
-    image = "/images/gallery/moment-8.webp"
-    image_fallback = "/images/gallery/moment-8.jpg"
-    title = "Fine-Art Monochrome Study"
-    category = "Portrait"
-    caption = "Grace, focus, and quiet confidence behind every executive moment."
+    image = "/images/gallery/stage-milestone-observance-celebration.webp"
+    image_fallback = "/images/gallery/stage-milestone-observance-celebration.jpg"
+    title = "Milestone & Partnership Observance"
+    category = "Institutional Celebrations & Milestones"
+    caption = "Hosting an outdoor organizational anniversary and institutional milestone ceremony, bridging formal executive protocol with celebratory audience engagement."
+
 
 [menu]
   [[menu.main]]

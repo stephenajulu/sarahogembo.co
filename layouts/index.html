@@ -306,68 +306,6 @@
         {{ end }}
       </div>
     {{ end }}
-
-    <!-- Merged Live Stage In Action / Event Evidence Ribbon -->
-    {{ with $gallery }}
-    <div id="gallery" class="gallery-subblock" style="margin-top: 4.5rem; padding-top: 3.5rem; border-top: 1px solid rgba(212, 175, 55, 0.18);">
-      <div class="gallery-strip-header">
-        <div>
-          <div class="eyebrow" data-cms-bind="gallery_section.eyebrow">{{ .eyebrow }}</div>
-          <h3 id="gallery-heading" class="section-title" style="font-size: clamp(1.8rem, 2.8vw, 2.4rem);">
-            <span data-cms-bind="gallery_section.title">{{ .title }}</span>
-            <span class="text-gold" data-cms-bind="gallery_section.title_highlight">{{ .title_highlight }}</span>
-          </h3>
-          <p class="section-lead" data-cms-bind="gallery_section.lead" style="max-width: 600px; margin-top: 6px;">
-            {{ .lead }}
-          </p>
-        </div>
-        <div class="gallery-ribbon-controls">
-          <button type="button" class="gallery-nav-btn gallery-scroll-prev" aria-label="Scroll left through events">❮</button>
-          <button type="button" class="gallery-nav-btn gallery-scroll-next" aria-label="Scroll right through events">❯</button>
-        </div>
-      </div>
-
-      <!-- Structured Horizontal Event Ribbon -->
-      <div class="gallery-ribbon-wrapper">
-        <div class="gallery-ribbon" id="gallery-ribbon" data-cms-bind="gallery_section.items">
-          {{ range $index, $item := .items }}
-            <div class="gallery-item gallery-ribbon-card" tabindex="0" role="button" aria-label="Enlarge {{ .title }}" 
-                 data-index="{{ $index }}"
-                 data-image="{{ .image }}" 
-                 data-fallback="{{ .image_fallback | default (replace .image ".webp" ".jpg") }}" 
-                 data-title="{{ .title }}" 
-                 data-caption="{{ .caption }}" 
-                 data-category="{{ .category | default "Live Event" }}">
-              <div class="ribbon-event-badge">[EVENT 0{{ add $index 1 }}]</div>
-              <div class="gallery-img-container">
-                <picture>
-                  {{ if (hasSuffix .image ".webp") }}
-                    <source srcset="{{ .image }}" type="image/webp">
-                    <img src="{{ .image_fallback | default (replace .image ".webp" ".jpg") }}" alt="{{ .title }} - {{ .caption }}" width="340" height="240" loading="lazy">
-                  {{ else }}
-                    <img src="{{ .image }}" alt="{{ .title }} - {{ .caption }}" width="340" height="240" loading="lazy">
-                  {{ end }}
-                </picture>
-                <div class="gallery-hover-overlay">
-                  <svg class="gallery-zoom-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                    <circle cx="11" cy="11" r="8"></circle>
-                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                    <line x1="11" y1="8" x2="11" y2="14"></line>
-                    <line x1="8" y1="11" x2="14" y2="11"></line>
-                  </svg>
-                </div>
-              </div>
-              <div class="gallery-ribbon-caption">
-                <span class="ribbon-card-cat">{{ .category }}</span>
-                <h4 class="ribbon-card-title">{{ .title }}</h4>
-                <p class="ribbon-card-desc">{{ .caption }}</p>
-              </div>
-            </div>
-          {{ end }}
-        </div>
-      </div>
-    </div>
-    {{ end }}
   </div>
 </section>
 {{ end }}
@@ -459,6 +397,77 @@
   </div>
 </section>
 
+<!-- ========================================================================
+     8. STAGE GALLERY: Heavy Image Focus & Live Stage Moments
+     ======================================================================== -->
+{{ with $gallery }}
+<section id="gallery" class="gallery-section stage-gallery-section" aria-labelledby="gallery-heading">
+  <div class="container">
+    <div class="section-header-split">
+      <div>
+        <div class="eyebrow" data-cms-bind="gallery_section.eyebrow">{{ .eyebrow }}</div>
+        <h2 id="gallery-heading" class="section-title">
+          <span data-cms-bind="gallery_section.title">{{ .title }}</span>
+          <span class="text-gold" data-cms-bind="gallery_section.title_highlight">{{ .title_highlight }}</span>
+        </h2>
+      </div>
+      <p class="section-lead" data-cms-bind="gallery_section.lead">
+        {{ .lead }}
+      </p>
+    </div>
+
+    <!-- Heavy Image Focus Gallery Grid -->
+    <div class="stage-gallery-grid" id="stage-gallery-grid" data-cms-bind="gallery_section.items">
+      {{ range $index, $item := .items }}
+        <article class="gallery-item stage-gallery-card" tabindex="0" role="button" aria-label="Expand image: {{ .title }} - {{ .category }}" 
+             data-index="{{ $index }}"
+             data-image="{{ .image }}" 
+             data-fallback="{{ .image_fallback | default (replace .image ".webp" ".jpg") }}" 
+             data-title="{{ .title }}" 
+             data-category="{{ .category }}" 
+             data-caption="{{ .caption }}">
+          <div class="stage-card-media">
+            <picture>
+              {{ if (hasSuffix .image ".webp") }}
+                <source srcset="{{ .image }}" type="image/webp">
+                <img src="{{ .image_fallback | default (replace .image ".webp" ".jpg") }}" alt="{{ .title }} - {{ .caption }}" width="600" height="450" loading="lazy" decoding="async">
+              {{ else }}
+                <img src="{{ .image }}" alt="{{ .title }} - {{ .caption }}" width="600" height="450" loading="lazy" decoding="async">
+              {{ end }}
+            </picture>
+            
+            <div class="stage-card-pill">
+              <span class="stage-card-cat">{{ .category }}</span>
+            </div>
+            
+            <div class="stage-gallery-overlay">
+              <div class="stage-overlay-content">
+                <div class="stage-overlay-icon" aria-hidden="true">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    <line x1="11" y1="8" x2="11" y2="14"></line>
+                    <line x1="8" y1="11" x2="14" y2="11"></line>
+                  </svg>
+                </div>
+                <h3 class="stage-overlay-title">{{ .title }}</h3>
+                <span class="stage-overlay-action">Click to expand & view context</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      {{ end }}
+    </div>
+
+    <!-- Bottom Consultative Action -->
+    <div class="stage-gallery-footer text-center">
+      <a href="{{ .cta_link | default "#contact" }}" class="btn btn-outline-gold" data-cms-bind="gallery_section.cta_text">
+        {{ .cta_text | default "Let's Work Together →" }}
+      </a>
+    </div>
+  </div>
+</section>
+{{ end }}
 
 <!-- ========================================================================
      9. PERSPECTIVES SECTION: Thought Leadership & Stage Craft ("Listen to Sarah")
